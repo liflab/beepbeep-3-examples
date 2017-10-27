@@ -1,45 +1,50 @@
 package http;
 
+import java.util.Scanner;
+
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.Pushable;
 import ca.uqac.lif.cep.cli.Print;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.http.HttpDownstreamGateway;
-import ca.uqac.lif.cep.http.HttpUpstreamGateway;
 import ca.uqac.lif.cep.serialization.JsonDeserializeString;
-import ca.uqac.lif.cep.serialization.JsonSerializeString;
 import ca.uqac.lif.jerrydog.RequestCallback.Method;
 
-public class MainPush 
+public class MainPushMachineB 
 {
-	public static void main(String[] args) throws ConnectorException, ProcessorException
+	public static void main(String[] args) throws ConnectorException, ProcessorException, InterruptedException
 	{
+		// Ask a few infos about the remote end of the process
+		System.out.println("Hello, I am Machine B (downstream).");
+		System.out.print("Enter the port I should listen to: ");
+		Scanner sc = new Scanner(System.in);
+		int port = sc.nextInt();
+
 		// Instantiate and pipe the processors 
-		FunctionProcessor serialize = new FunctionProcessor(new JsonSerializeString());
-		HttpUpstreamGateway up_gateway = new HttpUpstreamGateway("http://localhost:12144/push");
-		HttpDownstreamGateway dn_gateway = new HttpDownstreamGateway(12144, "/push", Method.POST);
+		HttpDownstreamGateway dn_gateway = new HttpDownstreamGateway(port, "/push", Method.POST);
 		FunctionProcessor deserialize = new FunctionProcessor(new JsonDeserializeString<CompoundObject>(CompoundObject.class));
 		Print print = new Print();
-		Connector.connect(serialize, up_gateway);
-		Connector.connect(up_gateway, dn_gateway);
+		print.setSeparator("\n");
 		Connector.connect(dn_gateway, deserialize);
 		Connector.connect(deserialize, print);
-		
-		// Start both gateways so they can listen to requests
-		up_gateway.start();
+
+		// Start the gateways so it can listen to requests
 		dn_gateway.start();
-		
+
 		// Push events on one end
-		Pushable p = serialize.getPushableInput();
-		p.push(new CompoundObject(0, "foo", null));
-		
-		// Stop both gateways
-		up_gateway.stop();
+		System.out.println("The received objects will be displayed below. Press q to quit.");
+		for (;;)
+		{
+			String line = sc.nextLine();
+			if (line.startsWith("q") || line.startsWith("Q"))
+				break;
+		}
+		// Stop the gateway
 		dn_gateway.stop();
+		sc.close();
 	}
-	
+
 	/**
 	 * A dummy object used to test serialization
 	 */
@@ -48,12 +53,12 @@ public class MainPush
 		int a;
 		String b;
 		CompoundObject c;
-		
+
 		protected CompoundObject()
 		{
 			super();
 		}
-		
+
 		public CompoundObject(int a, String b, CompoundObject c)
 		{
 			super();
@@ -61,7 +66,7 @@ public class MainPush
 			this.b = b;
 			this.c = c;
 		}
-		
+
 		@Override
 		public boolean equals(Object o)
 		{
@@ -80,11 +85,11 @@ public class MainPush
 			}
 			return false;
 		}
-		
+
 		@Override
 		public String toString()
 		{
-			return "a = " + a + ", b = " + b + " c = (" + c + ")";
+			return "a = " + a + ", b = " + b + ", c = (" + c + ")";
 		}
 	}
 
