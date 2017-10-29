@@ -1,4 +1,21 @@
-package http;
+/*
+    BeepBeep, an event stream processor
+    Copyright (C) 2008-2017 Sylvain Hallé
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package http.push;
 
 import java.util.Scanner;
 
@@ -11,7 +28,21 @@ import ca.uqac.lif.cep.http.HttpDownstreamGateway;
 import ca.uqac.lif.cep.serialization.JsonDeserializeString;
 import ca.uqac.lif.jerrydog.RequestCallback.Method;
 
-public class MainPushMachineB 
+/**
+ * This is the same example as {@link PushLocal}, but with the
+ * "Machine A" and "Machine B" parts of the chain split into two independent
+ * programs, with some user interaction added. You are advised to first
+ * go through the {@link PushLocal} example.
+ * This file corresponds to Machine B.
+ * <p>
+ * You can actually run this example on two physical machines if you
+ * wish. Simply start {@link PushMachineA} and {@link PushMachineB} on
+ * two computers, and use the IP address of Machine B in the URL you give
+ * to Machine A.
+ * 
+ * @author Sylvain Hallé
+ */
+public class PushMachineB 
 {
 	public static void main(String[] args) throws ConnectorException, ProcessorException, InterruptedException
 	{
@@ -25,7 +56,6 @@ public class MainPushMachineB
 		HttpDownstreamGateway dn_gateway = new HttpDownstreamGateway(port, "/push", Method.POST);
 		FunctionProcessor deserialize = new FunctionProcessor(new JsonDeserializeString<CompoundObject>(CompoundObject.class));
 		Print print = new Print();
-		print.setSeparator("\n");
 		Connector.connect(dn_gateway, deserialize);
 		Connector.connect(deserialize, print);
 
