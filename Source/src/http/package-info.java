@@ -17,11 +17,12 @@
  */
 
 /**
- * In this section, we show how events can be sent from one processor
- * to another over a network. Thus, a chain of processors can be setup
- * on a first machine, whose output is then relayed to a chain of
- * processors on another machine. This has for effect of <em>distributing</em>
- * the computation of a processor chain across multiple hosts.  
+ * Send events from one processor to another over a network.
+ * <p>
+ * Thus, a chain of processors can be setup on a first machine, whose output 
+ * is then relayed to a chain of processors on another machine. This has for
+ * effect of <em>distributing</em> the computation of a processor chain
+ * across multiple hosts.  
  * <p>
  * There are multiple reasons why one would like to distribute computation.
  * <ul>
@@ -55,7 +56,7 @@
  * chain; Machine B is the <em>downstream</em> machine, and receives events
  * from Machine A to continue the computation with further processors.
  * 
- * @author Sylvain Hall�
+ * @author Sylvain Hallé
  *
  */
 package http;

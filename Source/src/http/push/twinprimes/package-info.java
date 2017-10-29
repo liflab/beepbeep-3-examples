@@ -17,7 +17,7 @@
  */
 
 /**
- * In this example, we compute twin primes by distributing the computation
+ * Compute twin primes by distributing the computation
  * across two machines over a network.
  * <p>
  * Twin primes are pairs of numbers <i>p</i> and <i>p</i>+2 such that both are
@@ -51,6 +51,6 @@
  * if you stop Machine A and restart it, you will see Machine B starting the
  * the sequence of twin primes from the beginning.</li> 
  * </ul>
- * @author Sylvain Hall�
+ * @author Sylvain Hallé
  */
 package http.push.twinprimes;

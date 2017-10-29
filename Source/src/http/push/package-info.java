@@ -17,6 +17,8 @@
  */
 
 /**
+ * Use HTTP gateways in push mode.
+ * <p>
  * In this section, the processor chain operates in <em>push</em> mode.
  * Events are produced upstream, and are pushed to the downstream
  * processors.
@@ -27,7 +29,7 @@
  * which perform the same computation, but across two independent programs
  * that you can run on distinct computers.
  * 
- * @author Sylvain Hall�
+ * @author Sylvain Hallé
  *
  */
 package http.push;
