@@ -17,6 +17,19 @@ What you need
 - Optionally, an IDE such as Eclipse or NetBeans to read and run the code
   examples
 
+Organization of this repository
+-------------------------------
+
+- All code is in the `Source/src` folder. If you want to look at the examples
+  inside an IDE, you can create a Java project with `Source` as the root
+  folder.
+- Each subfolder corresponds to a Java package. Each package contains examples
+  centered on a particular theme. For example, the `http` folder shows how to
+  use network connections.
+- Read the Javadoc comments in `package-info.java` in each subfolder for a
+  description of that particular set of files.
+- Read the Javadoc comments in each file for specific details.
+
 About the authors
 -----------------
 
