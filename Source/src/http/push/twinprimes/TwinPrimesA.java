@@ -1,6 +1,6 @@
 /*
     BeepBeep, an event stream processor
-    Copyright (C) 2008-2017 Sylvain Hallé
+    Copyright (C) 2008-2017 Sylvain HallÃ©
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published
@@ -42,7 +42,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
 
 /**
  * The code for Machine A in the twin prime example.
- * @author Sylvain Hallé
+ * @author Sylvain HallÃ©
  */
 public class TwinPrimesA 
 {

@@ -1,6 +1,6 @@
 /*
     BeepBeep, an event stream processor
-    Copyright (C) 2008-2017 Sylvain Hallé
+    Copyright (C) 2008-2017 Sylvain HallÃ©
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published
@@ -40,7 +40,7 @@ import ca.uqac.lif.jerrydog.RequestCallback.Method;
  * two computers, and use the IP address of Machine B in the URL you give
  * to Machine A.
  * 
- * @author Sylvain Hallé
+ * @author Sylvain HallÃ©
  */
 public class PushMachineB 
 {
