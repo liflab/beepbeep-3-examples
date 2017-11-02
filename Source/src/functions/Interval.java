@@ -25,7 +25,7 @@ import ca.uqac.lif.cep.numbers.IsGreaterThan;
 import ca.uqac.lif.cep.numbers.IsLessThan;
 
 /**
- * Creates a compound function (i.e. a
+ * Creates a compound function (a
  * {@link ca.uqac.lif.cep.functions.FunctionTree FunctionTree})
  * that checks if a number lies between two
  * other numbers.
