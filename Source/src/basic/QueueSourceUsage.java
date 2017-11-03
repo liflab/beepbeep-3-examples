@@ -23,7 +23,12 @@ import ca.uqac.lif.cep.tmf.QueueSource;
 /**
  * Pull events from the
  * {@link ca.uqac.lif.cep.tmf.QueueSource QueueSource} processor.
- * 
+ * Graphically, the queue source is represented as follows:
+ * <p>
+ * <img src="{@docRoot}/doc-files/basic/QueueSourceUsage.png" alt="Processor graph">
+ * <p>
+ * Since it is a <em>source</em>, it has no input streams. We represent
+ * in a rectangle the queue of events that the source will dispense.
  * @author Sylvain Hallé
  */
 public class QueueSourceUsage

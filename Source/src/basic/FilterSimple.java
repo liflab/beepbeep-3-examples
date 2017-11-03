@@ -28,8 +28,10 @@ import ca.uqac.lif.cep.tmf.QueueSource;
 
 /**
  * Discard events from an input trace with the
- * {@link ca.uqac.lif.cep.tmf.Filter} processor.
- * 
+ * {@link ca.uqac.lif.cep.tmf.Filter Filter} processor. This example can
+ * be represented grahpically as:
+ * <p>
+ * <img src="{@docRoot}/doc-files/basic/FilterSimple.png" alt="Processor graph">
  * @author Sylvain Hallé
  */
 public class FilterSimple

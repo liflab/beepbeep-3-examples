@@ -28,6 +28,9 @@ import ca.uqac.lif.cep.tmf.QueueSource;
 /**
  * Use a cumulative processor to compute the sum of all events
  * received so far.
+ * Graphically, this chain of processors can be represented as:
+ * <p>
+ * <img src="{@docRoot}/doc-files/basic/CumulativeSum.png" alt="Processor graph"> 
  * 
  * @author Sylvain Hallé
  */
@@ -35,13 +38,11 @@ public class CumulativeSum
 {
 	public static void main(String[] args) throws ConnectorException
 	{
-		// SNIP
 		QueueSource source = new QueueSource();
 		source.setEvents(new Integer[]{1, 2, 3, 4, 5, 6});
 		CumulativeProcessor sum = new CumulativeProcessor(
 				new CumulativeFunction<Number>(Addition.instance));
 		Connector.connect(source, sum);
-		// SNIP
 		Pullable p = sum.getPullableOutput();
 		for (int i = 0; i < 5; i++)
 		{

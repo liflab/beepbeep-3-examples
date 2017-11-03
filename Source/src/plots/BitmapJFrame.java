@@ -31,7 +31,7 @@ import ca.uqac.lif.cep.tmf.Sink;
 
 /**
  * Receives a byte array as an input, and shows it in a Swing
- * window in real time. This processor is a sink: it receives
+ * window as a picture. This processor is a sink: it receives
  * input events, but emits no output events. In the examples of this
  * package, it is represented graphically as:
  * <p>

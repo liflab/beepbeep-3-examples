@@ -24,7 +24,11 @@ import ca.uqac.lif.cep.tmf.QueueSink;
 
 /**
  * Push events into a {@link ca.uqac.lif.cep.tmf.QueueSink QueueSink}
- * processor.
+ * processor. Graphically, the queue sink is represented as follows:
+ * <p>
+ * <img src="{@docRoot}/doc-files/basic/QueueSinkUsage.png" alt="Processor graph">
+ * <p>
+ * Since it is a <em>sink</em>, it has no output stream.
  * 
  * @author Sylvain Hallé
  */

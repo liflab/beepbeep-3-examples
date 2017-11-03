@@ -51,7 +51,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  * Represented graphically, this example corresponds to the following chain
  * of processors:
  * <p>
- * <img src="{@docRoot}/doc-files/Average.png" alt="Processor graph">
+ * <img src="{@docRoot}/doc-files/basic/Average.png" alt="Processor graph">
  * <p>
  * The output of this program should look like this:
  * <pre>

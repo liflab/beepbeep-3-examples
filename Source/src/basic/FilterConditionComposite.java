@@ -41,7 +41,9 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  * <p>
  * In this example, we wish to keep all events that are even <em>and</em>
  * greater than 4, and discard the others.
- * 
+ * This example can be represented grahpically as:
+ * <p>
+ * <img src="{@docRoot}/doc-files/basic/FilterConditionComposite.png" alt="Processor graph">
  * @author Sylvain Hallé
  */
 public class FilterConditionComposite

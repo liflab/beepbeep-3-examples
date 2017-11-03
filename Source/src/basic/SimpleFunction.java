@@ -27,7 +27,9 @@ import ca.uqac.lif.cep.tmf.QueueSource;
 /**
  * Use the {@link ca.uqac.lif.cep.functions.FunctionProcessor FunctionProcessor}
  * to apply a function to each input event. Here, we apply the negation to
- * every Boolean event.
+ * every Boolean event. This can be represented grahpically as follows:
+ * <p>
+ * <img src="{@docRoot}/doc-files/basic/SimpleFunction.png" alt="Processor graph">
  * <p>
  * For an input stream with the values <tt>false</tt>, <tt>true</tt>, <tt>true</tt>,
  * <tt>false</tt>, <tt>true</tt>, the expected output should be:

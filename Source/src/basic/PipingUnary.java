@@ -29,8 +29,10 @@ import ca.uqac.lif.cep.tmf.QueueSource;
 
 /**
  * Pipe processors together using the {@link ca.uqac.lif.cep.Connector Connector}
- * object.
- * 
+ * object. The chain of processors in this example can be represented
+ * graphically as:
+ * <p>
+ * <img src="{@docRoot}/doc-files/basic/PipingUnary.png" alt="Processor graph">
  * @see PipingBinary#main(String[])
  * @author Sylvain Hallé
  */

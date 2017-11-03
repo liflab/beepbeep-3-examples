@@ -30,37 +30,64 @@ import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
 
 /**
  * Update a windowed 2D scatterplot in realtime from two streams of numbers.
- * 
+ * This example is similar to {@link CumulativeScatterplot} (which you should
+ * study first), except for three things:
+ * <ul>
+ * <li>The two outputs of the {@link RandomTwoD} processor are merged into
+ * arrays of size 2 by the {@link NaryToArray} processor.</li>
+ * <li>The creation of a table out of input streams is done with an
+ * {@link UpdateTableArray} processor</li>
+ * <li>The creation of a table out of input streams is encased in a
+ * {@link Window} processor} of 100 events, and only one table every
+ * 20 is pushed downstream.</li>
+ * </ul>
+ * Graphically, this chain of processor can be described as follows:
+ * <p>
+ * <img src="{@docRoot}/doc-files/plots/WindowScatterplot.png" alt="Processor graph">
  * @author Sylvain Hallé
  */
 public class WindowScatterplot
 {
 	public static void main(String[] args) throws ConnectorException, InterruptedException
 	{
+		/* Create a stream of random x-y pairs, as in
+		 * {@link CumulativeScatterplot} */
 		QueueSource one = new QueueSource();
 		one.addEvent(1);
 		RandomTwoD random = new RandomTwoD();
 		Connector.connect(one, random);
+		
+		/* Merge the two streams into arrays of size 2. Each output event
+		 * is an array with the x and the y value. Since random has an
+		 * output arity of 2, and array_convert has an input arity of 2,
+		 * we don't need to explicitly connect both input/output pairs. */
 		NaryToArray array_convert = new NaryToArray(2);
 		Connector.connect(random, array_convert);
 		
-		/* Apply a sliding window */
-		Window window = new Window(new UpdateTableArray("x", "y"), 100);
+		/* Use the UpdateTable processor that takes as input a single
+		 * stream of arrays. */
+		UpdateTableArray update_table = new UpdateTableArray("x", "y");
+		
+		/* We encase this processor in a window processor of width 100 */
+		Window window = new Window(update_table, 100);
+		
+		/* It is this processor that we connect to array_convert */
 		Connector.connect(array_convert, window);
+		
+		/* To slow down the refreshing of the plot, we keep only one
+		 * table for every 20 output by the window processor. This is done
+		 * with a CountDecimate processor. */
 		CountDecimate decimate = new CountDecimate(20);
 		Connector.connect(window, decimate);
 		
-		/* Prepare a plot */
+		/* The plot, draw and display parts of this example are identical
+		 * to {@link CumulativeScatterplot}. */
 		Scatterplot plot = new Scatterplot();
-		
 		DrawPlot draw = new DrawPlot(plot);
 		Connector.connect(decimate, draw);
-		
-		/* Show plot in a JFrame */
 		BitmapJFrame frame = new BitmapJFrame();
 		Connector.connect(draw, frame);
 		frame.start();
-		
 		System.out.println("Displaying plot. Press Ctrl+C or close the window to end.");
 		while (true)
 		{

@@ -33,7 +33,9 @@ import ca.uqac.lif.cep.tmf.QueueSource;
 /**
  * Filter a trace by evaluating a simple condition on the events of
  * that trace.
- * 
+ * This example can be represented grahpically as:
+ * <p>
+ * <img src="{@docRoot}/doc-files/basic/FilterConditionSimple.png" alt="Processor graph">
  * @author Sylvain Hallé
  */
 public class FilterConditionSimple

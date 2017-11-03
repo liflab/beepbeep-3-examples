@@ -27,7 +27,10 @@ import ca.uqac.lif.cep.tmf.QueueSource;
 /**
  * Pipe processors together using the {@link ca.uqac.lif.cep.Connector Connector}
  * object.
- * 
+ * The chain of processors in this example can be represented
+ * graphically as:
+ * <p>
+ * <img src="{@docRoot}/doc-files/basic/PipingBinary.png" alt="Processor graph">
  * @see PipingUnary#main(String[])
  * @author Sylvain Hallé
  */
@@ -35,7 +38,6 @@ public class PipingBinary
 {
 	public static void main (String[] args) throws ConnectorException
 	{
-		// SNIP
 		QueueSource source1 = new QueueSource();
 		source1.setEvents(new Integer[]{2, 7, 1, 8, 3});
 		QueueSource source2 = new QueueSource();
@@ -49,6 +51,5 @@ public class PipingBinary
 			float x = (Float) p.pull();
 			System.out.println("The event is: " + x);
 		}
-		// SNIP
 	}
 }

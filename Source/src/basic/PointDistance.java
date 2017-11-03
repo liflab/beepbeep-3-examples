@@ -34,8 +34,15 @@ import ca.uqac.lif.cep.tmf.Trim;
  * Calculate the Euclidean distance of each two successive points in an
  * input trace of (x,y) coordinates. For two points (<i>x</i><sub>1</sub>,<i>y</i><sub>1</sub>)
  * and  (<i>x</i><sub>2</sub>,<i>y</i><sub>2</sub>), the Euclidean distance is
- * defined as the square root of (<i>x</i><sub>1</sub>-<i>x</i><sub>2</sub>)<sup>2</sup>
- * + (<i>y</i><sub>1</sub>-<i>y</i><sub>2</sub>)<sup>2</sup>.
+ * defined as the square root of (<i>x</i><sub>1</sub>-<i>x</i><sub>2</sub>)<sup>2</sup> +
+ * (<i>y</i><sub>1</sub>-<i>y</i><sub>2</sub>)<sup>2</sup>. The chain of
+ * processors in this example can be represented graphically as:
+ * <p>
+ * <img src="{@docRoot}/doc-files/basic/PointDistance.png" alt="Processor graph">
+ * <p>
+ * In this picture, light green pipes correspond to streams of {@link Point}
+ * objects. The processor with a ruler and a "d" is the {@link Distance}
+ * processor defined below.
  * <p>
  * On an input stream made of points (2,7), (1,8), (2,8), (1,8), &hellip;, the
  * expected output of this program should look like:

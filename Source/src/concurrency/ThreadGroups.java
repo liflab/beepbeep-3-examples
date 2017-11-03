@@ -9,12 +9,13 @@ import java.util.Queue;
 import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Processor;
+import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.SingleProcessor;
 
 public class ThreadGroups
 {
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args) throws ConnectorException, ProcessorException
 	{
 		Counter cnt = new Counter();
 		IsPrimeProcessor ip1 = new IsPrimeProcessor();

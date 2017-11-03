@@ -28,7 +28,10 @@ import ca.uqac.lif.cep.tmf.QueueSource;
 /**
  * Pipe processors with non-matching event types. Doing this in BeepBeep
  * causes a {@link ConnectorException} to be thrown. This example shows what
- * happens in that case.
+ * happens in that case. The chain of processors in this example can be represented
+ * graphically as:
+ * <p>
+ * <img src="{@docRoot}/doc-files/basic/IncorrectPiping.png" alt="Processor graph">
  * <p>
  * The expected output of this program should look like this:
  * <pre>
@@ -40,6 +43,10 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  *	at ca.uqac.lif.cep.Connector.connect(Connector.java:251)
  *	at basic.IncorrectPiping.main(IncorrectPiping.java:42)
  * </pre>
+ * If we refer to the picture, the exception is raised when attempting to
+ * connect the output of the first function processor (turquoise, representing
+ * a number) to the input of the second function processor (light blue,
+ * representing a Boolean).
  * @author Sylvain Hallé
  */
 public class IncorrectPiping
