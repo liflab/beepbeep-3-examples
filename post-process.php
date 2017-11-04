@@ -20,6 +20,10 @@ closedir($handle);
 /* Copy all contents of Source/src/doc-files into docs/html/doc-files */
 xcopy("Source/src/doc-files", "docs/doc-files");
 
+/* Create a .nojekyll file at the root of the docs folder. This is to solve
+   https://help.github.com/articles/files-that-start-with-an-underscore-are-missing/ */
+file_put_contents($base_dir.".nojekyll", "");
+
 /**
  * Copy a file, or recursively copy a folder and its contents
  * @author      Aidan Lister <aidan@php.net>
