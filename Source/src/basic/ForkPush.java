@@ -25,11 +25,14 @@ import ca.uqac.lif.cep.cli.Print;
 import ca.uqac.lif.cep.tmf.Fork;
 
 /**
- * Use the {@link ca.uqac.lif.cep.tmf Fork Fork} processor to replicate
+ * Use the {@link ca.uqac.lif.cep.tmf.Fork Fork} processor to replicate
  * input events in multiple output streams. Graphically, the processors
  * of this example can be drawn as follows:
  * <p>
- * <img src="{@docRoot}/doc-files/basic/ForkPush.png" alt="Processor graph">
+ * <a href="{@docRoot}/doc-files/basic/ForkPush.png"><img 
+ *   src="{@docRoot}/doc-files/basic/ForkPush.png" 
+ *   alt="Processor graph"></a>
+ * <p>
  * The expected output of this program is:
  * <pre>
  * P0 foo
@@ -76,7 +79,7 @@ public class ForkPush
 		 * be printed almost instantaneously. This shows that all three print
 		 * processors received their input event at the "same" time. This is
 		 * not exactly true: the fork processor pushes the event to each of its
-		 * output in sequence; however, since the time it takes to do so is so
+		 * outputs in sequence; however, since the time it takes to do so is so
 		 * short, we can consider this to be instantaneous. */
 		
 		/* Wait a little and do it again */
