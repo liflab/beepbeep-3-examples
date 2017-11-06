@@ -71,6 +71,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a9ded1aabe4c9e27e3d5cded348ec395e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutil_1_1_utility_methods.html#a9ded1aabe4c9e27e3d5cded348ec395e">pause</a> (long milliseconds)</td></tr>
 <tr class="memdesc:a9ded1aabe4c9e27e3d5cded348ec395e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses the execution of the current thread for some time.  <a href="#a9ded1aabe4c9e27e3d5cded348ec395e">More...</a><br /></td></tr>
 <tr class="separator:a9ded1aabe4c9e27e3d5cded348ec395e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a165d53e607ec24e3fd7d88d491702648"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutil_1_1_utility_methods.html#a165d53e607ec24e3fd7d88d491702648">waitForever</a> ()</td></tr>
+<tr class="memdesc:a165d53e607ec24e3fd7d88d491702648"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enters an infinite loop.  <a href="#a165d53e607ec24e3fd7d88d491702648">More...</a><br /></td></tr>
+<tr class="separator:a165d53e607ec24e3fd7d88d491702648"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1de190b79d6ce201c9b738b2b234540"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1de190b79d6ce201c9b738b2b234540"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutil_1_1_utility_methods.html#ac1de190b79d6ce201c9b738b2b234540">printGreeting</a> ()</td></tr>
 <tr class="memdesc:ac1de190b79d6ce201c9b738b2b234540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a "BeepBeep 3" greeting on the standard output. <br /></td></tr>
@@ -170,6 +173,34 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 
 <p>Definition at line <a class="el" href="_utility_methods_8java_source.html#l00045">45</a> of file <a class="el" href="_utility_methods_8java_source.html">UtilityMethods.java</a>.</p>
 <div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        Scanner s = <span class="keyword">new</span> Scanner(System.in);</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        String value = s.nextLine();</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        s.close();</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">return</span> value;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div></div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a165d53e607ec24e3fd7d88d491702648"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void util.UtilityMethods.waitForever </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enters an infinite loop. </p>
+<p>This is used in some example programs where a thread is started in the background, and the main program has to remain idle. The only way to stop this method is for the program to be interrupted by some other external means (e.g. pressing Ctrl+C at the console, closing a window, etc.). </p>
+
+<p>Definition at line <a class="el" href="_utility_methods_8java_source.html#l00078">78</a> of file <a class="el" href="_utility_methods_8java_source.html">UtilityMethods.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        {</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keywordflow">try</span> </div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            {</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                Thread.sleep(10000);</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            }</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">catch</span> (InterruptedException e) </div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            {</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="comment">// Do nothing</span></div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            }</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div></div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>

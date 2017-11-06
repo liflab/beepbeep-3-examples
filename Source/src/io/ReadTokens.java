@@ -34,9 +34,9 @@ import ca.uqac.lif.cep.io.StreamReader;
  * <p>
  * Graphically, the processor chain is represented as follows:
  * <p>
- * <a href="{@docRoot}/doc-files/io/ReadTokens.png"><img
+ * <img
  *   src="{@docRoot}/doc-files/io/ReadTokens.png"
- *   alt="Processor graph"></a>
+ *   alt="Processor graph">
  * <p>
  * The main difference of this chain is that the <tt>CsvFeeder</tt> only
  * outputs <em>complete</em> tokens, which are delimited by a comma. Suppose

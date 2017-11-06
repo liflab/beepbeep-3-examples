@@ -35,9 +35,9 @@ import ca.uqac.lif.jerrydog.RequestCallback.Method;
  * just listen to different TCP ports on the same computer. Read this program
  * first before looking that the other files in this package.
  * <p>
- * <a href="{@docRoot}/doc-files/network/httppush/PushLocal.png"><img
+ * <img
  *   src="{@docRoot}/doc-files/network/httppush/PushLocal.png"
- *   alt="Processor graph"></a>
+ *   alt="Processor graph">
  * @author Sylvain Hallé
  *
  */

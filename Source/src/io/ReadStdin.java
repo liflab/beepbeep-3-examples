@@ -31,9 +31,9 @@ import ca.uqac.lif.cep.io.StreamReader;
  * processor that reprints it to the standard output. The chain of processors
  * hence looks like this:  
  * <p>
- * <a href="{@docRoot}/doc-files/io/ReadStdin.png"><img
+ * <img
  *   src="{@docRoot}/doc-files/io/ReadStdin.png"
- *   alt="Processor graph"></a>
+ *   alt="Processor graph">
  * <p>
  * In this picture, the leftmost processor is the {@code StreamReader}. As you
  * can see, it takes its input from the standard input; note how the input at

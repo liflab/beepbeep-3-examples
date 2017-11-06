@@ -37,16 +37,12 @@ import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
  * updates once per second. Notice how the use of an average (green line)
  * smoothes the jittery motion of the raw values (blue line).
  * <p>
- * <a href="{@docRoot}/doc-files/widgets/AverageSlider-screenshot.png"><img
- *   src="{@docRoot}/doc-files/widgets/AverageSlider-screenshot.png"
- *   alt="Processor graph" width="50%"></a>
+ * <img src="{@docRoot}/doc-files/widgets/AverageSlider-screenshot.png" width="50%">
  * <p>
  * Graphically, the processor chain for this example can be represented
  * as follows:  
  * <p>
- * <a href="{@docRoot}/doc-files/widgets/AverageSlider.png"><img
- *   src="{@docRoot}/doc-files/widgets/AverageSlider.png"
- *   alt="Processor graph"></a>
+ * <img src="{@docRoot}/doc-files/widgets/AverageSlider.png" alt="Processor graph"></a>
  * <p>
  * As one can see, this example is notable for its mix of various processors:
  * <ul>

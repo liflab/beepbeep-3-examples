@@ -26,15 +26,15 @@ import ca.uqac.lif.cep.tmf.Source;
  * <p>
  * The window looks like this:
  * <p>
- * <a href="{@docRoot}/doc-files/widgets/SliderWindow-frame.png"><img
+ * <img
  *   src="{@docRoot}/doc-files/widgets/SliderWindow-frame.png"
- *   alt="Processor graph"></a>
+ *   alt="Processor graph">
  * <p>
  * Graphically, this processor is represented as:
  * <p>
- * <a href="{@docRoot}/doc-files/widgets/SliderFrame.png"><img
+ * <img
  *   src="{@docRoot}/doc-files/widgets/SliderFrame.png"
- *   alt="Processor graph"></a>
+ *   alt="Processor graph">
  * <p>
  * Since <tt>SliderFrame</tt> is a {@link ca.uqac.lif.cep.Processor Processor}
  * object, it can be connected to a processor chain just like any other

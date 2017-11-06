@@ -29,9 +29,9 @@ import ca.uqac.lif.cep.tmf.Fork;
  * input events in multiple output streams. Graphically, the processors
  * of this example can be drawn as follows:
  * <p>
- * <a href="{@docRoot}/doc-files/basic/ForkPush.png"><img 
+ * <img 
  *   src="{@docRoot}/doc-files/basic/ForkPush.png" 
- *   alt="Processor graph"></a>
+ *   alt="Processor graph">
  * <p>
  * The expected output of this program is:
  * <pre>

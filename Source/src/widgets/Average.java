@@ -21,17 +21,17 @@ import ca.uqac.lif.cep.tmf.Fork;
  * examples of the {@link basic} section. Graphically, it corresponds to the
  * following chain of processors:
  * <p>
- * <a href="{@docRoot}/doc-files/widgets/Average.png"><img
+ * <img
  *   src="{@docRoot}/doc-files/widgets/Average.png"
- *   alt="Processor graph"></a>
+ *   alt="Processor graph">
  * <p>
  * Since we encapsulate this chain into a 
  * {@link ca.uqac.lif.cep.GroupProcessor GroupProcessor}, in other processor
  * graphs that use it, it will be drawn as this:
  * <p>
- * <a href="{@docRoot}/doc-files/widgets/Average-box.png"><img
+ * <img
  *   src="{@docRoot}/doc-files/widgets/Average-box.png"
- *   alt="Processor graph"></a>
+ *   alt="Processor graph">
  * 
  * @author Sylvain Hallé
  * @see basic.Average Average

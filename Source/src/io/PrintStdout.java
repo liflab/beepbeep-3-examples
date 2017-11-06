@@ -30,9 +30,9 @@ import ca.uqac.lif.cep.cli.Print;
  * The processor chain of this example is very simple, and consists of a
  * single processor:
  * <p>
- * <a href="{@docRoot}/doc-files/io/Print.png"><img
+ * <img
  *   src="{@docRoot}/doc-files/io/Print.png"
- *   alt="Processor graph"></a>
+ *   alt="Processor graph">
  * <p>
  * Let us use this program from the command-line. Suppose you compile
  * this program into a runnable JAR file called {@code printstdout.jar}.
