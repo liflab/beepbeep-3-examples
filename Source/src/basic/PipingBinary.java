@@ -31,8 +31,9 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  * graphically as:
  * <p>
  * <img src="{@docRoot}/doc-files/basic/PipingBinary.png" alt="Processor graph">
- * @see PipingUnary#main(String[])
+ * @see PipingUnary
  * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class PipingBinary
 {

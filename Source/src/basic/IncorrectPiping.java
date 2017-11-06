@@ -47,7 +47,9 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  * connect the output of the first function processor (turquoise, representing
  * a number) to the input of the second function processor (light blue,
  * representing a Boolean).
+ * 
  * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class IncorrectPiping
 {

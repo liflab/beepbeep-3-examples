@@ -45,6 +45,7 @@ import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
  * <p>
  * <img src="{@docRoot}/doc-files/plots/WindowScatterplot.png" alt="Processor graph">
  * @author Sylvain Hallé
+ * @difficulty Medium
  */
 public class WindowScatterplot
 {

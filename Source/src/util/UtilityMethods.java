@@ -67,6 +67,28 @@ public abstract class UtilityMethods
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Enters an infinite loop. This is used in some example programs
+	 * where a thread is started in the background, and the main program
+	 * has to remain idle. The only way to stop this method is for the
+	 * program to be interrupted by some other external means (e.g. pressing
+	 * Ctrl+C at the console, closing a window, etc.).
+	 */
+	public static void waitForever()
+	{
+		while (true)
+		{
+			try 
+			{
+				Thread.sleep(10000);
+			}
+			catch (InterruptedException e) 
+			{
+				// Do nothing
+			}
+		}
+	}
 
 	/**
 	 * Prints a "BeepBeep 3" greeting on the standard output

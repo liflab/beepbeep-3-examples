@@ -30,6 +30,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  * Since it is a <em>source</em>, it has no input streams. We represent
  * in a rectangle the queue of events that the source will dispense.
  * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class QueueSourceUsage
 {

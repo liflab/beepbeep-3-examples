@@ -43,6 +43,7 @@ import ca.uqac.lif.cep.tmf.Fork;
  * P2 bar
  * </pre>
  * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class ForkPush 
 {

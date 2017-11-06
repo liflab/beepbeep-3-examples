@@ -27,6 +27,7 @@ import ca.uqac.lif.cep.io.LineReader;
  * Read an input stream from a text file line by line and show the output.
  * 
  * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class FileReader
 {

@@ -37,6 +37,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  * <p>
  * <img src="{@docRoot}/doc-files/basic/FilterConditionSimple.png" alt="Processor graph">
  * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class FilterConditionSimple
 {

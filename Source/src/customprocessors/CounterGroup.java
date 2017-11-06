@@ -38,6 +38,9 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  * encapsulating a <code>CumulativeProcessor</code> within a
  * <code>GroupProcessor</code>. Another way is illustrated by the
  * {@link CounterSingle} class.
+ * 
+ * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class CounterGroup extends GroupProcessor
 {

@@ -101,6 +101,7 @@ import ca.uqac.lif.cep.io.StreamReader;
  * {@link ReadFile} example.
  * 
  * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class ReadStdin
 {

@@ -42,6 +42,10 @@ import ca.uqac.lif.jerrydog.RequestCallback.Method;
  * Use a packer to send events in batch and reduce the number of HTTP
  * requests.
  * <p>
+ * <a href="{@docRoot}/doc-files/network/httppush/PackerExample.png"><img
+ *   src="{@docRoot}/doc-files/network/httppush/PackerExample.png"
+ *   alt="Processor graph"></a>
+ * <p>
  * In this example, we send a relatively fast flow of events (about 1,000
  * per second) from one host to another using HTTP gateways
  * (see {@link PushLocal} for an explanation of gateways). If we used

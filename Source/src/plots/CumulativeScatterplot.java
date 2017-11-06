@@ -40,6 +40,7 @@ import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
  * <p>
  * <img src="{@docRoot}/doc-files/plots/CumulativeScatterplot.png" alt="Processor graph">
  * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class CumulativeScatterplot
 {

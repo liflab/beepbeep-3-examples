@@ -31,6 +31,9 @@ import ca.uqac.lif.cep.SingleProcessor;
  * creating an instance of SingleProcessor with a purpose-built
  * <code>compute()</code> method. Another way is illustrated by the
  * {@link CounterGroup} class.
+ * 
+ * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class CounterSingle extends SingleProcessor
 {

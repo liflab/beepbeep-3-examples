@@ -60,7 +60,9 @@ import ca.uqac.lif.cep.cli.Print;
  * </pre>
  * Here, the standard output of the Java program is redirected into the
  * standard input of the {@code wc} command.
+ * 
  * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class PrintStdout
 {

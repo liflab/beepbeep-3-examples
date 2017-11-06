@@ -33,6 +33,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  * <img src="{@docRoot}/doc-files/basic/CumulativeSum.png" alt="Processor graph"> 
  * 
  * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class CumulativeSum
 {

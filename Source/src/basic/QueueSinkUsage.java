@@ -31,6 +31,7 @@ import ca.uqac.lif.cep.tmf.QueueSink;
  * Since it is a <em>sink</em>, it has no output stream.
  * 
  * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class QueueSinkUsage
 {

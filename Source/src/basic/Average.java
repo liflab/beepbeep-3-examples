@@ -59,7 +59,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  * 2.0, 4.5, 3.3333333, 4.5, 4.0, 4.6666665, 4.142857, 4.625, 4.3333335, 
 * </pre>
  * @author Sylvain Hallé
- *
+ * @difficulty Easy
  */
 public class Average
 {

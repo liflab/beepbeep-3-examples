@@ -41,6 +41,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  * The event is: false
  * </pre>
  * @author Sylvain Hallé
+ * @difficulty Easy
  */
 public class SimpleFunction
 {

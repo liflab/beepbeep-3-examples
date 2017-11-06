@@ -56,7 +56,7 @@ import ca.uqac.lif.cep.tmf.Trim;
  * </pre>
  * 
  * @author Sylvain Hallé
- *
+ * @difficulty Easy
  */
 public class PointDistance
 {
