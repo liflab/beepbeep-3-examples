@@ -63,7 +63,7 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (Stri
 <div class="textblock"><p>What happens when trying to push events on a processor connected to no output. </p>
 <p>The chain of processors in this example is very simple, it is composed of a single <a class="el" href="">Passthrough</a> processor: </p>
 <div class="image">
-<img src="{@docRoot}/doc-files/basic/Passthrough.png" alt="Processor chain"/>
+<img src="./doc-files/basic/Passthrough.png" alt="Processor chain"/>
 </div>
  <p>When attempting to push an event into the input of this processor, the passthrough will attempt to push it, in turn, through its output. The problem lies in the fact that <em>nothing</em> is connect to the output. In BeepBeep, pushed events cannot just disappear into thin air: they <em>must</em> be collected by some <a class="el" href="">Sink</a> (a processor with zero output streams). Thus, the expected output of this program is this: </p><pre>
 Exception in thread "main" ca.uqac.lif.cep.Pushable$PushableException:

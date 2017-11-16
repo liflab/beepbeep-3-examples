@@ -62,7 +62,7 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (Stri
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Use a packer to send events in batch and reduce the number of HTTP requests. </p>
 <div class="image">
-<img src="{@docRoot}/doc-files/network/httppush/PackerExample.png" alt="Processor graph"/>
+<img src="./doc-files/network/httppush/PackerExample.png" alt="Processor graph"/>
 </div>
  <p>In this example, we send a relatively fast flow of events (about 1,000 per second) from one host to another using HTTP gateways (see <a class="el" href="classnetwork_1_1httppush_1_1_push_local.html">PushLocal</a> for an explanation of gateways). If we used the <a class="el" href="">HttpUpstreamGateway</a> directly, this would result in one HTTP request-response cycle for each event to be pushed over the network. However, each request has an associated overhead, which places an upper bound on the number of requests per second that can be sent. </p>
 <p>The <a class="el" href="">ListPackerPush</a> processor can be used to reduce the number of such requests. The packer accumulates events for a predetermined amount of time (say, one second), and outputs all accumulated events as a single <code>List</code> object when the time interval is expired. When coupled with a JSON serializer (to transform that list into a JSON string) and an <a class="el" href="">HttpUpstreamGateway</a>, this results in fewer HTTP requests, a smaller overhead, and hence an increased throughput. </p>

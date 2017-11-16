@@ -64,7 +64,7 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (Stri
 <p>You should first read <a class="el" href="classbasic_1_1_slicer_simple.html">SlicerSimple</a>. This example starts in the same way; however, it shows how the values of each slice can be aggregated. This is done by first extracting the image (i.e. set of values in each key-value pair) of the map, and then applying a <a class="el" href="">CumulateOnSet</a> function on the resulting set. </p>
 <p>In this program, the slicing function is the identity, and the processor given to the slicer is a simple counter that increments every time an event is received. Since there is one such counter for each different input event, the slicer effectively maintains the count of how many times each value has been seen in its input stream. Graphically, this can be represented as: </p>
 <div class="image">
-<img src="{@docRoot}/doc-files/basic/SlicerCollapse.png" alt="Processor chain"/>
+<img src="./doc-files/basic/SlicerCollapse.png" alt="Processor chain"/>
 </div>
  <p>The expected output of this program is: </p><pre>
 1.0

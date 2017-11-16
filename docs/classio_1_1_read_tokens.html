@@ -64,7 +64,7 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (Stri
 <p>You should first understand how <a class="el" href="classio_1_1_read_stdin.html">ReadStdin</a> works before look at this example. In this example, we pipe the character strings of the <a class="el" href="">StreamReader</a> into a <a class="el" href="">CsvFeeder</a> before sending its output into the <code>Print</code> processor. </p>
 <p>Graphically, the processor chain is represented as follows: </p>
 <div class="image">
-<img src="{@docRoot}/doc-files/io/ReadTokens.png" alt="Processor graph"/>
+<img src="./doc-files/io/ReadTokens.png" alt="Processor graph"/>
 </div>
  <p>The main difference of this chain is that the <code>CsvFeeder</code> only outputs <em>complete</em> tokens, which are delimited by a comma. Suppose you compile this program as a runnable JAR (for example, <code>read-tokens.jar</code>) and run it in the same way as <a class="el" href="classio_1_1_read_stdin.html">ReadStdin</a>, using the named pipe <code>mypipe</code>. </p><pre>
 $ cat mypipe &gt; java -jar read-tokens.jar
