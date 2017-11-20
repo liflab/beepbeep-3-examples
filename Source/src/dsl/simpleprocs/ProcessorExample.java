@@ -21,6 +21,7 @@ import ca.uqac.lif.bullwinkle.BnfParser.InvalidGrammarException;
 import ca.uqac.lif.bullwinkle.BnfParser.ParseException;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.FunctionException;
+import dsl.arithmetic.ArithmeticBuilder;
 
 public class ProcessorExample
 {
