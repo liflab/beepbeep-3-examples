@@ -1,0 +1,10 @@
+<ArithFunction>  := <BinaryF> | <UnaryF> | <Number> ;
+
+<BinaryF>        := <Addition> | <Subtraction> ;
+<Addition>       := ( <ArithFunction> ) + ( <ArithFunction> ) ;
+<Subtraction>    := ( <ArithFunction> ) + ( <ArithFunction> ) ;
+
+<UnaryF>         := <AbsoluteValue> ;
+<AbsoluteValue>  := ABS ( <ArithFunction> ) ;
+
+<Number>         := ^[0-9]+;

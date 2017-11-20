@@ -56,10 +56,10 @@ import ca.uqac.lif.cep.util.FileHelper;
  * electrical power remaining, fuel remaining, speed and distance travelled.
  * The execution of the engine is broken down into extended periods of time
  * called "cycles", identified in the input data by a cycle number.
- * <p>The processor chain in this example computes, for each cycle, the ???.
- * This corresponds to the sum of all datapoints where electrical power is
- * negative. The chain of processors that performs this computation can be
- * illustrated as follows: 
+ * <p>The processor chain in this example computes, for each cycle, the
+ * <em>recovery rate</em>. This corresponds to the sum of all datapoints 
+ * in each cycle where electrical power is negative. The chain of processors
+ * that performs this computation can be illustrated as follows: 
  * <p>
  * <img src="{@docRoot}/doc-files/artimon/Engine.png" alt="Processor chain">
  * @author Sylvain Hallé (for the BeepBeep processor chain)
