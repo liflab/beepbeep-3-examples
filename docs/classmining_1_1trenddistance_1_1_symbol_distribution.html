@@ -69,23 +69,26 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (Stri
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Alert when the statistical distribution of symbols in a stream is too different from a reference distribution. </p>
 <p>The parameters of the <code>TrendDistance</code> processor in this example are as follows: </p><table class="doxtable">
-</table>
-<p>Parameter</p>
-<p>Value &lt;/thead&gt; &lt;tbody&gt; </p>
-<div class="image">
-<img src="./doc-files/mining/trenddistance/WidthParameter.png"  alt="Window Width"/>
+<tr>
+<th>Parameter</th><th>Value </th></tr>
+<tr>
+<td><div class="image">
+<img src="./doc-files/mining/trenddistance/WidthParameter.png"  alt="Window Width" title="The width of the window"/>
 </div>
- <p>9  </p>
-<div class="image">
-<img src="./doc-files/mining/trenddistance/BetaProcessor.png"  alt="Beta processor"/>
+ </td><td>9  </td></tr>
+<tr>
+<td><div class="image">
+<img src="./doc-files/mining/trenddistance/BetaProcessor.png"  alt="Beta processor" title="The processor that computes the pattern over the current input stream"/>
 </div>
- <div class="image">
+ </td><td><div class="image">
 <img src="./doc-files/mining/trenddistance/SymbolDistribution-PatternProcessor.png"  alt="Processor chain"/>
 </div>
-  <div class="image">
-<img src="./doc-files/mining/trenddistance/PatternParameter.png"  alt="Reference Pattern"/>
+  </td></tr>
+<tr>
+<td><div class="image">
+<img src="./doc-files/mining/trenddistance/PatternParameter.png"  alt="Reference Pattern" title="The reference pattern"/>
 </div>
- <p>A map that associates each symbol with a number of occurrences. The map is:</p><table class="doxtable">
+ </td><td>A map that associates each symbol with a number of occurrences. The map is:<table class="doxtable">
 <tr>
 <th>a</th><td>6</td></tr>
 <tr>
@@ -93,21 +96,34 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (Stri
 <tr>
 <th>c</th><td>2</td></tr>
 </table>
-<div class="image">
-<img src="./doc-files/mining/trenddistance/DistanceFunction.png"  alt="Distance Function"/>
+</td></tr>
+<tr>
+<td><div class="image">
+<img src="./doc-files/mining/trenddistance/DistanceFunction.png"  alt="Distance Function" title="The function that computes the distance with respect to the reference pattern"/>
 </div>
- <p><a class="el" href="classmining_1_1_map_distance.html">MapDistance</a>  </p>
-<div class="image">
-<img src="./doc-files/mining/trenddistance/ComparisonFunction.png"  alt="Comparison Function"/>
+ </td><td><div class="image">
+<img src="./doc-files/mining/MapDistance.png"  alt="Distance Function"/>
 </div>
- <div class="image">
-<img src="./doc-files/mining/trenddistance/DistanceThreshold.png"  alt="Distance Threshold"/>
+ (<a class="el" href="classmining_1_1_map_distance.html">MapDistance</a>)  </td></tr>
+<tr>
+<td><div class="image">
+<img src="./doc-files/mining/trenddistance/ComparisonFunction.png"  alt="Comparison Function" title="The function that compares that distance with a given threshold"/>
 </div>
- <p>2 </p>
-<p>&lt;/tbody&gt; </p>
+ </td><td><div class="image">
+<img src="./doc-files/mining/LessThanOrEqual.png"  alt="&amp;leq;"/>
+</div>
+  </td></tr>
+<tr>
+<td><div class="image">
+<img src="./doc-files/mining/trenddistance/DistanceThreshold.png"  alt="Distance Threshold" title="The distance threshold"/>
+</div>
+ </td><td><p class="starttd">2 </p>
+<p class="endtd"></p>
+</td></tr>
+</table>
 <dl class="section author"><dt>Author</dt><dd>Sylvain Hallé </dd></dl>
 
-<p>Definition at line <a class="el" href="_symbol_distribution_8java_source.html#l00088">88</a> of file <a class="el" href="_symbol_distribution_8java_source.html">SymbolDistribution.java</a>.</p>
+<p>Definition at line <a class="el" href="_symbol_distribution_8java_source.html#l00084">84</a> of file <a class="el" href="_symbol_distribution_8java_source.html">SymbolDistribution.java</a>.</p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Source/src/mining/trenddistance/<a class="el" href="_symbol_distribution_8java_source.html">SymbolDistribution.java</a></li>
 </ul>

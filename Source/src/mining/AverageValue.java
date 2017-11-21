@@ -21,7 +21,7 @@ import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.numbers.Division;
 import ca.uqac.lif.cep.numbers.IsLessThan;
 import ca.uqac.lif.cep.numbers.Subtraction;
-import ca.uqac.lif.cep.peg.TooFarFromTrend;
+import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
 
@@ -45,7 +45,7 @@ public class AverageValue
 			average.associateOutput(OUTPUT, div, OUTPUT);
 			average.addProcessors(fork, sum, one, sum_one, div);
 		}
-		TooFarFromTrend<Number,Number,Number> alarm = new TooFarFromTrend<Number,Number,Number>(6, 3, average, new FunctionTree(AbsoluteValue.instance, 
+		TrendDistance<Number,Number,Number> alarm = new TrendDistance<Number,Number,Number>(6, 3, average, new FunctionTree(AbsoluteValue.instance, 
 				new FunctionTree(Subtraction.instance, new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 0.5, IsLessThan.instance);
 		QueueSource source = new QueueSource();
 		source.setEvents(new Object[]{6.1, 5.9, 6, 6.7, 6.7, 6.7});

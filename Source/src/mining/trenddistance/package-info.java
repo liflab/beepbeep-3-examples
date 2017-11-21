@@ -2,6 +2,9 @@
 /**
  * Evaluate an event stream based on a distance to a reference trend.
  * <p>
+ * The examples in this section make use of the <tt>TrendDistance</tt>
+ * pattern, illustrated as follows.
+ * <p>
  * <img src="{@docRoot}/doc-files/mining/trenddistance/TrendDistance.png" alt="Processor graph">
  * <p>
  * It is possible, however, to encapsulate this process into a

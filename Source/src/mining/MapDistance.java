@@ -30,5 +30,15 @@ public class MapDistance extends BinaryFunction<HashMap,HashMap,Number>
 		}
 		return distance;
 	}
+	
+	public static HashMap<Object,Object> createMap(Object ... keys_and_values)
+	{
+		HashMap<Object,Object> map = new HashMap<Object,Object>();
+		for (int i = 0; i < 2 * (keys_and_values.length / 2); i+=2)
+		{
+			map.put(keys_and_values[i], keys_and_values[i+1]);
+		}
+		return map;
+	}
 
 }

@@ -38,7 +38,7 @@ import ca.uqac.lif.cep.io.StreamReader;
 import ca.uqac.lif.cep.numbers.AbsoluteValue;
 import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.numbers.IsLessThan;
-import ca.uqac.lif.cep.peg.TooFarFromTrend;
+import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.tmf.SlicerMap;
 import ca.uqac.lif.cep.util.FileHelper;
 import mining.MapDistance;
@@ -99,11 +99,8 @@ public class SymbolDistribution
 			counter.addProcessors(one, sum_one);
 		}
 		SlicerMap slicer = new SlicerMap(new IdentityFunction(1), counter);
-		HashMap<String,Integer> pattern = new HashMap<String,Integer>();
-		pattern.put("a", 6);
-		pattern.put("b", 1);
-		pattern.put("c", 2);
-		TooFarFromTrend<HashMap,Number,Number> alarm = new TooFarFromTrend<HashMap,Number,Number>(pattern, 9, slicer, new FunctionTree(AbsoluteValue.instance, 
+		HashMap<Object,Object> pattern = MapDistance.createMap("a", 6, "b", 1, "c", 2);
+		TrendDistance<HashMap,Number,Number> alarm = new TrendDistance<HashMap,Number,Number>(pattern, 9, slicer, new FunctionTree(AbsoluteValue.instance, 
 				new FunctionTree(MapDistance.instance, new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 2, IsLessThan.instance);
 		Connector.connect(feeder, alarm);
 		Pullable p = alarm.getPullableOutput();
