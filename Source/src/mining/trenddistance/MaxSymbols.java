@@ -44,8 +44,11 @@ import ca.uqac.lif.cep.tmf.SlicerMap;
 import ca.uqac.lif.cep.util.FileHelper;
 
 /**
- * Trend distance based on the statistical distribution of symbols in a
- * stream.
+ * Trend distance based on the maximum number of distinct symbols
+ * in a stream. In this example, we compute the number of distinct symbols
+ * in a sliding window of width 4. That number, minus 3, must be less than
+ * or equal to 0. In other words, there cannot be 4 distinct symbols in
+ * any window.
  * <p>
  * The parameters of the <tt>TrendDistance</tt> processor in this example
  * are as follows:
@@ -53,19 +56,19 @@ import ca.uqac.lif.cep.util.FileHelper;
  * <tr><th>Parameter</th><th>Value</th></tr>
  * <tr>
  *   <td><img src="{@docRoot}/doc-files/mining/trenddistance/WidthParameter.png" alt="Window Width" title="The width of the window"></td>
- *   <td>9</td>
+ *   <td>4</td>
  * </tr>
  * <tr>
  *   <td><img src="{@docRoot}/doc-files/mining/trenddistance/BetaProcessor.png" alt="Beta processor" title="The processor that computes the pattern over the current input stream"></td>
- *   <td><img src="{@docRoot}/doc-files/mining/trenddistance/SymbolDistribution-PatternProcessor.png" alt="Processor chain"></td>
+ *   <td><img src="{@docRoot}/doc-files/mining/trenddistance/PassthroughSlicer.png" alt="Processor chain"></td>
  * </tr>
  * <tr>
  *   <td><img src="{@docRoot}/doc-files/mining/trenddistance/PatternParameter.png" alt="Reference Pattern" title="The reference pattern"></td>
- *   <td>A map that associates each symbol with a number of occurrences. The map is:<table><tr><th>a</th><td>6</td></tr><tr><th>b</th><td>1</td></tr><tr><th>c</th><td>2</td></tr></table></td>
+ *   <td>3</td>
  * </tr>
  * <tr>
  *   <td><img src="{@docRoot}/doc-files/mining/trenddistance/DistanceFunction.png" alt="Distance Function" title="The function that computes the distance with respect to the reference pattern"></td>
- *   <td><img src="{@docRoot}/doc-files/mining/MapDistance.png" alt="Distance Function"> ({@link ca.uqac.lif.cep.peg.MapDistance MapDistance})</td>
+ *   <td><img src="{@docRoot}/doc-files/mining/trenddistance/Subtraction.png" alt="Distance Function"></td>
  * </tr>
  * <tr>
  *   <td><img src="{@docRoot}/doc-files/mining/trenddistance/ComparisonFunction.png" alt="Comparison Function" title="The function that compares that distance with a given threshold"></td>
@@ -73,7 +76,7 @@ import ca.uqac.lif.cep.util.FileHelper;
  * </tr>
  * <tr>
  *   <td><img src="{@docRoot}/doc-files/mining/trenddistance/DistanceThreshold.png" alt="Distance Threshold" title="The distance threshold"></td>
- *   <td>2</td>
+ *   <td>1</td>
  * </tr>
 
  * </table>
@@ -81,12 +84,12 @@ import ca.uqac.lif.cep.util.FileHelper;
  * @author Sylvain Hallé
  *
  */
-public class SymbolDistribution 
+public class MaxSymbols 
 {
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws ConnectorException
 	{
-		StreamReader reader = new StreamReader(FileHelper.internalFileToStream(SymbolDistribution.class, "SymbolDistribution.txt"));
+		StreamReader reader = new StreamReader(FileHelper.internalFileToStream(MaxSymbols.class, "SymbolDistribution.txt"));
 		CsvFeeder feeder = new CsvFeeder();
 		Connector.connect(reader, feeder);
 		GroupProcessor counter = new GroupProcessor(1, 1);

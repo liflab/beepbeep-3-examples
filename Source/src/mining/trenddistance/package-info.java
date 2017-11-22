@@ -24,14 +24,31 @@
  * <p>
  * <img src="{@docRoot}/doc-files/mining/trenddistance/TrendDistance.png" alt="Processor graph">
  * <p>
+ * This pattern can be interpreted as follows:
+ * <ol>
+ * <li>A stream of events is sent into a <tt>Window</tt> processor to keep
+ * a suffix of width <tt>n</tt></li>
+ * <li>The events of that window are sent to a <em>trend processor</em>, noted
+ * by &beta;, which computes a "trend" over that window</li>
+ * <li>A <em>reference trend</em> (<tt>P</tt>) is given to a
+ * <em>distance function</em> (&delta;) along with the trend computed over
+ * the window.</li>
+ * <li>The resulting <em>distance</em> is given to a comparison function
+ * (<tt>⊑</tt>), which checks if that distance is "smaller" than some given
+ * <em>distance threshold</em> (<tt>d</tt>)</li>
+ * </ol>
  * It is possible, however, to encapsulate this process into a
  * {@link GroupProcessor}, which becomes a generic <em>pattern</em>
- * whose actual computation is based on six parameters.
+ * whose actual computation is based on six parameters: <tt>n</tt>, &beta;,
+ * <tt>P</tt>, &delta;, ⊑, and <tt>d</tt>. 
  * <p>
  * <img src="{@docRoot}/doc-files/mining/trenddistance/TrendDistanceBox.png" alt="Processor graph">
  * <p>
  * Depending on how these six parameters are instantiated, the
- * <tt>TrendDistance</tt> processor computes different things.
+ * <tt>TrendDistance</tt> processor computes different things. The examples in
+ * this section show different ways of using the <tt>TrendDistance</tt>
+ * pattern.
+ * 
  * @author Sylvain Hallé
  *
  */
