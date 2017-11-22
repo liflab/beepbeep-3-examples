@@ -58,8 +58,23 @@
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmining_1_1trenddistance_1_1_average_value_absolute.html">AverageValueAbsolute</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trend distance based on the average of values in a stream.  <a href="classmining_1_1trenddistance_1_1_average_value_absolute.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmining_1_1trenddistance_1_1_average_value_relative.html">AverageValueRelative</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trend distance based on the average of values in a stream.  <a href="classmining_1_1trenddistance_1_1_average_value_relative.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmining_1_1trenddistance_1_1_boolean_distance.html">BooleanDistance</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trend distance based on a Boolean condition.  <a href="classmining_1_1trenddistance_1_1_boolean_distance.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmining_1_1trenddistance_1_1_max_symbols.html">MaxSymbols</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trend distance based on the maximum number of distinct symbols in a stream.  <a href="classmining_1_1trenddistance_1_1_max_symbols.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmining_1_1trenddistance_1_1_symbol_distribution.html">SymbolDistribution</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alert when the statistical distribution of symbols in a stream is too different from a reference distribution.  <a href="classmining_1_1trenddistance_1_1_symbol_distribution.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trend distance based on the statistical distribution of symbols in a stream.  <a href="classmining_1_1trenddistance_1_1_symbol_distribution.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmining_1_1trenddistance_1_1_symbol_distribution_clusters.html">SymbolDistributionClusters</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trend distance based on the statistical distribution of symbols in a stream.  <a href="classmining_1_1trenddistance_1_1_symbol_distribution_clusters.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -68,11 +83,22 @@ Classes</h2></td></tr>
 <div class="image">
 <img src="./doc-files/mining/trenddistance/TrendDistance.png"  alt="Processor graph"/>
 </div>
- <p>It is possible, however, to encapsulate this process into a <a class="el" href="">GroupProcessor</a>, which becomes a generic <em>pattern</em> whose actual computation is based on six parameters. </p>
+ <p>This pattern can be interpreted as follows: </p><ol>
+<li>
+A stream of events is sent into a <code>Window</code> processor to keep a suffix of width <code>n</code> </li>
+<li>
+The events of that window are sent to a <em>trend processor</em>, noted by &beta;, which computes a "trend" over that window </li>
+<li>
+A <em>reference trend</em> (<code>P</code>) is given to a <em>distance function</em> (&delta;) along with the trend computed over the window. </li>
+<li>
+The resulting <em>distance</em> is given to a comparison function (<code>⊑</code>), which checks if that distance is "smaller" than some given <em>distance threshold</em> (<code>d</code>) </li>
+</ol>
+<p>It is possible, however, to encapsulate this process into a <a class="el" href="">GroupProcessor</a>, which becomes a generic <em>pattern</em> whose actual computation is based on six parameters: <code>n</code>, &beta;, <code>P</code>, &delta;, ⊑, and <code>d</code>. </p>
 <div class="image">
 <img src="./doc-files/mining/trenddistance/TrendDistanceBox.png"  alt="Processor graph"/>
 </div>
- <p>Depending on how these six parameters are instantiated, the <code>TrendDistance</code> processor computes different things. </p><dl class="section author"><dt>Author</dt><dd>Sylvain Hallé </dd></dl>
+ <p>Depending on how these six parameters are instantiated, the <code>TrendDistance</code> processor computes different things. The examples in this section show different ways of using the <code>TrendDistance</code> pattern.</p>
+<dl class="section author"><dt>Author</dt><dd>Sylvain Hallé </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

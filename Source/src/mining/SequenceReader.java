@@ -59,6 +59,31 @@ public class SequenceReader
 		return seqs;
 	}
 	
+	public static Set<Sequence<String>> readStringSequences(String filename)
+	{
+		Set<Sequence<String>> seqs = new HashSet<Sequence<String>>();
+		InputStream is = FileHelper.internalFileToStream(SequenceReader.class, filename);
+		if (is != null)
+		{
+			Scanner scanner = new Scanner(is);
+			while (scanner.hasNextLine())
+			{
+				String line = scanner.nextLine().trim();
+				if (line.isEmpty() || line.startsWith("#"))
+				{
+					continue;
+				}
+				Sequence<String> seq = readStringSequence(line);
+				if (seq != null)
+				{
+					seqs.add(seq);
+				}
+			}
+			scanner.close();
+		}
+		return seqs;
+	}
+	
 	public static Sequence<Number> readNumericalSequence(String line)
 	{
 		String[] parts = line.split(",");
@@ -67,6 +92,17 @@ public class SequenceReader
 		{
 			Float f = Float.parseFloat(p.trim());
 			seq.add(f);
+		}
+		return seq;
+	}
+	
+	public static Sequence<String> readStringSequence(String line)
+	{
+		String[] parts = line.split(",");
+		Sequence<String> seq = new Sequence<String>();
+		for (String p : parts)
+		{
+			seq.add(p);
 		}
 		return seq;
 	}
