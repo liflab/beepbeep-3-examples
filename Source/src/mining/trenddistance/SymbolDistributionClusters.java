@@ -20,6 +20,9 @@ package mining.trenddistance;
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.commons.math3.ml.clustering.DoublePoint;
 import org.apache.commons.math3.ml.distance.EuclideanDistance;
 
@@ -38,8 +41,11 @@ import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.peg.ml.DistanceToClosest;
 import ca.uqac.lif.cep.peg.ml.DoublePointCast;
 import ca.uqac.lif.cep.peg.MapDistance.ToValueArray;
+import ca.uqac.lif.cep.peg.Normalize;
 import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.Slicer;
+import ca.uqac.lif.cep.util.Numbers;
+import ca.uqac.lif.cep.util.PatternScanner;
 
 /**
  * Trend distance based on the statistical distribution of symbols in a
@@ -110,7 +116,7 @@ public class SymbolDistributionClusters
 	public static void main(String[] args)
 	{
 		StringStreamReader reader = new StringStreamReader(SymbolDistributionClusters.class.getResourceAsStream("SymbolDistribution-AB.txt"));
-		CsvFeeder feeder = new CsvFeeder();
+		PatternScanner feeder = new PatternScanner("(.*?),");
 		Connector.connect(reader, feeder);
 		/* We then create a processor that computes the feature vector
 		 * from an input trace. */
@@ -136,10 +142,10 @@ public class SymbolDistributionClusters
 			vector.addProcessors(slicer, to_normalized_vector);
 		}
 		Connector.connect(feeder, vector);
-		Multiset pattern = new Multiset();
+		Set<DoublePoint> pattern = new HashSet<DoublePoint>();
 		pattern.add(new DoublePoint(new double[]{0.7, 0.3}));
 		pattern.add(new DoublePoint(new double[]{0.3, 0.7}));
-		TrendDistance<Multiset,Multiset,Number> alarm = new TrendDistance<Multiset,Multiset,Number>(pattern, 9, vector, new FunctionTree(Numbers.absoluteValue, 
+		TrendDistance<Set<DoublePoint>,Set<DoublePoint>,Number> alarm = new TrendDistance<Set<DoublePoint>,Set<DoublePoint>,Number>(pattern, 9, vector, new FunctionTree(Numbers.absoluteValue, 
 				new FunctionTree(new DistanceToClosest(new EuclideanDistance()), new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 0.25, Numbers.isLessThan);
 		Connector.connect(feeder, alarm);
 		Pullable p = alarm.getPullableOutput();

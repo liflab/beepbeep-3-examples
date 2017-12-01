@@ -22,6 +22,7 @@ import java.util.Stack;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.FunctionTree;
+import ca.uqac.lif.cep.util.Numbers;
 
 public class ArithmeticBuilder extends TopStackParseTreeBuilder<Function>
 	{

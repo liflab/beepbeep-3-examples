@@ -34,6 +34,7 @@ import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Trend distance based on the average of values in a
@@ -109,7 +110,7 @@ public class AverageValueAbsolute
 			average.addProcessors(fork, sum, one, sum_one, div);
 		}
 		TrendDistance<Number,Number,Number> alarm = new TrendDistance<Number,Number,Number>(6, 3, average, new FunctionTree(Numbers.absoluteValue, 
-				new FunctionTree(Subtraction.instance, new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 0.5, Numbers.isLessThan);
+				new FunctionTree(Numbers.subtraction, new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 0.5, Numbers.isLessThan);
 		QueueSource source = new QueueSource();
 		source.setEvents(6.1, 5.9, 6, 6.7, 6.7, 6.7);
 		Connector.connect(source, alarm);

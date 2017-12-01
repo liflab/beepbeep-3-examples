@@ -27,6 +27,7 @@ import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.tmf.Fork;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Generates a random stream of x-y pairs. This processor internally forks

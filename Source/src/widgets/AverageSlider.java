@@ -19,6 +19,7 @@ import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Pump;
 import ca.uqac.lif.cep.tmf.Trim;
 import ca.uqac.lif.cep.tmf.Window;
+import ca.uqac.lif.cep.util.Numbers;
 import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
 
 /**

@@ -32,6 +32,7 @@ import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Trend distance based on the average of values in a

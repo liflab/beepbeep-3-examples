@@ -21,6 +21,7 @@ import ca.uqac.lif.cep.functions.And;
 import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
 import ca.uqac.lif.cep.functions.FunctionException;
 import ca.uqac.lif.cep.functions.FunctionTree;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Creates a compound function (a

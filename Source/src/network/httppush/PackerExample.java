@@ -34,6 +34,7 @@ import ca.uqac.lif.cep.serialization.JsonDeserializeString;
 import ca.uqac.lif.cep.serialization.JsonSerializeString;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.tmf.TimeDecimate;
+import ca.uqac.lif.cep.util.Numbers;
 import ca.uqac.lif.jerrydog.RequestCallback.Method;
 
 /**

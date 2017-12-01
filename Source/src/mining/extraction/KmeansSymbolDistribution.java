@@ -34,11 +34,13 @@ import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.IdentityFunction;
 import ca.uqac.lif.cep.peg.MapDistance.ToValueArray;
+import ca.uqac.lif.cep.peg.Normalize;
 import ca.uqac.lif.cep.peg.ProcessorMiningFunction;
 import ca.uqac.lif.cep.peg.Sequence;
 import ca.uqac.lif.cep.peg.ml.KMeansFunction;
 import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.Slicer;
+import ca.uqac.lif.cep.util.Numbers;
 import mining.SequenceReader;
 
 /**

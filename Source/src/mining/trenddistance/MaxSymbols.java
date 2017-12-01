@@ -26,7 +26,6 @@ import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
-import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionTree;
@@ -36,6 +35,8 @@ import ca.uqac.lif.cep.peg.MapDistance;
 import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.Slicer;
+import ca.uqac.lif.cep.util.Numbers;
+import ca.uqac.lif.cep.util.PatternScanner;
 
 /**
  * Trend distance based on the maximum number of distinct symbols
@@ -84,11 +85,11 @@ public class MaxSymbols
 	public static void main(String[] args)
 	{
 		StringStreamReader reader = new StringStreamReader(MaxSymbols.class.getResourceAsStream("SymbolDistribution.txt"));
-		CsvFeeder feeder = new CsvFeeder();
+		PatternScanner feeder = new PatternScanner("(.*?),");
 		Connector.connect(reader, feeder);
 		GroupProcessor counter = new GroupProcessor(1, 1);
 		{
-			ConstantProcessor one = new ConstantProcessor(new Constant(1));
+			ConstantProcessor one = new ConstantProcessor(1);
 			counter.associateInput(INPUT, one, INPUT);
 			CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(one, sum_one);

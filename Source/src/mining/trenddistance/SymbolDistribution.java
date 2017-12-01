@@ -36,6 +36,8 @@ import ca.uqac.lif.cep.peg.MapDistance;
 import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.Slicer;
+import ca.uqac.lif.cep.util.Numbers;
+import ca.uqac.lif.cep.util.PatternScanner;
 
 /**
  * Trend distance based on the statistical distribution of symbols in a
@@ -81,7 +83,7 @@ public class SymbolDistribution
 	public static void main(String[] args)
 	{
 		StringStreamReader reader = new StringStreamReader(SymbolDistribution.class.getResourceAsStream("SymbolDistribution.txt"));
-		CsvFeeder feeder = new CsvFeeder();
+		PatternScanner feeder = new PatternScanner("(.*?),");
 		Connector.connect(reader, feeder);
 		GroupProcessor counter = new GroupProcessor(1, 1);
 		{

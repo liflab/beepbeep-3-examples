@@ -37,6 +37,7 @@ import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Trim;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Create a mining function from BeepBeep processors.
@@ -78,7 +79,7 @@ public class PatternMiningFunctionProcessor
 		/* We then create an instance of our mining function. A mining function
 		 * takes as input a set of sequences, and returns for its output some
 		 * "pattern" extracted from this set of sequences. */
-		ProcessorMiningFunction<Number,Number> a_f = new ProcessorMiningFunction<Number,Number>(total_same, new CumulativeProcessor(new CumulativeFunction<Number>(Maximum.instance)), 0);
+		ProcessorMiningFunction<Number,Number> a_f = new ProcessorMiningFunction<Number,Number>(total_same, new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.maximum)), 0);
 		
 		/* We then evaluate the function on our set of sequences. */
 		Object[] outputs = new Object[1];

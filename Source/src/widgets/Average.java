@@ -11,6 +11,7 @@ import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.tmf.Fork;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Group processor that computes the cumulative average of a stream of
