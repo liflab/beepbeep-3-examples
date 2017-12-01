@@ -60,7 +60,7 @@ public class FilterConditionComposite
 		Filter filter = new Filter();
 		connect(fork, LEFT, filter, LEFT);
 		// Create the compound condition "is even and is greater than 4"
-		FunctionTree tree = new FunctionTree(And.instance,
+		FunctionTree tree = new FunctionTree(Booleans.and,
 				Numbers.isEven,
 				new FunctionTree(Numbers.isGreaterThan,
 						new ArgumentPlaceholder(0),

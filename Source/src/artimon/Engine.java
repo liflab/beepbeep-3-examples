@@ -33,11 +33,11 @@ import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
-import ca.uqac.lif.cep.functions.Equals;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.functions.FunctionTree;
-import ca.uqac.lif.cep.functions.Negation;
 import ca.uqac.lif.cep.io.LineReader;
+import ca.uqac.lif.cep.util.Booleans;
+import ca.uqac.lif.cep.util.Equals;
 import ca.uqac.lif.cep.util.NthElement;
 import ca.uqac.lif.cep.util.Numbers;
 import ca.uqac.lif.cep.util.Strings;
@@ -134,7 +134,7 @@ public class Engine
 		FunctionProcessor cycle_change = new FunctionProcessor(Equals.instance);
 		Connector.connect(cycle_fork, 0, cycle_change, TOP);
 		Connector.connect(cycle_trim, OUTPUT, cycle_change, BOTTOM);
-		FunctionProcessor not = new FunctionProcessor(Negation.instance);
+		FunctionProcessor not = new FunctionProcessor(Booleans.not);
 		Connector.connect(cycle_change, not);
 		
 		/* We merge the two paths into a filter. */

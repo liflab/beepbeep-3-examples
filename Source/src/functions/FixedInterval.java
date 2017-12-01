@@ -48,7 +48,7 @@ public class FixedInterval
 		 * 0 and 2. The TracePlaceholder objects are used to
 		 * refer to the arguments, with the first argument starting at 0.
 		 */
-		FunctionTree in_interval = new FunctionTree(And.instance,
+		FunctionTree in_interval = new FunctionTree(Booleans.and,
 				new FunctionTree(Numbers.isGreaterThan,
 						new ArgumentPlaceholder(0),
 						new Constant(0)), // x > 0

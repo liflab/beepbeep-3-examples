@@ -68,7 +68,7 @@ public class IncorrectPiping
 		 * Boolean value to the av processor defined above. This will cause an
 		 * exception to be thrown: the output type of av is Number, while the
 		 * input type of neg is Boolean. */
-		Processor neg = new FunctionProcessor(Negation.instance);
+		Processor neg = new FunctionProcessor(Booleans.not);
 		Connector.connect(av, neg); // Will throw an exception
 		
 		/* As a result, this line of the program should not be reached, as the

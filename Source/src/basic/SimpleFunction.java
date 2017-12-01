@@ -52,7 +52,7 @@ public class SimpleFunction
 	{
 		QueueSource source = new QueueSource();
 		source.setEvents(false, true, true, false, true);
-		FunctionProcessor not = new FunctionProcessor(Negation.instance);
+		FunctionProcessor not = new FunctionProcessor(Booleans.not);
 		Connector.connect(source, not);
 		Pullable p = not.getPullableOutput();
 		for (int i = 0; i < 5; i++)

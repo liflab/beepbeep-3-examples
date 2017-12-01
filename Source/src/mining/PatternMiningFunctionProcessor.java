@@ -28,7 +28,6 @@ import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
-import ca.uqac.lif.cep.functions.Equals;
 import ca.uqac.lif.cep.functions.FunctionException;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.peg.ProcessorMiningFunction;
@@ -37,6 +36,7 @@ import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Trim;
+import ca.uqac.lif.cep.util.Equals;
 import ca.uqac.lif.cep.util.Numbers;
 
 /**

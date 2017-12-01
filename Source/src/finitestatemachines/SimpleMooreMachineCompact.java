@@ -23,9 +23,9 @@ import ca.uqac.lif.cep.fsm.FunctionTransition;
 import ca.uqac.lif.cep.fsm.MooreMachine;
 import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
 import ca.uqac.lif.cep.functions.Constant;
-import ca.uqac.lif.cep.functions.Equals;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Equals;
 
 /**
  * Similar to {@link SimpleMooreMachine}, but with a bit of code written
