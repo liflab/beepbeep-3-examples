@@ -19,10 +19,10 @@ package io;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.input.PatternScanner;
 import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.io.StringStreamReader;
 import ca.uqac.lif.cep.tmf.Pump;
+import ca.uqac.lif.cep.util.PatternScanner;
 
 /**
  * Read complete comma-separated tokens from the standard input.
