@@ -43,10 +43,6 @@ public class ThreadGroups
 	 */
 	public static class FibonacciProcessor extends SingleProcessor
 	{
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 6972208562325867764L;
 		protected int m_index = 2;
 
 		public FibonacciProcessor()
@@ -111,11 +107,6 @@ public class ThreadGroups
 	 */
 	public static class IsPrimeProcessor extends SingleProcessor
 	{
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = -1247453002770432575L;
-
 		public IsPrimeProcessor()
 		{
 			super(1, 1);
@@ -201,10 +192,6 @@ public class ThreadGroups
 
 	public static class Counter extends SingleProcessor
 	{
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 6621521193924982646L;
 		BigInteger count = new BigInteger("100000000000");
 
 		public Counter()

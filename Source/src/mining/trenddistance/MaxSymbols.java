@@ -31,11 +31,7 @@ import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.IdentityFunction;
-import ca.uqac.lif.cep.input.CsvFeeder;
 import ca.uqac.lif.cep.io.StringStreamReader;
-import ca.uqac.lif.cep.numbers.AbsoluteValue;
-import ca.uqac.lif.cep.numbers.Addition;
-import ca.uqac.lif.cep.numbers.IsLessThan;
 import ca.uqac.lif.cep.peg.MapDistance;
 import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.tmf.ConstantProcessor;
@@ -102,7 +98,7 @@ public class MaxSymbols
 		Slicer slicer = new Slicer(new IdentityFunction(1), counter);
 		HashMap<Object,Object> pattern = MapDistance.createMap("a", 6, "b", 1, "c", 2);
 		TrendDistance<HashMap,Number,Number> alarm = new TrendDistance<HashMap,Number,Number>(pattern, 9, slicer, new FunctionTree(Numbers.absoluteValue, 
-				new FunctionTree(MapDistance.instance, new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 2, IsLessThan.instance);
+				new FunctionTree(MapDistance.instance, new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 2, Numbers.isLessThan);
 		Connector.connect(feeder, alarm);
 		Pullable p = alarm.getPullableOutput();
 		boolean b = true;

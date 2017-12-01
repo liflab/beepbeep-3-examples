@@ -27,10 +27,10 @@ import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.IdentityFunction;
-import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.tmf.Slicer;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Use the {@link ca.uqac.lif.cep.tmf.Slicer SlicerMap} to perform a
@@ -78,7 +78,7 @@ public class SlicerSimple
 	{
 		/* We first setup a stream of numbers to be used as a source */
 		QueueSource source = new QueueSource();
-		source.setEvents(new Object[]{1, 6, 4, 3, 2, 1, 9});
+		source.setEvents(1, 6, 4, 3, 2, 1, 9);
 		
 		/* The function we'll use to create slices is the identity.
 		 * This will create one distinct subtrace per number .*/

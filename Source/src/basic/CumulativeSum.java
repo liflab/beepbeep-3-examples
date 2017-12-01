@@ -21,8 +21,8 @@ import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
-import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Use a cumulative processor to compute the sum of all events
@@ -39,7 +39,7 @@ public class CumulativeSum
 	public static void main(String[] args)
 	{
 		QueueSource source = new QueueSource();
-		source.setEvents(new Integer[]{1, 2, 3, 4, 5, 6});
+		source.setEvents(1, 2, 3, 4, 5, 6);
 		CumulativeProcessor sum = new CumulativeProcessor(
 				new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(source, sum);

@@ -26,7 +26,6 @@ import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
-import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.tmf.Fork;
 
 /**
@@ -53,7 +52,7 @@ public class RandomTwoD extends GroupProcessor
 		super(1, 2);
 		Fork fork = new Fork(2);
 		associateInput(INPUT, fork, INPUT);
-		CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+		CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(fork, TOP, sum, INPUT);
 		RandomMutator random = new RandomMutator(0, 100);
 		Connector.connect(fork, BOTTOM, random, INPUT);

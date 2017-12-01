@@ -28,9 +28,8 @@ import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.functions.IdentityFunction;
-import ca.uqac.lif.cep.numbers.Addition;
-import ca.uqac.lif.cep.numbers.Maximum;
 import ca.uqac.lif.cep.util.Maps.Values;
+import ca.uqac.lif.cep.util.Numbers;
 import ca.uqac.lif.cep.util.CollectionUtils.RunOn;
 import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.QueueSource;
@@ -77,7 +76,7 @@ public class SlicerCollapse
 	{
 		/* We first setup a stream of numbers to be used as a source */
 		QueueSource source = new QueueSource();
-		source.setEvents(new Object[]{1, 6, 4, 3, 2, 1, 9});
+		source.setEvents(1, 6, 4, 3, 2, 1, 9);
 		
 		/* The function we'll use to create slices is the identity.
 		 * This will create one distinct subtrace per number .*/
@@ -110,7 +109,7 @@ public class SlicerCollapse
 		 * cumulative function successively on every value of the input
 		 * set. Here the function is Maximum, meaning that the resulting
 		 * event is the maximum of all values in the input set. */
-		RunOn max = new RunOn(new CumulativeProcessor(new CumulativeFunction<Number>(Maximum.instance)));
+		RunOn max = new RunOn(new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.maximum)));
 		Connector.connect(map_values, max);
 		
 		/* Let us now pull and print 10 events from the output. */

@@ -38,10 +38,6 @@ import ca.uqac.lif.cep.SingleProcessor;
 public class CounterSingle extends SingleProcessor
 {
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8149683980162208609L;
-	/**
 	 * The variable that will keep the current value of the counter
 	 */
 	protected int m_counterValue;

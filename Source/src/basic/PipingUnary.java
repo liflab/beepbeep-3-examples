@@ -42,7 +42,7 @@ public class PipingUnary
 	{
 		/* Create a source of arbitrary numbers. */
 		QueueSource source = new QueueSource();
-		source.setEvents(new Integer[]{1, 2, 3, 4, 5, 6});
+		source.setEvents(1, 2, 3, 4, 5, 6);
 		
 		/* Create an instance of the Doubler processor (which is defined just
 		 * below in this file. */
@@ -76,11 +76,6 @@ public class PipingUnary
 	 */
 	public static class Doubler extends SingleProcessor
 	{
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 3433222467260279668L;
-
 		public Doubler()
 		{
 			super(1, 1);

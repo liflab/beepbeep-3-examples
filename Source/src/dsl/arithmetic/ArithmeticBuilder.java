@@ -22,9 +22,6 @@ import java.util.Stack;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.FunctionTree;
-import ca.uqac.lif.cep.numbers.Addition;
-import ca.uqac.lif.cep.numbers.Subtraction;
-import ca.uqac.lif.cep.util.FileHelper;
 
 public class ArithmeticBuilder extends TopStackParseTreeBuilder<Function>
 	{

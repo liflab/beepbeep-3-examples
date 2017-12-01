@@ -40,7 +40,7 @@ public class QueueSourceUsage
 		QueueSource source = new QueueSource();
 		// Tell the source what events to output by giving it an array;
 		// in this case, we output the first powers of 2
-		source.setEvents(new Integer[]{1, 2, 4, 8, 16, 32});
+		source.setEvents(1, 2, 4, 8, 16, 32);
 		// Get a pullable to the source
 		Pullable p = source.getPullableOutput();
 		// Pull 8 events from the source. The queue source loops through

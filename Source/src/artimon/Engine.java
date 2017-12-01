@@ -37,12 +37,10 @@ import ca.uqac.lif.cep.functions.Equals;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.Negation;
-import ca.uqac.lif.cep.input.SplitString;
 import ca.uqac.lif.cep.io.LineReader;
-import ca.uqac.lif.cep.numbers.Addition;
-import ca.uqac.lif.cep.numbers.Division;
-import ca.uqac.lif.cep.numbers.IsLessThan;
 import ca.uqac.lif.cep.util.NthElement;
+import ca.uqac.lif.cep.util.Numbers;
+import ca.uqac.lif.cep.util.Strings;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Slicer;
@@ -88,7 +86,7 @@ public class Engine
 		
 		/* We create an array feeder, which will read individual lines of text
 		 * and turn them into an array of primitive values. */
-		FunctionProcessor array_feeder = new FunctionProcessor(new SplitString(";"));
+		FunctionProcessor array_feeder = new FunctionProcessor(new Strings.SplitString(";"));
 		Connector.connect(first_line, array_feeder);
 		
 		/* Let us fork the stream of input tuples in two parts */
@@ -103,7 +101,7 @@ public class Engine
 			Fork anp_fork = new Fork(2);
 			Connector.connect(get_pe, anp_fork);
 			FunctionProcessor is_negative = new FunctionProcessor(
-				new FunctionTree(IsLessThan.instance, 
+				new FunctionTree(Numbers.isLessThan, 
 						new ArgumentPlaceholder(0),
 						new Constant(0)));
 			Filter filter = new Filter();
@@ -112,7 +110,7 @@ public class Engine
 			Connector.connect(is_negative, OUTPUT, filter, BOTTOM);
 			CumulativeProcessor sum_of_negatives = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(filter, sum_of_negatives);
-			FunctionProcessor divide = new FunctionProcessor(new FunctionTree(Division.instance, new ArgumentPlaceholder(0), new Constant(CBAT)));
+			FunctionProcessor divide = new FunctionProcessor(new FunctionTree(Numbers.division, new ArgumentPlaceholder(0), new Constant(CBAT)));
 			Connector.connect(sum_of_negatives, divide);
 			add_negative_pe.addProcessors(get_pe, anp_fork, is_negative, filter, sum_of_negatives, divide);
 			add_negative_pe.associateInput(INPUT, get_pe, INPUT);

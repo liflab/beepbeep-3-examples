@@ -51,7 +51,7 @@ public class SimpleFunction
 	public static void main (String[] args)
 	{
 		QueueSource source = new QueueSource();
-		source.setEvents(new Boolean[]{false, true, true, false, true});
+		source.setEvents(false, true, true, false, true);
 		FunctionProcessor not = new FunctionProcessor(Negation.instance);
 		Connector.connect(source, not);
 		Pullable p = not.getPullableOutput();

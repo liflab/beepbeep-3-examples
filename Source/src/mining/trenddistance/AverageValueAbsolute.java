@@ -30,11 +30,6 @@ import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.functions.FunctionTree;
-import ca.uqac.lif.cep.numbers.AbsoluteValue;
-import ca.uqac.lif.cep.numbers.Addition;
-import ca.uqac.lif.cep.numbers.Division;
-import ca.uqac.lif.cep.numbers.IsLessThan;
-import ca.uqac.lif.cep.numbers.Subtraction;
 import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.Fork;
@@ -107,16 +102,16 @@ public class AverageValueAbsolute
 			Connector.connect(fork, BOTTOM, one, INPUT);
 			CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(one, sum_one);
-			FunctionProcessor div = new FunctionProcessor(Division.instance);
+			FunctionProcessor div = new FunctionProcessor(Numbers.division);
 			Connector.connect(sum, OUTPUT, div, TOP);
 			Connector.connect(sum_one, OUTPUT, div, BOTTOM);
 			average.associateOutput(OUTPUT, div, OUTPUT);
 			average.addProcessors(fork, sum, one, sum_one, div);
 		}
 		TrendDistance<Number,Number,Number> alarm = new TrendDistance<Number,Number,Number>(6, 3, average, new FunctionTree(Numbers.absoluteValue, 
-				new FunctionTree(Subtraction.instance, new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 0.5, IsLessThan.instance);
+				new FunctionTree(Subtraction.instance, new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 0.5, Numbers.isLessThan);
 		QueueSource source = new QueueSource();
-		source.setEvents(new Object[]{6.1, 5.9, 6, 6.7, 6.7, 6.7});
+		source.setEvents(6.1, 5.9, 6, 6.7, 6.7, 6.7);
 		Connector.connect(source, alarm);
 		Pullable p = alarm.getPullableOutput();
 		boolean b = true;

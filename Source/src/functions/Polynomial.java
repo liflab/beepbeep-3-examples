@@ -23,8 +23,7 @@ import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.FunctionException;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.PassthroughFunction;
-import ca.uqac.lif.cep.numbers.Addition;
-import ca.uqac.lif.cep.numbers.Multiplication;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Use an {@link ArgumentPlaceholder} and a {@link FunctionTree} to create
@@ -48,7 +47,7 @@ public class Polynomial extends PassthroughFunction
 		return new FunctionTree(Numbers.addition,
 				/* The first argument is itself a FunctionTree that computes
 				 * the multiplication of two arguments */
-				new FunctionTree(Multiplication.instance,
+				new FunctionTree(Numbers.multiplication,
 					/* In this case, the multiplication is done on the argument of the
 					 * function by itself (corresponding to x^2). This is done by
 					 * giving as arguments to the multiplication function twice 

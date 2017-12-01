@@ -20,8 +20,8 @@ package basic;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
-import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Pipe processors together using the {@link ca.uqac.lif.cep.Connector Connector}
@@ -39,9 +39,9 @@ public class PipingBinary
 	public static void main (String[] args)
 	{
 		QueueSource source1 = new QueueSource();
-		source1.setEvents(new Integer[]{2, 7, 1, 8, 3});
+		source1.setEvents(2, 7, 1, 8, 3);
 		QueueSource source2 = new QueueSource();
-		source2.setEvents(new Integer[]{3, 1, 4, 1, 6});
+		source2.setEvents(3, 1, 4, 1, 6);
 		FunctionProcessor add = new FunctionProcessor(Numbers.addition);
 		Connector.connect(source1, 0, add, 0);
 		Connector.connect(source2, 0, add, 1);

@@ -22,8 +22,8 @@ import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.functions.Negation;
-import ca.uqac.lif.cep.numbers.AbsoluteValue;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Pipe processors with non-matching event types. Doing this in BeepBeep
@@ -57,7 +57,7 @@ public class IncorrectPiping
 	{
 		/* Create a simple source with a single numerical event. */ 
 		QueueSource source = new QueueSource();
-		source.setEvents(new Integer[]{3});
+		source.setEvents(3);
 		
 		/* Create a processor that computes the absolute value of a number
 		 * and connect it to that source. */

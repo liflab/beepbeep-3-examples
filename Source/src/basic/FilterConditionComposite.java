@@ -28,11 +28,10 @@ import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.functions.FunctionTree;
-import ca.uqac.lif.cep.numbers.IsEven;
-import ca.uqac.lif.cep.numbers.IsGreaterThan;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Filter a trace by evaluating a compound condition on the events of
@@ -52,8 +51,8 @@ public class FilterConditionComposite
 	{
 		// Create a trace of dummy values
 		QueueSource source_values = new QueueSource();
-		source_values.setEvents(new Integer[]{6, 5, 3, 8, 9, 2, 1, 7, 4, 5,
-				2, 4, 7, 6, 12, 8, 1});
+		source_values.setEvents(6, 5, 3, 8, 9, 2, 1, 7, 4, 5,
+				2, 4, 7, 6, 12, 8, 1);
 		// Fork the trace in two
 		Fork fork = new Fork(2);
 		connect(source_values, fork);
@@ -62,8 +61,8 @@ public class FilterConditionComposite
 		connect(fork, LEFT, filter, LEFT);
 		// Create the compound condition "is even and is greater than 4"
 		FunctionTree tree = new FunctionTree(And.instance,
-				IsEven.instance,
-				new FunctionTree(IsGreaterThan.instance,
+				Numbers.isEven,
+				new FunctionTree(Numbers.isGreaterThan,
 						new ArgumentPlaceholder(0),
 						new Constant(4)));
 		FunctionProcessor condition = new FunctionProcessor(tree);

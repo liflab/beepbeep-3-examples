@@ -40,11 +40,11 @@ public class FilterSimple
 	{
 		// Create a first trace of dummy values
 		QueueSource source_values = new QueueSource();
-		source_values.setEvents(new Integer[]{6, 5, 3, 8, 9, 2, 1, 7, 4});
+		source_values.setEvents(6, 5, 3, 8, 9, 2, 1, 7, 4);
 		// Create a second trace of Boolean values
 		QueueSource source_bool = new QueueSource();
-		source_bool.setEvents(new Boolean[]{true, false, true, true,
-				false, false, true, false, true});
+		source_bool.setEvents(true, false, true, true,
+				false, false, true, false, true);
 		// Create a filter
 		Filter filter = new Filter();
 		// Connect both to the filter

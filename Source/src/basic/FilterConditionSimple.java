@@ -24,10 +24,10 @@ import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.connect;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
-import ca.uqac.lif.cep.numbers.IsEven;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Filter a trace by evaluating a simple condition on the events of
@@ -44,7 +44,7 @@ public class FilterConditionSimple
 	{
 		// Create a trace of dummy values
 		QueueSource source_values = new QueueSource();
-		source_values.setEvents(new Integer[]{6, 5, 3, 8, 9, 2, 1, 7, 4});
+		source_values.setEvents(6, 5, 3, 8, 9, 2, 1, 7, 4);
 		// Fork the trace in two
 		Fork fork = new Fork(2);
 		connect(source_values, fork);
@@ -52,7 +52,7 @@ public class FilterConditionSimple
 		Filter filter = new Filter();
 		connect(fork, LEFT, filter, LEFT);
 		// Create a processor evaluating the function "is even"
-		FunctionProcessor condition = new FunctionProcessor(IsEven.instance);
+		FunctionProcessor condition = new FunctionProcessor(Numbers.isEven);
 		// Connect its input to the second output of the fork
 		connect(fork, RIGHT, condition, INPUT);
 		// Connect the condition as the second input of our filter

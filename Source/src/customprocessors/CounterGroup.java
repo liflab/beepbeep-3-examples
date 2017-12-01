@@ -28,8 +28,8 @@ import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
-import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * This processor simply generates the trace of numbers 0, 1, 2, ...
@@ -43,10 +43,6 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  */
 public class CounterGroup extends GroupProcessor
 {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8540427560002900471L;
 
 	public CounterGroup()
 	{
@@ -57,7 +53,7 @@ public class CounterGroup extends GroupProcessor
 		one_list.add(1);
 		QueueSource ones = new QueueSource();
 		ones.setEvents(one_list);
-		CumulativeProcessor counter = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+		CumulativeProcessor counter = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 		connect(ones, OUTPUT, counter, INPUT);
 		// Adds the processors we created to the group
 		addProcessors(ones, counter);

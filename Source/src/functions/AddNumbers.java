@@ -19,7 +19,6 @@ package functions;
 
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.FunctionException;
-import ca.uqac.lif.cep.numbers.Addition;
 
 /**
  * Add two numbers with the

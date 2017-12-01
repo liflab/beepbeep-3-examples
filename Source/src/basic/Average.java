@@ -27,9 +27,8 @@ import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
-import ca.uqac.lif.cep.numbers.Addition;
-import ca.uqac.lif.cep.numbers.Division;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Compute the cumulative average of a list of numbers. The cumulative average
@@ -96,7 +95,7 @@ public class Average
 
 		/* Divide one trace by the other; the output is the cumulative average
 		 * of all numbers seen so far. */
-		FunctionProcessor division = new FunctionProcessor(Division.instance);
+		FunctionProcessor division = new FunctionProcessor(Numbers.division);
 		Connector.connect(sum_proc, OUTPUT, division, LEFT);
 		Connector.connect(counter, OUTPUT, division, RIGHT);
 

@@ -83,11 +83,6 @@ public class PointDistance
 	 */
 	public static class Distance extends BinaryFunction<Point,Point,Float>
 	{
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 7141346480774264894L;
-
 		public Distance()
 		{
 			super(Point.class, Point.class, Float.class);

@@ -30,7 +30,6 @@ import ca.uqac.lif.cep.http.HttpUpstreamGateway;
 import ca.uqac.lif.cep.http.ListPackerPush;
 import ca.uqac.lif.cep.http.ListUnpacker;
 import ca.uqac.lif.cep.io.Print;
-import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.serialization.JsonDeserializeString;
 import ca.uqac.lif.cep.serialization.JsonSerializeString;
 import ca.uqac.lif.cep.tmf.QueueSource;

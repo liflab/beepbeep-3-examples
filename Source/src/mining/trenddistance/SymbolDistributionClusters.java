@@ -33,19 +33,13 @@ import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.IdentityFunction;
-import ca.uqac.lif.cep.input.CsvFeeder;
 import ca.uqac.lif.cep.io.StringStreamReader;
-import ca.uqac.lif.cep.numbers.AbsoluteValue;
-import ca.uqac.lif.cep.numbers.Addition;
-import ca.uqac.lif.cep.numbers.IsLessThan;
-import ca.uqac.lif.cep.peg.Normalize;
 import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.peg.ml.DistanceToClosest;
 import ca.uqac.lif.cep.peg.ml.DoublePointCast;
 import ca.uqac.lif.cep.peg.MapDistance.ToValueArray;
 import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.Slicer;
-import ca.uqac.lif.cep.util.Multiset;
 
 /**
  * Trend distance based on the statistical distribution of symbols in a
@@ -146,7 +140,7 @@ public class SymbolDistributionClusters
 		pattern.add(new DoublePoint(new double[]{0.7, 0.3}));
 		pattern.add(new DoublePoint(new double[]{0.3, 0.7}));
 		TrendDistance<Multiset,Multiset,Number> alarm = new TrendDistance<Multiset,Multiset,Number>(pattern, 9, vector, new FunctionTree(Numbers.absoluteValue, 
-				new FunctionTree(new DistanceToClosest(new EuclideanDistance()), new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 0.25, IsLessThan.instance);
+				new FunctionTree(new DistanceToClosest(new EuclideanDistance()), new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 0.25, Numbers.isLessThan);
 		Connector.connect(feeder, alarm);
 		Pullable p = alarm.getPullableOutput();
 		boolean b = true;

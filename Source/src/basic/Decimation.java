@@ -25,11 +25,11 @@ import static ca.uqac.lif.cep.Connector.connect;
 import util.UtilityMethods;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
-import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.tmf.Trim;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Compute the sum of every pair of successive events. Here we are
@@ -63,8 +63,8 @@ public class Decimation
 	{
 		/* Create a stream of dummy values. */
 		QueueSource source_values = new QueueSource();
-		source_values.setEvents(new Integer[]{6, 5, 3, 8, 9, 2, 1, 7, 4, 5,
-				2, 4, 7, 6, 12, 8, 1});
+		source_values.setEvents(6, 5, 3, 8, 9, 2, 1, 7, 4, 5,
+				2, 4, 7, 6, 12, 8, 1);
 		
 		/* Duplicate this stream into two paths. */
 		Fork fork = new Fork(2);

@@ -22,11 +22,10 @@ import java.util.Set;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionException;
-import ca.uqac.lif.cep.numbers.Maximum;
 import ca.uqac.lif.cep.peg.ProcessorMiningFunction;
 import ca.uqac.lif.cep.peg.Sequence;
 import ca.uqac.lif.cep.util.CollectionUtils;
-import ca.uqac.lif.cep.util.CollectionUtils.RunOn;
+import ca.uqac.lif.cep.util.Numbers;
 import mining.SequenceReader;
 
 /**
@@ -71,8 +70,8 @@ public class MaxMiningFunctionProcessor
 		 * takes as input a set of sequences, and returns for its output some
 		 * "pattern" extracted from this set of sequences. */
 		ProcessorMiningFunction<Number,Number> a_f = new ProcessorMiningFunction<Number,Number>(
-				new CumulativeProcessor(new CumulativeFunction<Number>(Maximum.instance)), 
-				new CollectionUtils.RunOn(new CumulativeProcessor(new CumulativeFunction<Number>(Maximum.instance))));
+				new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.maximum)), 
+				new CollectionUtils.RunOn(new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.maximum))));
 		
 		/* We then evaluate the function on our set of sequences. */
 		Number n = (Number) a_f.mine(sequences);

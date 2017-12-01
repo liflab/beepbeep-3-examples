@@ -14,7 +14,6 @@ import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.mtnp.DrawPlot;
 import ca.uqac.lif.cep.mtnp.UpdateTable;
 import ca.uqac.lif.cep.mtnp.UpdateTableStream;
-import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Pump;

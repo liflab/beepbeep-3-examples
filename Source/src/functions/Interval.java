@@ -21,8 +21,6 @@ import ca.uqac.lif.cep.functions.And;
 import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
 import ca.uqac.lif.cep.functions.FunctionException;
 import ca.uqac.lif.cep.functions.FunctionTree;
-import ca.uqac.lif.cep.numbers.IsGreaterThan;
-import ca.uqac.lif.cep.numbers.IsLessThan;
 
 /**
  * Creates a compound function (a
@@ -47,10 +45,10 @@ public class Interval
 		 * refer to the arguments, with the first argument starting at 0.
 		 */
 		FunctionTree in_interval = new FunctionTree(And.instance,
-				new FunctionTree(IsGreaterThan.instance,
+				new FunctionTree(Numbers.isGreaterThan,
 						new ArgumentPlaceholder(0),
 						new ArgumentPlaceholder(1)), // x > y
-						new FunctionTree(IsLessThan.instance,
+						new FunctionTree(Numbers.isLessThan,
 								new ArgumentPlaceholder(0),
 								new ArgumentPlaceholder(2) // y < z
 								));

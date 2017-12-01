@@ -10,8 +10,6 @@ import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
-import ca.uqac.lif.cep.numbers.Addition;
-import ca.uqac.lif.cep.numbers.Division;
 import ca.uqac.lif.cep.tmf.Fork;
 
 /**
@@ -46,11 +44,11 @@ public class Average extends GroupProcessor
 		associateInput(0, fork, 0);
 		FunctionProcessor one = new FunctionProcessor(new Constant(1));
 		Connector.connect(fork, BOTTOM, one, INPUT);
-		CumulativeProcessor count = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+		CumulativeProcessor count = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(one, count);
-		CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+		CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(fork, TOP, sum, INPUT);
-		FunctionProcessor div = new FunctionProcessor(Division.instance);
+		FunctionProcessor div = new FunctionProcessor(Numbers.division);
 		Connector.connect(sum, OUTPUT, div, TOP);
 		Connector.connect(count, OUTPUT, div, BOTTOM);
 		associateOutput(0, div, 0);
