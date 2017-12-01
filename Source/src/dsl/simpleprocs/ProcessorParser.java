@@ -7,14 +7,13 @@ import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.functions.Constant;
-import ca.uqac.lif.cep.functions.ConstantProcessor;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.numbers.Addition;
+import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.mtnp.util.FileHelper;
-import dsl.ExpressionParser;
 
 public class ProcessorParser extends ExpressionParser<GroupProcessor>
 {
@@ -48,7 +47,7 @@ public class ProcessorParser extends ExpressionParser<GroupProcessor>
 		return FileHelper.internalFileToString(ProcessorParser.class, "processors.bnf");
 	}
 
-	protected void doCountDecimate(Stack<Object> stack) throws ConnectorException
+	protected void doCountDecimate(Stack<Object> stack)
 	{
 		Processor p = (Processor) stack.pop();
 		stack.pop(); // from
@@ -62,7 +61,7 @@ public class ProcessorParser extends ExpressionParser<GroupProcessor>
 		stack.push(dec);
 	}
 	
-	protected void doMutator(Stack<Object> stack) throws ConnectorException
+	protected void doMutator(Stack<Object> stack)
 	{
 		Number n = (Number) stack.pop();
 		stack.pop(); // into
@@ -81,7 +80,7 @@ public class ProcessorParser extends ExpressionParser<GroupProcessor>
 		stack.push(new Constant(i));
 	}
 	
-	protected void doCumulativeSum(Stack<Object> stack) throws ConnectorException
+	protected void doCumulativeSum(Stack<Object> stack)
 	{
 		Processor p = (Processor) stack.pop();
 		stack.pop(); // Accumulate
@@ -91,7 +90,7 @@ public class ProcessorParser extends ExpressionParser<GroupProcessor>
 		stack.push(sum);
 	}
 	
-	protected void doQueueSource(Stack<Object> stack) throws ConnectorException
+	protected void doQueueSource(Stack<Object> stack)
 	{
 		stack.pop(); // ]
 		Number n3 = ((Number) ((Constant) stack.pop()).getValue()).intValue();

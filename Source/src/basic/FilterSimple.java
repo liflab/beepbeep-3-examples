@@ -21,7 +21,6 @@ import static ca.uqac.lif.cep.Connector.LEFT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.connect;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.QueueSource;
@@ -37,7 +36,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  */
 public class FilterSimple
 {
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args)
 	{
 		// Create a first trace of dummy values
 		QueueSource source_values = new QueueSource();

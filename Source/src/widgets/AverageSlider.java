@@ -6,7 +6,6 @@ import ca.uqac.lif.cep.Connector;
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.Processor;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
@@ -63,7 +62,7 @@ import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
  */
 public class AverageSlider 
 {
-	public static void main(String[] args) throws ConnectorException, ProcessorException
+	public static void main(String[] args) throws ProcessorException
 	{
 		SliderFrame frame = new SliderFrame();
 		Pump pump = new Pump(500);

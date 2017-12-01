@@ -23,7 +23,6 @@ import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.RIGHT;
 import util.UtilityMethods;
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
@@ -64,7 +63,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
 public class Average
 {
 
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args)
 	{
 		/* Hello! */
 		UtilityMethods.printGreeting();

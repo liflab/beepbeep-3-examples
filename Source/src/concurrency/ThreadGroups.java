@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Queue;
 
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.ProcessorException;
@@ -15,7 +14,7 @@ import ca.uqac.lif.cep.SingleProcessor;
 
 public class ThreadGroups
 {
-	public static void main(String[] args) throws ConnectorException, ProcessorException
+	public static void main(String[] args) throws ProcessorException
 	{
 		Counter cnt = new Counter();
 		IsPrimeProcessor ip1 = new IsPrimeProcessor();
@@ -44,6 +43,10 @@ public class ThreadGroups
 	 */
 	public static class FibonacciProcessor extends SingleProcessor
 	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 6972208562325867764L;
 		protected int m_index = 2;
 
 		public FibonacciProcessor()
@@ -69,7 +72,7 @@ public class ThreadGroups
 		}
 
 		@Override
-		public Processor clone()
+		public Processor duplicate()
 		{
 			// Don't care
 			return this;
@@ -108,6 +111,11 @@ public class ThreadGroups
 	 */
 	public static class IsPrimeProcessor extends SingleProcessor
 	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -1247453002770432575L;
+
 		public IsPrimeProcessor()
 		{
 			super(1, 1);
@@ -137,7 +145,7 @@ public class ThreadGroups
 		}
 
 		@Override
-		public Processor clone()
+		public Processor duplicate()
 		{
 			// Don't care
 			return this;
@@ -193,6 +201,10 @@ public class ThreadGroups
 
 	public static class Counter extends SingleProcessor
 	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 6621521193924982646L;
 		BigInteger count = new BigInteger("100000000000");
 
 		public Counter()
@@ -210,7 +222,8 @@ public class ThreadGroups
 		}
 
 		@Override
-		public Processor clone() {
+		public Processor duplicate()
+		{
 			// TODO Auto-generated method stub
 			return null;
 		}

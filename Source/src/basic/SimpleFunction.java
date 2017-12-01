@@ -18,7 +18,6 @@
 package basic;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.functions.Negation;
@@ -49,7 +48,7 @@ public class SimpleFunction
 	 * In this example, we apply the Negation function to a trace of
 	 * Boolean values.
 	 */
-	public static void main (String[] args) throws ConnectorException
+	public static void main (String[] args)
 	{
 		QueueSource source = new QueueSource();
 		source.setEvents(new Boolean[]{false, true, true, false, true});

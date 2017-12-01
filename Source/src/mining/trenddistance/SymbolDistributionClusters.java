@@ -24,30 +24,28 @@ import org.apache.commons.math3.ml.clustering.DoublePoint;
 import org.apache.commons.math3.ml.distance.EuclideanDistance;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
 import ca.uqac.lif.cep.functions.Constant;
-import ca.uqac.lif.cep.functions.ConstantProcessor;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.IdentityFunction;
 import ca.uqac.lif.cep.input.CsvFeeder;
-import ca.uqac.lif.cep.io.StreamReader;
+import ca.uqac.lif.cep.io.StringStreamReader;
 import ca.uqac.lif.cep.numbers.AbsoluteValue;
 import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.numbers.IsLessThan;
+import ca.uqac.lif.cep.peg.Normalize;
 import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.peg.ml.DistanceToClosest;
 import ca.uqac.lif.cep.peg.ml.DoublePointCast;
 import ca.uqac.lif.cep.peg.MapDistance.ToValueArray;
-import ca.uqac.lif.cep.sets.Multiset;
-import ca.uqac.lif.cep.sets.Normalize;
-import ca.uqac.lif.cep.tmf.SlicerMap;
-import ca.uqac.lif.cep.util.FileHelper;
+import ca.uqac.lif.cep.tmf.ConstantProcessor;
+import ca.uqac.lif.cep.tmf.Slicer;
+import ca.uqac.lif.cep.util.Multiset;
 
 /**
  * Trend distance based on the statistical distribution of symbols in a
@@ -115,9 +113,9 @@ import ca.uqac.lif.cep.util.FileHelper;
  */
 public class SymbolDistributionClusters 
 {
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args)
 	{
-		StreamReader reader = new StreamReader(FileHelper.internalFileToStream(SymbolDistributionClusters.class, "SymbolDistribution-AB.txt"));
+		StringStreamReader reader = new StringStreamReader(SymbolDistributionClusters.class.getResourceAsStream("SymbolDistribution-AB.txt"));
 		CsvFeeder feeder = new CsvFeeder();
 		Connector.connect(reader, feeder);
 		/* We then create a processor that computes the feature vector
@@ -133,7 +131,7 @@ public class SymbolDistributionClusters
 				counter.associateOutput(OUTPUT, sum_one, OUTPUT);
 				counter.addProcessors(one, sum_one);
 			}
-			SlicerMap slicer = new SlicerMap(new IdentityFunction(1), counter);
+			Slicer slicer = new Slicer(new IdentityFunction(1), counter);
 			FunctionProcessor to_normalized_vector = new FunctionProcessor(
 					new FunctionTree(DoublePointCast.instance,
 					new FunctionTree(Normalize.instance,

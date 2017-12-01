@@ -21,7 +21,6 @@ import ca.uqac.lif.cep.Connector;
 import static ca.uqac.lif.cep.Connector.TOP;
 import static ca.uqac.lif.cep.Connector.BOTTOM;
 
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.mtnp.DrawPlot;
 import ca.uqac.lif.cep.mtnp.UpdateTable;
 import ca.uqac.lif.cep.mtnp.UpdateTableStream;
@@ -45,7 +44,7 @@ import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
 public class CumulativeScatterplot
 {
 
-	public static void main(String[] args) throws ConnectorException, InterruptedException
+	public static void main(String[] args) throws InterruptedException
 	{
 		/* A stream of (x,y) pairs is first created,
 		 * with x an incrementing integer, and y a randomly selected number

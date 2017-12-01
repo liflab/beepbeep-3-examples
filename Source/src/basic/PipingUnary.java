@@ -21,7 +21,6 @@ import java.util.Queue;
 
 import util.UtilityMethods;
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.SingleProcessor;
@@ -57,27 +56,7 @@ public class PipingUnary
 		 * "downstream" processor second. The Connector will know that it needs
 		 * to connect the (only) output of source to the (only) input of
 		 * doubler. */
-		try 
-		{
-			Connector.connect(source, doubler);
-		}
-		catch (ConnectorException e) 
-		{
-			/* We must surround this call by a try/catch block. The connect()
-			 * method may throw a ConnectorException, indicating that the piping
-			 * could not be done. This can happen for various reasons:
-			 * 
-			 * - The output type of the upstream processor is incompatible with
-			 *   the input type of the downstream processor.
-			 * - The call refers to an input or output stream that does not
-			 *   exist. For example, it would be an error to attempt to connect
-			 *   the *second* output of source to something, as there is no second
-			 *   output stream on this processor.
-			 * 
-			 * Here however, everything is legit, so no exception should be thrown.
-			 */
-			e.printStackTrace();
-		}
+		Connector.connect(source, doubler);
 		
 		/* Let us now print what we receive by pulling on the output of
 		 * doubler. */
@@ -97,6 +76,11 @@ public class PipingUnary
 	 */
 	public static class Doubler extends SingleProcessor
 	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 3433222467260279668L;
+
 		public Doubler()
 		{
 			super(1, 1);
@@ -110,7 +94,7 @@ public class PipingUnary
 		}
 
 		@Override
-		public Processor clone()
+		public Processor duplicate()
 		{
 			return this;
 		}

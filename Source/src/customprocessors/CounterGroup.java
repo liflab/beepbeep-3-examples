@@ -24,7 +24,6 @@ import static ca.uqac.lif.cep.Connector.connect;
 import java.util.Vector;
 
 import util.UtilityMethods;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
@@ -44,6 +43,11 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  */
 public class CounterGroup extends GroupProcessor
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8540427560002900471L;
+
 	public CounterGroup()
 	{
 		super(0, 1);
@@ -54,14 +58,7 @@ public class CounterGroup extends GroupProcessor
 		QueueSource ones = new QueueSource();
 		ones.setEvents(one_list);
 		CumulativeProcessor counter = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
-		try
-		{
-			connect(ones, OUTPUT, counter, INPUT);
-		}
-		catch (ConnectorException e)
-		{
-			// This is not supposed to happen; we know what we're doing!
-		}
+		connect(ones, OUTPUT, counter, INPUT);
 		// Adds the processors we created to the group
 		addProcessors(ones, counter);
 		// Associate the output of the group to the output of counter

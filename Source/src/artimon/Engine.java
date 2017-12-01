@@ -37,18 +37,16 @@ import ca.uqac.lif.cep.functions.Equals;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.Negation;
-import ca.uqac.lif.cep.input.CsvToArray;
+import ca.uqac.lif.cep.input.SplitString;
 import ca.uqac.lif.cep.io.LineReader;
 import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.numbers.Division;
 import ca.uqac.lif.cep.numbers.IsLessThan;
-import ca.uqac.lif.cep.sets.ApplyAll;
-import ca.uqac.lif.cep.sets.NthElement;
+import ca.uqac.lif.cep.util.NthElement;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
-import ca.uqac.lif.cep.tmf.SlicerMap;
+import ca.uqac.lif.cep.tmf.Slicer;
 import ca.uqac.lif.cep.tmf.Trim;
-import ca.uqac.lif.cep.util.FileHelper;
 
 /**
  * Compute data about the execution of a hybrid car engine. In this example,
@@ -75,14 +73,14 @@ public class Engine
 	/* A constant used in the computation, called "cbat" */
 	static final int CBAT = 16021800;
 	
-	public static void main(String[] args) throws ConnectorException, FileNotFoundException
+	public static void main(String[] args) throws FileNotFoundException
 	{
 		/* We put the filename in a variable */
 		String filename = "simple.csv";
 		
 		/* We create a line reader which will read from an input stream. In the
 		 * present case, the stream is obtained from the file we specified. */
-		LineReader reader = new LineReader(FileHelper.internalFileToStream(Engine.class, filename));
+		LineReader reader = new LineReader(Engine.class.getResourceAsStream(filename));
 		
 		/* The first line of the file is a comment line, so we ignore it */
 		Trim first_line = new Trim(1);
@@ -90,7 +88,7 @@ public class Engine
 		
 		/* We create an array feeder, which will read individual lines of text
 		 * and turn them into an array of primitive values. */
-		FunctionProcessor array_feeder = new FunctionProcessor(new CsvToArray(";"));
+		FunctionProcessor array_feeder = new FunctionProcessor(new SplitString(";"));
 		Connector.connect(first_line, array_feeder);
 		
 		/* Let us fork the stream of input tuples in two parts */
@@ -123,7 +121,7 @@ public class Engine
 		
 		/* We create a slicer according to the cycle number, and connect it to
 		 * the first output of the fork. */
-		SlicerMap slicer = new SlicerMap(new NthElement(NO_CYCLE), add_negative_pe);
+		Slicer slicer = new Slicer(new NthElement(NO_CYCLE), add_negative_pe);
 		Connector.connect(fork, TOP, slicer, INPUT);
 		
 		/* In the second path, we determine when a cycle ends. This

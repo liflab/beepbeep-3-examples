@@ -18,10 +18,9 @@
 package basic;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.Pushable;
 import static ca.uqac.lif.cep.Connector.INPUT;
-import ca.uqac.lif.cep.cli.Print;
+import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.tmf.Fork;
 
 /**
@@ -47,7 +46,7 @@ import ca.uqac.lif.cep.tmf.Fork;
  */
 public class ForkPush 
 {
-	public static void main(String[] args) throws ConnectorException, InterruptedException
+	public static void main(String[] args) throws InterruptedException
 	{
 		/* We create a fork processor that will replicate each input event
 		 * in three output streams. The "3" passed as an argument to the fork's
@@ -58,9 +57,9 @@ public class ForkPush
 		 * standard output whatever event they receive. We ask each of them to
 		 * append their printed line with a different prefix ("Px") so we can
 		 * know who is printing what. */
-		Print p0 = new Print("\n").setPrefix("P0 ");
-		Print p1 = new Print("\n").setPrefix("P1 ");
-		Print p2 = new Print("\n").setPrefix("P2 ");
+		Print p0 = new Print().setSeparator("\n").setPrefix("P0 ");
+		Print p1 = new Print().setSeparator("\n").setPrefix("P1 ");
+		Print p2 = new Print().setSeparator("\n").setPrefix("P2 ");
 		
 		/* We finally connect each of the three outputs streams of the fork
 		 * (numbered 0, 1 and 2) to the input of each print processor. */

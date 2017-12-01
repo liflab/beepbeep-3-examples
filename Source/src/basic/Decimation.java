@@ -23,7 +23,6 @@ import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.connect;
 import util.UtilityMethods;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.numbers.Addition;
@@ -60,7 +59,7 @@ import ca.uqac.lif.cep.tmf.Trim;
  */
 public class Decimation
 {
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args)
 	{
 		/* Create a stream of dummy values. */
 		QueueSource source_values = new QueueSource();

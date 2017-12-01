@@ -18,7 +18,6 @@
 package basic;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
@@ -37,7 +36,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  */
 public class CumulativeSum
 {
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args)
 	{
 		QueueSource source = new QueueSource();
 		source.setEvents(new Integer[]{1, 2, 3, 4, 5, 6});

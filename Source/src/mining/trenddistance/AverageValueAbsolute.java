@@ -21,14 +21,11 @@ import static ca.uqac.lif.cep.Connector.BOTTOM;
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.TOP;
-
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
 import ca.uqac.lif.cep.functions.Constant;
-import ca.uqac.lif.cep.functions.ConstantProcessor;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
@@ -39,6 +36,7 @@ import ca.uqac.lif.cep.numbers.Division;
 import ca.uqac.lif.cep.numbers.IsLessThan;
 import ca.uqac.lif.cep.numbers.Subtraction;
 import ca.uqac.lif.cep.peg.TrendDistance;
+import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
 
@@ -97,7 +95,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  */
 public class AverageValueAbsolute 
 {
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args)
 	{
 		GroupProcessor average = new GroupProcessor(1, 1);
 		{

@@ -19,13 +19,12 @@ package network.httppush;
 
 import network.CompoundObject;
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.Pushable;
-import ca.uqac.lif.cep.cli.Print;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.http.HttpDownstreamGateway;
 import ca.uqac.lif.cep.http.HttpUpstreamGateway;
+import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.serialization.JsonDeserializeString;
 import ca.uqac.lif.cep.serialization.JsonSerializeString;
 import ca.uqac.lif.jerrydog.RequestCallback.Method;
@@ -43,7 +42,7 @@ import ca.uqac.lif.jerrydog.RequestCallback.Method;
  */
 public class PushLocal 
 {
-	public static void main(String[] args) throws ConnectorException, ProcessorException, InterruptedException
+	public static void main(String[] args) throws ProcessorException, InterruptedException
 	{
 		/* We first setup a {@link FunctionProcessor} that will execute
 		 * the function {@link JsonSerializeString} on each input event. This function

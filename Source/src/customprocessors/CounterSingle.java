@@ -38,6 +38,10 @@ import ca.uqac.lif.cep.SingleProcessor;
 public class CounterSingle extends SingleProcessor
 {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8149683980162208609L;
+	/**
 	 * The variable that will keep the current value of the counter
 	 */
 	protected int m_counterValue;
@@ -81,14 +85,14 @@ public class CounterSingle extends SingleProcessor
 	}
 
 	/*
-	 * We must implement method clone() so that BeepBeep
+	 * We must implement method duplicate() so that BeepBeep
 	 * can make copies of this processor if needed. This would occur,
 	 * for example, if MyCounter were the argument of a
 	 * WindowProcessor. In our case, cloning simply amounts to
 	 * returning a new instance of MyCounter.
 	 */
 	@Override
-	public CounterSingle clone()
+	public CounterSingle duplicate()
 	{
 		return new CounterSingle();
 	}

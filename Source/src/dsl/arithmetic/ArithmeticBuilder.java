@@ -25,7 +25,6 @@ import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.numbers.Subtraction;
 import ca.uqac.lif.cep.util.FileHelper;
-import dsl.TopStackParseTreeBuilder;
 
 public class ArithmeticBuilder extends TopStackParseTreeBuilder<Function>
 	{

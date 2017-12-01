@@ -80,6 +80,7 @@ public class BigIntegerFunctions
 	public static class StringToBigInteger extends UnaryFunction<String,BigInteger>
 	{
 		public static final transient StringToBigInteger instance = new StringToBigInteger();
+		
 		StringToBigInteger()
 		{
 			super(String.class, BigInteger.class);

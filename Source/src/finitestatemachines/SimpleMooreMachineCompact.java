@@ -19,7 +19,6 @@ package finitestatemachines;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.fsm.FunctionTransition;
 import ca.uqac.lif.cep.fsm.MooreMachine;
 import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
@@ -38,7 +37,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  */
 public class SimpleMooreMachineCompact 
 {
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args)
 	{
 		/* Define symbolic constants for the three states of the
 		 * Moore machine. It is recommended that the actual numbers for

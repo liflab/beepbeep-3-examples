@@ -20,14 +20,12 @@ package mining;
 import java.util.Set;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import static ca.uqac.lif.cep.Connector.BOTTOM;
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.TOP;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.functions.Constant;
-import ca.uqac.lif.cep.functions.ConstantProcessor;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.Equals;
@@ -37,6 +35,7 @@ import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.numbers.Maximum;
 import ca.uqac.lif.cep.peg.ProcessorMiningFunction;
 import ca.uqac.lif.cep.peg.Sequence;
+import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Trim;
@@ -49,7 +48,7 @@ import ca.uqac.lif.cep.tmf.Trim;
  */
 public class PatternMiningFunctionProcessor 
 {
-	public static void main(String[] args) throws FunctionException, ConnectorException
+	public static void main(String[] args) throws FunctionException
 	{
 		/* First, we must get from somewhere a set of sequences. For the sake
 		 * of this example, we just create a few dummy sequences of numbers

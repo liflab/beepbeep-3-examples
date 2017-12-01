@@ -22,7 +22,6 @@ import static ca.uqac.lif.cep.Connector.LEFT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.connect;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.BinaryFunction;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
@@ -84,6 +83,11 @@ public class PointDistance
 	 */
 	public static class Distance extends BinaryFunction<Point,Point,Float>
 	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 7141346480774264894L;
+
 		public Distance()
 		{
 			super(Point.class, Point.class, Float.class);
@@ -99,7 +103,7 @@ public class PointDistance
 	/*
 	 *  A small main to illustrate the concept. 
 	 */
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args)
 	{
 		/* Create a new source made of arbitrary Point objects. */
 		QueueSource point_source = new QueueSource(1);

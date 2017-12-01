@@ -27,11 +27,10 @@ import static ca.uqac.lif.cep.Connector.LEFT;
 import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.cli.Print;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.http.HttpDownstreamGateway;
+import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.jerrydog.RequestCallback.Method;
@@ -42,7 +41,7 @@ import ca.uqac.lif.jerrydog.RequestCallback.Method;
  */
 public class TwinPrimesB 
 {
-	public static void main(String[] args) throws ConnectorException, ProcessorException
+	public static void main(String[] args) throws ProcessorException
 	{
 		/* First, we create an HttpDownstreamGateway to receive strings
 		 * from Machine A. */

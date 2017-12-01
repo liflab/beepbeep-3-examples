@@ -18,11 +18,11 @@
 package io;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.cli.Print;
-import ca.uqac.lif.cep.input.CsvFeeder;
-import ca.uqac.lif.cep.io.StreamReader;
+import ca.uqac.lif.cep.input.PatternScanner;
+import ca.uqac.lif.cep.io.Print;
+import ca.uqac.lif.cep.io.StringStreamReader;
+import ca.uqac.lif.cep.tmf.Pump;
 
 /**
  * Read complete comma-separated tokens from the standard input.
@@ -88,21 +88,28 @@ import ca.uqac.lif.cep.io.StreamReader;
 public class ReadTokens 
 {
 
-	public static void main(String[] args) throws ConnectorException, ProcessorException, InterruptedException 
+	public static void main(String[] args) throws ProcessorException, InterruptedException 
 	{
-		/* Read from stdin using a StreamReader */
-		StreamReader reader = new StreamReader(System.in).setIsFile(false).setPushMode(true);
+		/* Read from stdin using a StringStreamReader */
+		StringStreamReader reader = new StringStreamReader(System.in);
+		reader.setIsFile(false);
+		
+		/* We connect the reader to a pump, which will periodically ask
+		 * the reader to read new characters from the input stream */
+		Pump pump = new Pump(100);
+		Thread pump_thread = new Thread(pump);
+		Connector.connect(reader, pump);
 		
 		/* Create a CSV token feeder */
-		CsvFeeder feeder = new CsvFeeder();
-		Connector.connect(reader, feeder);
+		PatternScanner feeder = new PatternScanner("(.*?),");
+		Connector.connect(pump, feeder);
 		
 		/* Print the output of the feeder */
-		Print print = new Print().setSeparator("\n").setAnsi(false);
+		Print print = new Print().setSeparator("\n");
 		Connector.connect(feeder, print);
 		
 		/* Start the reader and enter an idle loop */
-		reader.start();
+		pump_thread.start();
 		while (true)
 		{
 			Thread.sleep(10000);

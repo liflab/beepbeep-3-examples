@@ -41,9 +41,9 @@ import ca.uqac.lif.cep.tmf.Sink;
  */
 public class BitmapJFrame extends Sink
 {
-	protected JFrame m_frame;
+	protected transient JFrame m_frame;
 
-	protected JLabel m_label;
+	protected transient JLabel m_label;
 
 	public BitmapJFrame()
 	{
@@ -72,11 +72,9 @@ public class BitmapJFrame extends Sink
 	}
 
 	@Override
-	public Processor clone() 
+	public Processor duplicate() 
 	{
 		// Don't care
 		return null;
 	}
-
-
 }

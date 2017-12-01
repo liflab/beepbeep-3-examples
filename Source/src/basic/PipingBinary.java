@@ -18,7 +18,6 @@
 package basic;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.numbers.Addition;
@@ -37,7 +36,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  */
 public class PipingBinary
 {
-	public static void main (String[] args) throws ConnectorException
+	public static void main (String[] args)
 	{
 		QueueSource source1 = new QueueSource();
 		source1.setEvents(new Integer[]{2, 7, 1, 8, 3});

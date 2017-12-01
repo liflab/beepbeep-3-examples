@@ -20,11 +20,10 @@ package network.httppush;
 import java.util.Scanner;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.cli.Print;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.http.HttpDownstreamGateway;
+import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.serialization.JsonDeserializeString;
 import ca.uqac.lif.jerrydog.RequestCallback.Method;
 
@@ -44,7 +43,7 @@ import ca.uqac.lif.jerrydog.RequestCallback.Method;
  */
 public class PushMachineB 
 {
-	public static void main(String[] args) throws ConnectorException, ProcessorException, InterruptedException
+	public static void main(String[] args) throws ProcessorException, InterruptedException
 	{
 		// Ask a few infos about the remote end of the process
 		System.out.println("Hello, I am Machine B (downstream).");

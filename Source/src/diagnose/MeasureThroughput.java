@@ -22,7 +22,6 @@ import java.math.BigInteger;
 import network.httppush.twinprimes.BigIntegerFunctions.BigIntegerAdd;
 import network.httppush.twinprimes.BigIntegerFunctions.IsPrime;
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.diagnostics.Derivation;
 import ca.uqac.lif.cep.diagnostics.ThroughputMeter;
@@ -41,7 +40,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
 public class MeasureThroughput 
 {
 
-	public static void main(String[] args) throws ConnectorException, ProcessorException 
+	public static void main(String[] args) throws ProcessorException 
 	{
 		/*
 		 * We setup a counter that generates an increasing sequence of big

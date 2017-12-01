@@ -62,7 +62,7 @@ public class RandomMutator extends UniformProcessor
 	}
 
 	@Override
-	public RandomMutator clone()
+	public RandomMutator duplicate()
 	{
 		return new RandomMutator(m_minValue, m_maxValue);
 	}

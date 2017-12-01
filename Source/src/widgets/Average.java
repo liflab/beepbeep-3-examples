@@ -1,7 +1,6 @@
 package widgets;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import static ca.uqac.lif.cep.Connector.BOTTOM;
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
@@ -39,28 +38,22 @@ import ca.uqac.lif.cep.tmf.Fork;
  */
 public class Average extends GroupProcessor 
 {
+
 	public Average()
 	{
 		super(1, 1);
-		try
-		{
-			Fork fork = new Fork(2);
-			associateInput(0, fork, 0);
-			FunctionProcessor one = new FunctionProcessor(new Constant(1));
-			Connector.connect(fork, BOTTOM, one, INPUT);
-			CumulativeProcessor count = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
-			Connector.connect(one, count);
-			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
-			Connector.connect(fork, TOP, sum, INPUT);
-			FunctionProcessor div = new FunctionProcessor(Division.instance);
-			Connector.connect(sum, OUTPUT, div, TOP);
-			Connector.connect(count, OUTPUT, div, BOTTOM);
-			associateOutput(0, div, 0);
-			addProcessors(fork, one, count, sum, div);
-		}
-		catch (ConnectorException e) 
-		{
-			// Do nothing
-		}
+		Fork fork = new Fork(2);
+		associateInput(0, fork, 0);
+		FunctionProcessor one = new FunctionProcessor(new Constant(1));
+		Connector.connect(fork, BOTTOM, one, INPUT);
+		CumulativeProcessor count = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+		Connector.connect(one, count);
+		CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+		Connector.connect(fork, TOP, sum, INPUT);
+		FunctionProcessor div = new FunctionProcessor(Division.instance);
+		Connector.connect(sum, OUTPUT, div, TOP);
+		Connector.connect(count, OUTPUT, div, BOTTOM);
+		associateOutput(0, div, 0);
+		addProcessors(fork, one, count, sum, div);
 	}
 }

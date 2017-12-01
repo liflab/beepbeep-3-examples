@@ -18,16 +18,16 @@
 package io;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.cli.Print;
-import ca.uqac.lif.cep.io.StreamReader;
+import ca.uqac.lif.cep.io.Print;
+import ca.uqac.lif.cep.io.StringStreamReader;
+import ca.uqac.lif.cep.tmf.Pump;
 
 /**
  * Read bytes from the standard input ({@code stdin}). This program creates a
  * {@link ca.uqac.lif.cep.io.StreamReader StreamReader} that reads from the
  * standard input, and merely pushes whatever comes into to a
- * {@link ca.uqac.lif.cep.cli.Print Print}
+ * {@link ca.uqac.lif.cep.io.Print Print}
  * processor that reprints it to the standard output. The chain of processors
  * hence looks like this:  
  * <p>
@@ -105,23 +105,30 @@ import ca.uqac.lif.cep.io.StreamReader;
  */
 public class ReadStdin
 {
-	public static void main(String[] args) throws ProcessorException, ConnectorException, InterruptedException 
+	public static void main(String[] args) throws ProcessorException, InterruptedException 
 	{
 		/* We create a stream reader, and instruct it to read bytes from
 		 * the standard input (represented in Java by the System.in object).
 		 * We must tell the reader that it is not reading from a file, and
 		 * that it should push whatever it receives. */
-		StreamReader reader = new StreamReader(System.in).setIsFile(false).setPushMode(true);
+		StringStreamReader reader = new StringStreamReader(System.in);
+		reader.setIsFile(false);
+		
+		/* We connect the reader to a pump, which will periodically ask
+		 * the reader to read new characters from the input stream */
+		Pump pump = new Pump(100);
+		Thread pump_thread = new Thread(pump);
+		Connector.connect(reader, pump);
 		
 		/* We connect the output of the stream reader to a Print processor,
 		 * that will merely re-print to the standard output what was received
 		 * from the standard input. */
-		Print print = new Print().setAnsi(false);
-		Connector.connect(reader, print);
+		Print print = new Print();
+		Connector.connect(pump, print);
 		
-		/* We need to call start() on the reader so that it can start
+		/* We need to call start() on the pump's thread so that it can start
 		 * listening to its input stream. */
-		reader.start();
+		pump_thread.start();
 		
 		/* Since our program does nothing else, it would stop right away.
 		 * We put here an idle loop. You can stop it by pressing Ctrl+C. */

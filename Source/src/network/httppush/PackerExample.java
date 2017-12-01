@@ -21,9 +21,7 @@ import java.util.LinkedList;
 
 import util.UtilityMethods;
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.cli.Print;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
@@ -31,6 +29,7 @@ import ca.uqac.lif.cep.http.HttpDownstreamGateway;
 import ca.uqac.lif.cep.http.HttpUpstreamGateway;
 import ca.uqac.lif.cep.http.ListPackerPush;
 import ca.uqac.lif.cep.http.ListUnpacker;
+import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.serialization.JsonDeserializeString;
 import ca.uqac.lif.cep.serialization.JsonSerializeString;
@@ -87,7 +86,7 @@ import ca.uqac.lif.jerrydog.RequestCallback.Method;
 public class PackerExample 
 {
 	@SuppressWarnings("rawtypes")
-	public static void main(String[] args) throws ConnectorException, ProcessorException, InterruptedException
+	public static void main(String[] args) throws ProcessorException, InterruptedException
 	{
 		/* Let us assume that "Machine A" produces a stream of increasing
 		 * integers. */

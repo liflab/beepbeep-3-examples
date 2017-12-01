@@ -23,7 +23,6 @@ import java.util.Scanner;
 import java.util.Set;
 
 import ca.uqac.lif.cep.peg.Sequence;
-import ca.uqac.lif.cep.util.FileHelper;
 
 /**
  * Utility class that creates a set of sequences from a file. This
@@ -37,7 +36,7 @@ public class SequenceReader
 	public static Set<Sequence<Number>> readNumericalSequences(String filename)
 	{
 		Set<Sequence<Number>> seqs = new HashSet<Sequence<Number>>();
-		InputStream is = FileHelper.internalFileToStream(SequenceReader.class, filename);
+		InputStream is = SequenceReader.class.getResourceAsStream(filename);
 		if (is != null)
 		{
 			Scanner scanner = new Scanner(is);
@@ -62,7 +61,7 @@ public class SequenceReader
 	public static Set<Sequence<String>> readStringSequences(String filename)
 	{
 		Set<Sequence<String>> seqs = new HashSet<Sequence<String>>();
-		InputStream is = FileHelper.internalFileToStream(SequenceReader.class, filename);
+		InputStream is = SequenceReader.class.getResourceAsStream(filename);
 		if (is != null)
 		{
 			Scanner scanner = new Scanner(is);

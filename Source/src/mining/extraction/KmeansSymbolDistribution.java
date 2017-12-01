@@ -24,11 +24,9 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
 import ca.uqac.lif.cep.functions.Constant;
-import ca.uqac.lif.cep.functions.ConstantProcessor;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionException;
@@ -37,12 +35,12 @@ import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.IdentityFunction;
 import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.peg.MapDistance.ToValueArray;
+import ca.uqac.lif.cep.peg.Normalize;
 import ca.uqac.lif.cep.peg.ProcessorMiningFunction;
 import ca.uqac.lif.cep.peg.Sequence;
 import ca.uqac.lif.cep.peg.ml.KMeansFunction;
-import ca.uqac.lif.cep.sets.Multiset;
-import ca.uqac.lif.cep.sets.Normalize;
-import ca.uqac.lif.cep.tmf.SlicerMap;
+import ca.uqac.lif.cep.tmf.ConstantProcessor;
+import ca.uqac.lif.cep.tmf.Slicer;
 import mining.SequenceReader;
 
 /**
@@ -99,7 +97,7 @@ import mining.SequenceReader;
  */
 public class KmeansSymbolDistribution
 {
-	public static void main(String[] args) throws ConnectorException, FunctionException
+	public static void main(String[] args) throws FunctionException
 	{
 		/* First, we must get from somewhere a set of sequences. For the sake
 		 * of this example, we just create a few dummy sequences of numbers
@@ -119,7 +117,7 @@ public class KmeansSymbolDistribution
 				counter.associateOutput(OUTPUT, sum_one, OUTPUT);
 				counter.addProcessors(one, sum_one);
 			}
-			SlicerMap slicer = new SlicerMap(new IdentityFunction(1), counter);
+			Slicer slicer = new Slicer(new IdentityFunction(1), counter);
 			FunctionProcessor to_normalized_vector = new FunctionProcessor(
 					new FunctionTree(Normalize.instance,
 					new FunctionTree(ToValueArray.instance, new ArgumentPlaceholder(0))));
@@ -138,7 +136,7 @@ public class KmeansSymbolDistribution
 		 * of input sequences. There should be two centroids, one roughly
 		 * corresponding to a 30-70 distribution of a's vs. b's, and the other
 		 * one corresponding to a 70-30 distribution. */
-		Multiset centroids = (Multiset) pmf.mine(sequences);
+		Set<?> centroids = (Set<?>) pmf.mine(sequences);
 		System.out.println(centroids);
 	}
 }

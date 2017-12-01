@@ -18,7 +18,7 @@
 package io;
 
 import ca.uqac.lif.cep.Pushable;
-import ca.uqac.lif.cep.cli.Print;
+import ca.uqac.lif.cep.io.Print;
 
 /**
  * Print events to the standard input. In this simple example,
@@ -68,10 +68,10 @@ public class PrintStdout
 {
 	public static void main(String[] args) throws InterruptedException
 	{
-		/* We create a print processor and disable the use of colors in its
-		 * output. By default, print sends its events to the computer's
+		/* We create a print processor.
+		 * By default, print sends its events to the computer's
 		 * standard output (stdout) stream. */
-		Print print = new Print().setAnsi(false);
+		Print print = new Print();
 		
 		/* We get a hold of the Pushable object to push events to the print
 		 * processor. In this very simple example, we push numbers 0 to 4

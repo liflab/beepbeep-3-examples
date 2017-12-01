@@ -20,11 +20,9 @@ package basic;
 import ca.uqac.lif.cep.Connector;
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.Constant;
-import ca.uqac.lif.cep.functions.ConstantProcessor;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.Function;
@@ -32,10 +30,11 @@ import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.functions.IdentityFunction;
 import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.numbers.Maximum;
-import ca.uqac.lif.cep.sets.MapValues;
-import ca.uqac.lif.cep.sets.ProcessOnSet;
+import ca.uqac.lif.cep.util.Maps.Values;
+import ca.uqac.lif.cep.util.CollectionUtils.RunOn;
+import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.QueueSource;
-import ca.uqac.lif.cep.tmf.SlicerMap;
+import ca.uqac.lif.cep.tmf.Slicer;
 
 /**
  * Apply an aggregation function on the output of a slicer.
@@ -74,7 +73,7 @@ import ca.uqac.lif.cep.tmf.SlicerMap;
  */
 public class SlicerCollapse 
 {
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args)
 	{
 		/* We first setup a stream of numbers to be used as a source */
 		QueueSource source = new QueueSource();
@@ -98,20 +97,20 @@ public class SlicerCollapse
 		
 		/* Create the slicer processor, by giving it the slicing function and
 		 * the processor to apply on each slide. */
-		SlicerMap slicer = new SlicerMap(slice_fct, counter);
+		Slicer slicer = new Slicer(slice_fct, counter);
 		Connector.connect(source, slicer);
 		
 		/* Extract the image of the resulting map, by applying the
 		 * MapValues function. The result is a Multiset of all the objects
 		 * that occur as values in the input map. */
-		FunctionProcessor map_values = new FunctionProcessor(MapValues.instance);
+		FunctionProcessor map_values = new FunctionProcessor(Values.instance);
 		Connector.connect(slicer, map_values);
 		
 		/* Apply the CumulateOnSet processor. This processor applies a
 		 * cumulative function successively on every value of the input
 		 * set. Here the function is Maximum, meaning that the resulting
 		 * event is the maximum of all values in the input set. */
-		ProcessOnSet max = new ProcessOnSet(new CumulativeProcessor(new CumulativeFunction<Number>(Maximum.instance)));
+		RunOn max = new RunOn(new CumulativeProcessor(new CumulativeFunction<Number>(Maximum.instance)));
 		Connector.connect(map_values, max);
 		
 		/* Let us now pull and print 10 events from the output. */

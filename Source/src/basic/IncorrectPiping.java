@@ -53,7 +53,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  */
 public class IncorrectPiping
 {
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args)
 	{
 		/* Create a simple source with a single numerical event. */ 
 		QueueSource source = new QueueSource();

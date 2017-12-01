@@ -28,13 +28,12 @@ import static ca.uqac.lif.cep.Connector.LEFT;
 import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.cli.Print;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.http.HttpUpstreamGateway;
+import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
@@ -45,7 +44,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  */
 public class TwinPrimesA 
 {
-	public static void main(String[] args) throws ConnectorException, ProcessorException
+	public static void main(String[] args) throws ProcessorException
 	{
 		/* The URL where prime numbers will be pushed downstream. Change
 		 * this string to correspond to Machine B's address and port. */ 

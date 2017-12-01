@@ -20,21 +20,20 @@ package basic;
 import ca.uqac.lif.cep.Connector;
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.Constant;
-import ca.uqac.lif.cep.functions.ConstantProcessor;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.IdentityFunction;
 import ca.uqac.lif.cep.numbers.Addition;
+import ca.uqac.lif.cep.tmf.ConstantProcessor;
 import ca.uqac.lif.cep.tmf.QueueSource;
-import ca.uqac.lif.cep.tmf.SlicerMap;
+import ca.uqac.lif.cep.tmf.Slicer;
 
 /**
- * Use the {@link ca.uqac.lif.cep.tmf.SlicerMap SlicerMap} to perform a
+ * Use the {@link ca.uqac.lif.cep.tmf.Slicer SlicerMap} to perform a
  * computation on multiple subsets of an input stream.
  * <p>
  * The principle of the <tt>SlicerMap</tt> processor is to "slice" an
@@ -75,7 +74,7 @@ import ca.uqac.lif.cep.tmf.SlicerMap;
  */
 public class SlicerSimple 
 {
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args)
 	{
 		/* We first setup a stream of numbers to be used as a source */
 		QueueSource source = new QueueSource();
@@ -99,7 +98,7 @@ public class SlicerSimple
 		
 		/* Create the slicer processor, by giving it the slicing function and
 		 * the processor to apply on each slide. */
-		SlicerMap slicer = new SlicerMap(slice_fct, counter);
+		Slicer slicer = new Slicer(slice_fct, counter);
 		Connector.connect(source, slicer);
 		
 		/* Let us now pull and print 10 events from the slicer. */

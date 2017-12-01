@@ -23,7 +23,6 @@ import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.BOTTOM;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
@@ -52,23 +51,14 @@ public class RandomTwoD extends GroupProcessor
 	public RandomTwoD() 
 	{
 		super(1, 2);
-		try 
-		{
-			Fork fork = new Fork(2);
-			associateInput(INPUT, fork, INPUT);
-			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
-			Connector.connect(fork, TOP, sum, INPUT);
-			RandomMutator random = new RandomMutator(0, 100);
-			Connector.connect(fork, BOTTOM, random, INPUT);
-			associateOutput(TOP, sum, OUTPUT);
-			associateOutput(BOTTOM, random, OUTPUT);
-			addProcessors(fork, sum, random);
-		} 
-		catch (ConnectorException e)
-		{
-			// Do nothing
-			e.printStackTrace();
-		}
+		Fork fork = new Fork(2);
+		associateInput(INPUT, fork, INPUT);
+		CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+		Connector.connect(fork, TOP, sum, INPUT);
+		RandomMutator random = new RandomMutator(0, 100);
+		Connector.connect(fork, BOTTOM, random, INPUT);
+		associateOutput(TOP, sum, OUTPUT);
+		associateOutput(BOTTOM, random, OUTPUT);
+		addProcessors(fork, sum, random);
 	}
-
 }

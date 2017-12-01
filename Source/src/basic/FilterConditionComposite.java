@@ -22,7 +22,6 @@ import static ca.uqac.lif.cep.Connector.LEFT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.connect;
-import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.And;
 import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
@@ -49,7 +48,7 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  */
 public class FilterConditionComposite
 {
-	public static void main(String[] args) throws ConnectorException
+	public static void main(String[] args)
 	{
 		// Create a trace of dummy values
 		QueueSource source_values = new QueueSource();

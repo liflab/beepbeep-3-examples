@@ -44,6 +44,7 @@ import ca.uqac.lif.cep.tmf.Source;
  */
 public class SliderFrame extends Source
 {
+
 	/**
 	 * The JFrame corresponding to the window to be displayed
 	 */
@@ -98,7 +99,7 @@ public class SliderFrame extends Source
 	}
 
 	@Override
-	public Processor clone()
+	public Processor duplicate()
 	{
 		// Don't care for this example
 		return null;
