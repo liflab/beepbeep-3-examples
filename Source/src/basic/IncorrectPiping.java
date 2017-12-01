@@ -61,7 +61,7 @@ public class IncorrectPiping
 		
 		/* Create a processor that computes the absolute value of a number
 		 * and connect it to that source. */
-		Processor av = new FunctionProcessor(AbsoluteValue.instance);
+		Processor av = new FunctionProcessor(Numbers.absoluteValue);
 		Connector.connect(source, av);
 		
 		/* Attempt to connect a processor that computes the negation of a

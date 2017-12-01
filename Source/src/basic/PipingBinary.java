@@ -42,7 +42,7 @@ public class PipingBinary
 		source1.setEvents(new Integer[]{2, 7, 1, 8, 3});
 		QueueSource source2 = new QueueSource();
 		source2.setEvents(new Integer[]{3, 1, 4, 1, 6});
-		FunctionProcessor add = new FunctionProcessor(Addition.instance);
+		FunctionProcessor add = new FunctionProcessor(Numbers.addition);
 		Connector.connect(source1, 0, add, 0);
 		Connector.connect(source2, 0, add, 1);
 		Pullable p = add.getPullableOutput();

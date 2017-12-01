@@ -110,7 +110,7 @@ public class Engine
 			Connector.connect(anp_fork, 0, filter, TOP);
 			Connector.connect(anp_fork, 1, is_negative, INPUT);
 			Connector.connect(is_negative, OUTPUT, filter, BOTTOM);
-			CumulativeProcessor sum_of_negatives = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+			CumulativeProcessor sum_of_negatives = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(filter, sum_of_negatives);
 			FunctionProcessor divide = new FunctionProcessor(new FunctionTree(Division.instance, new ArgumentPlaceholder(0), new Constant(CBAT)));
 			Connector.connect(sum_of_negatives, divide);

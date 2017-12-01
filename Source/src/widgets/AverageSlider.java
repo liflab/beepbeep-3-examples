@@ -71,7 +71,7 @@ public class AverageSlider
 		Connector.connect(pump, fork);
 		FunctionProcessor one = new FunctionProcessor(new Constant(1));
 		Connector.connect(fork, 0, one, INPUT);
-		CumulativeProcessor counter = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+		CumulativeProcessor counter = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(one, counter);
 		Trim trim1 = new Trim(4);
 		Connector.connect(counter, trim1);

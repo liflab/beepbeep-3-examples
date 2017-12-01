@@ -70,7 +70,7 @@ public class PatternMiningFunctionProcessor
 			Filter filter = new Filter();
 			Connector.connect(ones, OUTPUT, filter, TOP);
 			Connector.connect(equals, OUTPUT, filter, BOTTOM);
-			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(filter, sum);
 			total_same.associateInput(INPUT, fork, INPUT);
 			total_same.associateOutput(OUTPUT, sum, OUTPUT);

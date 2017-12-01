@@ -84,11 +84,11 @@ public class AverageValueRelative
 		{
 			Fork fork = new Fork(2);
 			average.associateInput(INPUT, fork, INPUT);
-			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(fork, TOP, sum, INPUT);
 			ConstantProcessor one = new ConstantProcessor(new Constant(1));
 			Connector.connect(fork, BOTTOM, one, INPUT);
-			CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+			CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(one, sum_one);
 			FunctionProcessor div = new FunctionProcessor(Division.instance);
 			Connector.connect(sum, OUTPUT, div, TOP);

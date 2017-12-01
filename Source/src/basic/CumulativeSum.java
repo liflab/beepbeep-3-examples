@@ -41,7 +41,7 @@ public class CumulativeSum
 		QueueSource source = new QueueSource();
 		source.setEvents(new Integer[]{1, 2, 3, 4, 5, 6});
 		CumulativeProcessor sum = new CumulativeProcessor(
-				new CumulativeFunction<Number>(Addition.instance));
+				new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(source, sum);
 		Pullable p = sum.getPullableOutput();
 		for (int i = 0; i < 5; i++)

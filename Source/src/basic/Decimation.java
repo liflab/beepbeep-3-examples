@@ -72,7 +72,7 @@ public class Decimation
 		
 		/* The first path is plugged directly as the first argument of
 		 * an adding processor. */
-		FunctionProcessor sum = new FunctionProcessor(Addition.instance);
+		FunctionProcessor sum = new FunctionProcessor(Numbers.addition);
 		connect(fork, LEFT, sum, LEFT);
 		
 		/* Along the second path, we start by removing the first event of

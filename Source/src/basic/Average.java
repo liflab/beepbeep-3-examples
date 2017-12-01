@@ -82,7 +82,7 @@ public class Average
 		 * case, the function we use is addition over numbers; hence the
 		 * output is the cumulative sum of all numbers received so far. */
 		CumulativeProcessor sum_proc = new CumulativeProcessor(
-				new CumulativeFunction<Number>(Addition.instance));
+				new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(numbers, OUTPUT, sum_proc, INPUT);
 
 		/* Now we create a source of 1s and sum it; this is done with the same
@@ -91,7 +91,7 @@ public class Average
 		QueueSource ones = new QueueSource(1);
 		ones.addEvent(1);
 		CumulativeProcessor counter = new CumulativeProcessor(
-				new CumulativeFunction<Number>(Addition.instance));
+				new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(ones, OUTPUT, counter, INPUT);
 
 		/* Divide one trace by the other; the output is the cumulative average

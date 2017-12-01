@@ -101,11 +101,11 @@ public class AverageValueAbsolute
 		{
 			Fork fork = new Fork(2);
 			average.associateInput(INPUT, fork, INPUT);
-			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(fork, TOP, sum, INPUT);
 			ConstantProcessor one = new ConstantProcessor(new Constant(1));
 			Connector.connect(fork, BOTTOM, one, INPUT);
-			CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+			CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(one, sum_one);
 			FunctionProcessor div = new FunctionProcessor(Division.instance);
 			Connector.connect(sum, OUTPUT, div, TOP);
@@ -113,7 +113,7 @@ public class AverageValueAbsolute
 			average.associateOutput(OUTPUT, div, OUTPUT);
 			average.addProcessors(fork, sum, one, sum_one, div);
 		}
-		TrendDistance<Number,Number,Number> alarm = new TrendDistance<Number,Number,Number>(6, 3, average, new FunctionTree(AbsoluteValue.instance, 
+		TrendDistance<Number,Number,Number> alarm = new TrendDistance<Number,Number,Number>(6, 3, average, new FunctionTree(Numbers.absoluteValue, 
 				new FunctionTree(Subtraction.instance, new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 0.5, IsLessThan.instance);
 		QueueSource source = new QueueSource();
 		source.setEvents(new Object[]{6.1, 5.9, 6, 6.7, 6.7, 6.7});

@@ -45,7 +45,7 @@ public class Polynomial extends PassthroughFunction
 		/* At the top level, the polynomial is an addition of two
 		 * terms. Hence the top of the function tree is the function
 		 * Addition, followed by two arguments. */
-		return new FunctionTree(Addition.instance,
+		return new FunctionTree(Numbers.addition,
 				/* The first argument is itself a FunctionTree that computes
 				 * the multiplication of two arguments */
 				new FunctionTree(Multiplication.instance,

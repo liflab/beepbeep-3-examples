@@ -84,7 +84,7 @@ public class ProcessorParser extends ExpressionParser<GroupProcessor>
 	{
 		Processor p = (Processor) stack.pop();
 		stack.pop(); // Accumulate
-		CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+		CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(p, sum);
 		m_builtObject.addProcessor(sum);
 		stack.push(sum);

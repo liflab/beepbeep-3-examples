@@ -39,7 +39,7 @@ public class AddNumbers
 		 * Addition somewhere, you always use the same object. 
 		 * 
 		 * For more information on this matter, see {@link IsPrime#instance}. */
-		Function add = Addition.instance;
+		Function add = Numbers.addition;
 		
 		/* A function receives its arguments through an array of objects.
 		 * In the case of Addition, two arguments are required, so we create

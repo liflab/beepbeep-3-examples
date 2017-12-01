@@ -112,7 +112,7 @@ public class KmeansSymbolDistribution
 			{
 				ConstantProcessor one = new ConstantProcessor(new Constant(1));
 				counter.associateInput(INPUT, one, INPUT);
-				CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+				CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 				Connector.connect(one, sum_one);
 				counter.associateOutput(OUTPUT, sum_one, OUTPUT);
 				counter.addProcessors(one, sum_one);

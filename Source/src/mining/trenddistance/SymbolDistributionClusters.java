@@ -126,7 +126,7 @@ public class SymbolDistributionClusters
 			{
 				ConstantProcessor one = new ConstantProcessor(new Constant(1));
 				counter.associateInput(INPUT, one, INPUT);
-				CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+				CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 				Connector.connect(one, sum_one);
 				counter.associateOutput(OUTPUT, sum_one, OUTPUT);
 				counter.addProcessors(one, sum_one);
@@ -145,7 +145,7 @@ public class SymbolDistributionClusters
 		Multiset pattern = new Multiset();
 		pattern.add(new DoublePoint(new double[]{0.7, 0.3}));
 		pattern.add(new DoublePoint(new double[]{0.3, 0.7}));
-		TrendDistance<Multiset,Multiset,Number> alarm = new TrendDistance<Multiset,Multiset,Number>(pattern, 9, vector, new FunctionTree(AbsoluteValue.instance, 
+		TrendDistance<Multiset,Multiset,Number> alarm = new TrendDistance<Multiset,Multiset,Number>(pattern, 9, vector, new FunctionTree(Numbers.absoluteValue, 
 				new FunctionTree(new DistanceToClosest(new EuclideanDistance()), new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 0.25, IsLessThan.instance);
 		Connector.connect(feeder, alarm);
 		Pullable p = alarm.getPullableOutput();

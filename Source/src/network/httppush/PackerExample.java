@@ -92,7 +92,7 @@ public class PackerExample
 		 * integers. */
 		QueueSource source = new QueueSource();
 		source.addEvent(1);
-		CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+		CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(source, sum);
 		
 		/* Connect the output to a packer, and give it a time interval

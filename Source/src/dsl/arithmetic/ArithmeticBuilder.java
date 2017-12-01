@@ -36,7 +36,7 @@ public class ArithmeticBuilder extends TopStackParseTreeBuilder<Function>
 		
 		public void doAddition(Stack<Object> stack)
 		{
-			processBinary(stack, Addition.instance);
+			processBinary(stack, Numbers.addition);
 		}
 
 		public void doSubtraction(Stack<Object> stack)

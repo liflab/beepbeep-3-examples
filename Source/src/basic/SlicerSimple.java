@@ -89,7 +89,7 @@ public class SlicerSimple
 		GroupProcessor counter = new GroupProcessor(1, 1);
 		{
 			ConstantProcessor to_one = new ConstantProcessor(new Constant(1));
-			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(to_one, sum);
 			counter.addProcessors(to_one, sum);
 			counter.associateInput(INPUT, to_one, INPUT);

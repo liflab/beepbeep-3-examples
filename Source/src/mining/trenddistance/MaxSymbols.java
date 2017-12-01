@@ -94,14 +94,14 @@ public class MaxSymbols
 		{
 			ConstantProcessor one = new ConstantProcessor(new Constant(1));
 			counter.associateInput(INPUT, one, INPUT);
-			CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Addition.instance));
+			CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(one, sum_one);
 			counter.associateOutput(OUTPUT, sum_one, OUTPUT);
 			counter.addProcessors(one, sum_one);
 		}
 		Slicer slicer = new Slicer(new IdentityFunction(1), counter);
 		HashMap<Object,Object> pattern = MapDistance.createMap("a", 6, "b", 1, "c", 2);
-		TrendDistance<HashMap,Number,Number> alarm = new TrendDistance<HashMap,Number,Number>(pattern, 9, slicer, new FunctionTree(AbsoluteValue.instance, 
+		TrendDistance<HashMap,Number,Number> alarm = new TrendDistance<HashMap,Number,Number>(pattern, 9, slicer, new FunctionTree(Numbers.absoluteValue, 
 				new FunctionTree(MapDistance.instance, new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 2, IsLessThan.instance);
 		Connector.connect(feeder, alarm);
 		Pullable p = alarm.getPullableOutput();
