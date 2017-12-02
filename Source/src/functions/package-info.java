@@ -21,7 +21,7 @@
  * functions.
  * <p>
  * A particular aspect of BeepBeep 3 is the fact that functions are themselves
- * objects. For example, the {@link FunctionProcessor} applies a function (any
+ * objects. For example, the {@link ApplyFunction} applies a function (any
  * function) to each incoming event. The actual function that it uses is
  * chosen by passing to this processor a {@link Function} object.
  * <p>

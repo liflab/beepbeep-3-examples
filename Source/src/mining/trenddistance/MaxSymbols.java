@@ -25,18 +25,18 @@ import java.util.HashMap;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
+import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.IdentityFunction;
-import ca.uqac.lif.cep.io.StringStreamReader;
+import ca.uqac.lif.cep.io.ReadStringStream;
 import ca.uqac.lif.cep.peg.MapDistance;
 import ca.uqac.lif.cep.peg.TrendDistance;
-import ca.uqac.lif.cep.tmf.ConstantProcessor;
-import ca.uqac.lif.cep.tmf.Slicer;
+import ca.uqac.lif.cep.tmf.ReplaceWith;
+import ca.uqac.lif.cep.tmf.Slice;
 import ca.uqac.lif.cep.util.Numbers;
-import ca.uqac.lif.cep.util.PatternScanner;
+import ca.uqac.lif.cep.util.FindPattern;
 
 /**
  * Trend distance based on the maximum number of distinct symbols
@@ -84,22 +84,22 @@ public class MaxSymbols
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args)
 	{
-		StringStreamReader reader = new StringStreamReader(MaxSymbols.class.getResourceAsStream("SymbolDistribution.txt"));
-		PatternScanner feeder = new PatternScanner("(.*?),");
+		ReadStringStream reader = new ReadStringStream(MaxSymbols.class.getResourceAsStream("SymbolDistribution.txt"));
+		FindPattern feeder = new FindPattern("(.*?),");
 		Connector.connect(reader, feeder);
 		GroupProcessor counter = new GroupProcessor(1, 1);
 		{
-			ConstantProcessor one = new ConstantProcessor(1);
+			ReplaceWith one = new ReplaceWith(1);
 			counter.associateInput(INPUT, one, INPUT);
 			CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(one, sum_one);
 			counter.associateOutput(OUTPUT, sum_one, OUTPUT);
 			counter.addProcessors(one, sum_one);
 		}
-		Slicer slicer = new Slicer(new IdentityFunction(1), counter);
+		Slice slicer = new Slice(new IdentityFunction(1), counter);
 		HashMap<Object,Object> pattern = MapDistance.createMap("a", 6, "b", 1, "c", 2);
 		TrendDistance<HashMap,Number,Number> alarm = new TrendDistance<HashMap,Number,Number>(pattern, 9, slicer, new FunctionTree(Numbers.absoluteValue, 
-				new FunctionTree(MapDistance.instance, new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 2, Numbers.isLessThan);
+				new FunctionTree(MapDistance.instance, StreamVariable.X, StreamVariable.Y)), 2, Numbers.isLessThan);
 		Connector.connect(feeder, alarm);
 		Pullable p = alarm.getPullableOutput();
 		boolean b = true;

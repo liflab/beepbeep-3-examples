@@ -17,7 +17,7 @@
  */
 package functions;
 
-import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
+import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.FunctionException;
@@ -26,7 +26,7 @@ import ca.uqac.lif.cep.functions.PassthroughFunction;
 import ca.uqac.lif.cep.util.Numbers;
 
 /**
- * Use an {@link ArgumentPlaceholder} and a {@link FunctionTree} to create
+ * Use an {@link StreamVariable} and a {@link FunctionTree} to create
  * the polynomial function <i>x</i><sup>2</sup>+3.
  * 
  * @author Sylvain Hallé
@@ -54,8 +54,8 @@ public class Polynomial extends PassthroughFunction
 					 * the ArgumentPlaceholder. When ArgumentPlaceholder is instantiated
 					 * without argument, it refers by default to the first argument
 					 * of a function. */
-					new ArgumentPlaceholder(),
-					new ArgumentPlaceholder()),
+					new StreamVariable(),
+					new StreamVariable()),
 				/* The second term of the addition is the constant 3 */
 				new Constant(3));
 	}

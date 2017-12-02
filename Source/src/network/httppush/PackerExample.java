@@ -24,16 +24,16 @@ import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.http.HttpDownstreamGateway;
 import ca.uqac.lif.cep.http.HttpUpstreamGateway;
-import ca.uqac.lif.cep.http.ListPackerPush;
-import ca.uqac.lif.cep.http.ListUnpacker;
 import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.serialization.JsonDeserializeString;
 import ca.uqac.lif.cep.serialization.JsonSerializeString;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.tmf.TimeDecimate;
+import ca.uqac.lif.cep.util.Lists.Pack;
+import ca.uqac.lif.cep.util.Lists.Unpack;
 import ca.uqac.lif.cep.util.Numbers;
 import ca.uqac.lif.jerrydog.RequestCallback.Method;
 
@@ -53,7 +53,7 @@ import ca.uqac.lif.jerrydog.RequestCallback.Method;
  * However, each request has an associated overhead, which places an upper
  * bound on the number of requests per second that can be sent.
  * <p>
- * The {@link ListPackerPush} processor can be used to reduce the number of
+ * The {@link Pack} processor can be used to reduce the number of
  * such requests. The packer accumulates events for a predetermined amount
  * of time (say, one second), and outputs all accumulated events as a single
  * <code>List</code> object when the time interval is expired. When coupled
@@ -97,13 +97,13 @@ public class PackerExample
 		
 		/* Connect the output to a packer, and give it a time interval
 		 * 1 second. */
-		ListPackerPush packer = new ListPackerPush();
+		Pack packer = new Pack();
 		packer.setInterval(1000);
 		Connector.connect(sum, packer);
 
 		/* Connect the output of the packer to a serializer, and the serializer
 		 * to an {@link HttpUpstreamGateway}. */
-		FunctionProcessor serialize = new FunctionProcessor(new JsonSerializeString());
+		ApplyFunction serialize = new ApplyFunction(new JsonSerializeString());
 		Connector.connect(packer, serialize);
 		HttpUpstreamGateway up_gateway = new HttpUpstreamGateway("http://localhost:12149/push");
 		Connector.connect(serialize, up_gateway);
@@ -113,9 +113,9 @@ public class PackerExample
 		 * string back into a list of events, and an unpacker that will push
 		 * each element of the list as individual events. */
 		HttpDownstreamGateway dn_gateway = new HttpDownstreamGateway(12149, "/push", Method.POST);
-		FunctionProcessor deserialize = new FunctionProcessor(new JsonDeserializeString<LinkedList>(LinkedList.class));
+		ApplyFunction deserialize = new ApplyFunction(new JsonDeserializeString<LinkedList>(LinkedList.class));
 		Connector.connect(dn_gateway, deserialize);
-		ListUnpacker unpacker = new ListUnpacker();
+		Unpack unpacker = new Unpack();
 		Connector.connect(deserialize, unpacker);
 		
 		/* We only keep one event about every second, using the TimeDecimate

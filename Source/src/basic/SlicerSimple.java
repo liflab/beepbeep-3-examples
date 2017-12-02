@@ -27,13 +27,13 @@ import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.IdentityFunction;
-import ca.uqac.lif.cep.tmf.ConstantProcessor;
+import ca.uqac.lif.cep.tmf.ReplaceWith;
 import ca.uqac.lif.cep.tmf.QueueSource;
-import ca.uqac.lif.cep.tmf.Slicer;
+import ca.uqac.lif.cep.tmf.Slice;
 import ca.uqac.lif.cep.util.Numbers;
 
 /**
- * Use the {@link ca.uqac.lif.cep.tmf.Slicer SlicerMap} to perform a
+ * Use the {@link ca.uqac.lif.cep.tmf.Slice SlicerMap} to perform a
  * computation on multiple subsets of an input stream.
  * <p>
  * The principle of the <tt>SlicerMap</tt> processor is to "slice" an
@@ -88,7 +88,7 @@ public class SlicerSimple
 		 * counter of events. */
 		GroupProcessor counter = new GroupProcessor(1, 1);
 		{
-			ConstantProcessor to_one = new ConstantProcessor(new Constant(1));
+			ReplaceWith to_one = new ReplaceWith(new Constant(1));
 			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(to_one, sum);
 			counter.addProcessors(to_one, sum);
@@ -98,7 +98,7 @@ public class SlicerSimple
 		
 		/* Create the slicer processor, by giving it the slicing function and
 		 * the processor to apply on each slide. */
-		Slicer slicer = new Slicer(slice_fct, counter);
+		Slice slicer = new Slice(slice_fct, counter);
 		Connector.connect(source, slicer);
 		
 		/* Let us now pull and print 10 events from the slicer. */

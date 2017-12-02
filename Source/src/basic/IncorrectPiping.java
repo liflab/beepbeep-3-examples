@@ -20,9 +20,9 @@ package basic;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.Processor;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
-import ca.uqac.lif.cep.functions.Negation;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Booleans;
 import ca.uqac.lif.cep.util.Numbers;
 
 /**
@@ -61,14 +61,14 @@ public class IncorrectPiping
 		
 		/* Create a processor that computes the absolute value of a number
 		 * and connect it to that source. */
-		Processor av = new FunctionProcessor(Numbers.absoluteValue);
+		Processor av = new ApplyFunction(Numbers.absoluteValue);
 		Connector.connect(source, av);
 		
 		/* Attempt to connect a processor that computes the negation of a
 		 * Boolean value to the av processor defined above. This will cause an
 		 * exception to be thrown: the output type of av is Number, while the
 		 * input type of neg is Boolean. */
-		Processor neg = new FunctionProcessor(Booleans.not);
+		Processor neg = new ApplyFunction(Booleans.not);
 		Connector.connect(av, neg); // Will throw an exception
 		
 		/* As a result, this line of the program should not be reached, as the

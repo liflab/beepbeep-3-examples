@@ -28,7 +28,7 @@ import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.http.HttpDownstreamGateway;
 import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.tmf.Filter;
@@ -49,12 +49,12 @@ public class TwinPrimesB
 		
 		/* The next step is to convert the string received from the gateway
 		 * back into a BigInteger. */
-		FunctionProcessor string_to_bigint = new FunctionProcessor(StringToBigInteger.instance);
+		ApplyFunction string_to_bigint = new ApplyFunction(StringToBigInteger.instance);
 		Connector.connect(dn_gateway, string_to_bigint);
 		
 		/* We then increment this number by 2. We do this with a special
 		 * function. */
-		FunctionProcessor big_int_plus_2 = new FunctionProcessor(new BigIntegerFunctions.IncrementBigInteger(new BigInteger("2")));
+		ApplyFunction big_int_plus_2 = new ApplyFunction(new BigIntegerFunctions.IncrementBigInteger(new BigInteger("2")));
 		Connector.connect(string_to_bigint, big_int_plus_2);
 		
 		/* Fork the output */
@@ -62,7 +62,7 @@ public class TwinPrimesB
 		Connector.connect(big_int_plus_2, fork);
 		
 		/* Primality check for n+2... */
-		FunctionProcessor is_prime = new FunctionProcessor(IsPrime.instance);
+		ApplyFunction is_prime = new ApplyFunction(IsPrime.instance);
 		Connector.connect(fork, LEFT, is_prime, INPUT);
 		
 		/* Join both forks into a filter. What comes out is a stream of numbers 

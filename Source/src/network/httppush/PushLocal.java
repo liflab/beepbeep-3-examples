@@ -21,7 +21,7 @@ import network.CompoundObject;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.Pushable;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.http.HttpDownstreamGateway;
 import ca.uqac.lif.cep.http.HttpUpstreamGateway;
 import ca.uqac.lif.cep.io.Print;
@@ -49,7 +49,7 @@ public class PushLocal
 		 * transforms an incoming object into a character string in the JSON format,
 		 * through a process called <em>serialization</em>. Under the hood, the Azrael
 		 * library takes care of this task. */ 
-		FunctionProcessor serialize = new FunctionProcessor(new JsonSerializeString());
+		ApplyFunction serialize = new ApplyFunction(new JsonSerializeString());
 
 		/* This function processor is connected to a {@link HttpUpstreamGateway}.
 		 * The gateway is a processor that transmits its received events to another
@@ -80,7 +80,7 @@ public class PushLocal
 		 * this function must be given the class of the objects
 		 * to be deserialized, so that it knows instances of what kind of objects
 		 * to create. */
-		FunctionProcessor deserialize = new FunctionProcessor(new JsonDeserializeString<CompoundObject>(CompoundObject.class));
+		ApplyFunction deserialize = new ApplyFunction(new JsonDeserializeString<CompoundObject>(CompoundObject.class));
 		
 		/* Just so that we can see something, we plug a {@link Print} processor at
 		 * the end; it will print to the standard output whatever object it receives

@@ -19,12 +19,12 @@ package basic;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
-import ca.uqac.lif.cep.functions.Negation;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Booleans;
 
 /**
- * Use the {@link ca.uqac.lif.cep.functions.FunctionProcessor FunctionProcessor}
+ * Use the {@link ca.uqac.lif.cep.functions.ApplyFunction FunctionProcessor}
  * to apply a function to each input event. Here, we apply the negation to
  * every Boolean event. This can be represented grahpically as follows:
  * <p>
@@ -52,7 +52,7 @@ public class SimpleFunction
 	{
 		QueueSource source = new QueueSource();
 		source.setEvents(false, true, true, false, true);
-		FunctionProcessor not = new FunctionProcessor(Booleans.not);
+		ApplyFunction not = new ApplyFunction(Booleans.not);
 		Connector.connect(source, not);
 		Pullable p = not.getPullableOutput();
 		for (int i = 0; i < 5; i++)

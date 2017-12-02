@@ -31,7 +31,7 @@ import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.http.HttpUpstreamGateway;
 import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.tmf.Filter;
@@ -67,7 +67,7 @@ public class TwinPrimesA
 		Connector.connect(counter, fork1);
 		
 		/* Along the first path, the numbers are checked for primality. */ 
-		FunctionProcessor prime_check = new FunctionProcessor(IsPrime.instance);
+		ApplyFunction prime_check = new ApplyFunction(IsPrime.instance);
 		Connector.connect(fork1, LEFT, prime_check, INPUT);
 		
 		/* Along the second path, we feed a filter and use the primality
@@ -86,7 +86,7 @@ public class TwinPrimesA
 		
 		/* We convert BigIntegers to Strings, and push them across the network
 		 * to Machine B using the HttpUpstreamGateway. */
-		FunctionProcessor int_to_string = new FunctionProcessor(BigIntegerToString.instance);
+		ApplyFunction int_to_string = new ApplyFunction(BigIntegerToString.instance);
 		HttpUpstreamGateway up_gateway = new HttpUpstreamGateway(push_url);
 		Connector.connect(fork2, RIGHT, int_to_string, INPUT);
 		Connector.connect(int_to_string, up_gateway);

@@ -24,7 +24,7 @@ import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.connect;
 import util.UtilityMethods;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
@@ -72,7 +72,7 @@ public class Decimation
 		
 		/* The first path is plugged directly as the first argument of
 		 * an adding processor. */
-		FunctionProcessor sum = new FunctionProcessor(Numbers.addition);
+		ApplyFunction sum = new ApplyFunction(Numbers.addition);
 		connect(fork, LEFT, sum, LEFT);
 		
 		/* Along the second path, we start by removing the first event of

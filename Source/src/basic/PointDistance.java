@@ -24,7 +24,7 @@ import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.connect;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.BinaryFunction;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.tmf.Trim;
@@ -111,7 +111,7 @@ public class PointDistance
 		/* The first path is plugged directly as the first argument of a 
          * function processor that computes the Euclidean distance between
          * two points. */
-		FunctionProcessor distance_proc = new FunctionProcessor(new Distance());
+		ApplyFunction distance_proc = new ApplyFunction(new Distance());
 		connect(fork, LEFT, distance_proc, LEFT);
 		
 		/* The second path is trimmed of its first event... */

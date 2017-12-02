@@ -17,10 +17,10 @@
  */
 package functions;
 
-import ca.uqac.lif.cep.functions.And;
-import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
+import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.FunctionException;
 import ca.uqac.lif.cep.functions.FunctionTree;
+import ca.uqac.lif.cep.util.Booleans;
 import ca.uqac.lif.cep.util.Numbers;
 
 /**
@@ -47,11 +47,11 @@ public class Interval
 		 */
 		FunctionTree in_interval = new FunctionTree(Booleans.and,
 				new FunctionTree(Numbers.isGreaterThan,
-						new ArgumentPlaceholder(0),
-						new ArgumentPlaceholder(1)), // x > y
+						StreamVariable.X,
+						StreamVariable.Y), // x > y
 						new FunctionTree(Numbers.isLessThan,
-								new ArgumentPlaceholder(0),
-								new ArgumentPlaceholder(2) // y < z
+								StreamVariable.X,
+								StreamVariable.Z // y < z
 								));
 		Object[] value = new Object[1];
 		in_interval.evaluate(new Integer[]{3, 2, 8}, value);

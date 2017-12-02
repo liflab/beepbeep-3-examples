@@ -23,7 +23,7 @@ import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.connect;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
@@ -52,7 +52,7 @@ public class FilterConditionSimple
 		Filter filter = new Filter();
 		connect(fork, LEFT, filter, LEFT);
 		// Create a processor evaluating the function "is even"
-		FunctionProcessor condition = new FunctionProcessor(Numbers.isEven);
+		ApplyFunction condition = new ApplyFunction(Numbers.isEven);
 		// Connect its input to the second output of the fork
 		connect(fork, RIGHT, condition, INPUT);
 		// Connect the condition as the second input of our filter

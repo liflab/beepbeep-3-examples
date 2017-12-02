@@ -26,14 +26,14 @@ import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.Function;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.IdentityFunction;
 import ca.uqac.lif.cep.util.Maps.Values;
 import ca.uqac.lif.cep.util.Numbers;
-import ca.uqac.lif.cep.util.CollectionUtils.RunOn;
-import ca.uqac.lif.cep.tmf.ConstantProcessor;
+import ca.uqac.lif.cep.util.Bags.RunOn;
+import ca.uqac.lif.cep.tmf.ReplaceWith;
 import ca.uqac.lif.cep.tmf.QueueSource;
-import ca.uqac.lif.cep.tmf.Slicer;
+import ca.uqac.lif.cep.tmf.Slice;
 
 /**
  * Apply an aggregation function on the output of a slicer.
@@ -86,7 +86,7 @@ public class SlicerCollapse
 		 * counter of events. */
 		GroupProcessor counter = new GroupProcessor(1, 1);
 		{
-			ConstantProcessor to_one = new ConstantProcessor(new Constant(1));
+			ReplaceWith to_one = new ReplaceWith(new Constant(1));
 			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(to_one, sum);
 			counter.addProcessors(to_one, sum);
@@ -96,13 +96,13 @@ public class SlicerCollapse
 		
 		/* Create the slicer processor, by giving it the slicing function and
 		 * the processor to apply on each slide. */
-		Slicer slicer = new Slicer(slice_fct, counter);
+		Slice slicer = new Slice(slice_fct, counter);
 		Connector.connect(source, slicer);
 		
 		/* Extract the image of the resulting map, by applying the
 		 * MapValues function. The result is a Multiset of all the objects
 		 * that occur as values in the input map. */
-		FunctionProcessor map_values = new FunctionProcessor(Values.instance);
+		ApplyFunction map_values = new ApplyFunction(Values.instance);
 		Connector.connect(slicer, map_values);
 		
 		/* Apply the CumulateOnSet processor. This processor applies a

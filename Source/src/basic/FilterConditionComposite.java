@@ -23,14 +23,14 @@ import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.connect;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.functions.And;
-import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
+import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.Constant;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
+import ca.uqac.lif.cep.util.Booleans;
 import ca.uqac.lif.cep.util.Numbers;
 
 /**
@@ -63,9 +63,9 @@ public class FilterConditionComposite
 		FunctionTree tree = new FunctionTree(Booleans.and,
 				Numbers.isEven,
 				new FunctionTree(Numbers.isGreaterThan,
-						new ArgumentPlaceholder(0),
+						StreamVariable.X,
 						new Constant(4)));
-		FunctionProcessor condition = new FunctionProcessor(tree);
+		ApplyFunction condition = new ApplyFunction(tree);
 		// Connect its input to the second output of the fork
 		connect(fork, RIGHT, condition, INPUT);
 		// Connect the condition as the second input of our filter

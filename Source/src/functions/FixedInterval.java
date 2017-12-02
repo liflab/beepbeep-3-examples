@@ -17,11 +17,11 @@
  */
 package functions;
 
-import ca.uqac.lif.cep.functions.And;
-import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
+import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.FunctionException;
 import ca.uqac.lif.cep.functions.FunctionTree;
+import ca.uqac.lif.cep.util.Booleans;
 import ca.uqac.lif.cep.util.Numbers;
 
 /**
@@ -50,10 +50,10 @@ public class FixedInterval
 		 */
 		FunctionTree in_interval = new FunctionTree(Booleans.and,
 				new FunctionTree(Numbers.isGreaterThan,
-						new ArgumentPlaceholder(0),
-						new Constant(0)), // x > 0
+						StreamVariable.X,
+						Constant.ZERO), // x > 0
 						new FunctionTree(Numbers.isLessThan,
-								new ArgumentPlaceholder(0),
+								StreamVariable.X,
 								new Constant(2) // x < 2
 								));
 		

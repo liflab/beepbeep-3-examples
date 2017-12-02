@@ -21,7 +21,7 @@ import java.io.InputStream;
 
 import util.UtilityMethods;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.io.LineReader;
+import ca.uqac.lif.cep.io.ReadLines;
 
 /**
  * Read an input stream from a text file line by line and show the output.
@@ -41,7 +41,7 @@ public class FileReader
 		/* Give this stream to a LineReader processor. The LineReader
 		 * reads the lines of a file one by one, and outputs each line
 		 * as an event (a String object). */
-		LineReader reader = new LineReader(stream);
+		ReadLines reader = new ReadLines(stream);
 		
 		/* The addCrlf() method tells the line reader *not* to append a
 		 * carriage return at the end of each event. There exist situations where

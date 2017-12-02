@@ -21,7 +21,7 @@ import java.util.Scanner;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.http.HttpDownstreamGateway;
 import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.serialization.JsonDeserializeString;
@@ -53,7 +53,7 @@ public class PushMachineB
 
 		// Instantiate and pipe the processors 
 		HttpDownstreamGateway dn_gateway = new HttpDownstreamGateway(port, "/push", Method.POST);
-		FunctionProcessor deserialize = new FunctionProcessor(new JsonDeserializeString<CompoundObject>(CompoundObject.class));
+		ApplyFunction deserialize = new ApplyFunction(new JsonDeserializeString<CompoundObject>(CompoundObject.class));
 		Print print = new Print();
 		Connector.connect(dn_gateway, deserialize);
 		Connector.connect(deserialize, print);

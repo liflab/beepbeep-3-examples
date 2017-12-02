@@ -28,7 +28,7 @@ import ca.uqac.lif.cep.diagnostics.ThroughputMeter;
 import ca.uqac.lif.cep.diagnostics.WindowConsole;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.tmf.BlackHole;
 import ca.uqac.lif.cep.tmf.QueueSource;
 
@@ -52,7 +52,7 @@ public class MeasureThroughput
 		source.addEvent(new BigInteger("2"));
 		CumulativeProcessor counter = new CumulativeProcessor(new CumulativeFunction<BigInteger>(BigIntegerAdd.instance));
 		Connector.connect(source, counter);
-		FunctionProcessor prime_check = new FunctionProcessor(IsPrime.instance);
+		ApplyFunction prime_check = new ApplyFunction(IsPrime.instance);
 		Connector.connect(counter, prime_check);
 		BlackHole sink = new BlackHole();
 		Connector.connect(prime_check, sink);

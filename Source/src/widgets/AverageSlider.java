@@ -10,7 +10,7 @@ import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.mtnp.DrawPlot;
 import ca.uqac.lif.cep.mtnp.UpdateTable;
 import ca.uqac.lif.cep.mtnp.UpdateTableStream;
@@ -49,7 +49,7 @@ import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
  * <li>{@link ca.uqac.lif.cep.functions.CumulativeProcessor CumulativeProcessor}</li>
  * <li>{@link ca.uqac.lif.cep.mtnp.DrawPlot DrawPlot}</li>
  * <li>{@link ca.uqac.lif.cep.tmf.Fork Fork}</li>
- * <li>{@link ca.uqac.lif.cep.functions.FunctionProcessor FunctionProcessor}</li>
+ * <li>{@link ca.uqac.lif.cep.functions.ApplyFunction FunctionProcessor}</li>
  * <li>{@link ca.uqac.lif.cep.GroupProcessor GroupProcessor}</li>
  * <li>{@link ca.uqac.lif.cep.tmf.Pump Pump}</li>
  * <li>{@link ca.uqac.lif.cep.tmf.Trim Trim}</li>
@@ -69,7 +69,7 @@ public class AverageSlider
 		Connector.connect(frame, pump);
 		Fork fork = new Fork(3);
 		Connector.connect(pump, fork);
-		FunctionProcessor one = new FunctionProcessor(new Constant(1));
+		ApplyFunction one = new ApplyFunction(new Constant(1));
 		Connector.connect(fork, 0, one, INPUT);
 		CumulativeProcessor counter = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(one, counter);

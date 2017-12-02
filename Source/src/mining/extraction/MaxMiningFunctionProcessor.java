@@ -24,7 +24,7 @@ import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionException;
 import ca.uqac.lif.cep.peg.ProcessorMiningFunction;
 import ca.uqac.lif.cep.peg.Sequence;
-import ca.uqac.lif.cep.util.CollectionUtils;
+import ca.uqac.lif.cep.util.Bags;
 import ca.uqac.lif.cep.util.Numbers;
 import mining.SequenceReader;
 
@@ -71,7 +71,7 @@ public class MaxMiningFunctionProcessor
 		 * "pattern" extracted from this set of sequences. */
 		ProcessorMiningFunction<Number,Number> a_f = new ProcessorMiningFunction<Number,Number>(
 				new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.maximum)), 
-				new CollectionUtils.RunOn(new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.maximum))));
+				new Bags.RunOn(new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.maximum))));
 		
 		/* We then evaluate the function on our set of sequences. */
 		Number n = (Number) a_f.mine(sequences);

@@ -18,13 +18,13 @@
 package plots;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.mtnp.DrawPlot;
 import ca.uqac.lif.cep.mtnp.UpdateTableArray;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.tmf.Window;
-import ca.uqac.lif.cep.util.ToCollection;
+import ca.uqac.lif.cep.util.Bags;
 import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
 
 /**
@@ -61,7 +61,7 @@ public class WindowScatterplot
 		 * is an array with the x and the y value. Since random has an
 		 * output arity of 2, and array_convert has an input arity of 2,
 		 * we don't need to explicitly connect both input/output pairs. */
-		FunctionProcessor array_convert = new FunctionProcessor(new ToCollection.ToArray(Number.class, Number.class));
+		ApplyFunction array_convert = new ApplyFunction(new Bags.ToArray(Number.class, Number.class));
 		Connector.connect(random, array_convert);
 		
 		/* Use the UpdateTable processor that takes as input a single

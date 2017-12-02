@@ -29,23 +29,23 @@ import org.apache.commons.math3.ml.distance.EuclideanDistance;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
+import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.IdentityFunction;
-import ca.uqac.lif.cep.io.StringStreamReader;
+import ca.uqac.lif.cep.io.ReadStringStream;
 import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.peg.ml.DistanceToClosest;
 import ca.uqac.lif.cep.peg.ml.DoublePointCast;
 import ca.uqac.lif.cep.peg.MapDistance.ToValueArray;
 import ca.uqac.lif.cep.peg.Normalize;
-import ca.uqac.lif.cep.tmf.ConstantProcessor;
-import ca.uqac.lif.cep.tmf.Slicer;
+import ca.uqac.lif.cep.tmf.ReplaceWith;
+import ca.uqac.lif.cep.tmf.Slice;
 import ca.uqac.lif.cep.util.Numbers;
-import ca.uqac.lif.cep.util.PatternScanner;
+import ca.uqac.lif.cep.util.FindPattern;
 
 /**
  * Trend distance based on the statistical distribution of symbols in a
@@ -115,8 +115,8 @@ public class SymbolDistributionClusters
 {
 	public static void main(String[] args)
 	{
-		StringStreamReader reader = new StringStreamReader(SymbolDistributionClusters.class.getResourceAsStream("SymbolDistribution-AB.txt"));
-		PatternScanner feeder = new PatternScanner("(.*?),");
+		ReadStringStream reader = new ReadStringStream(SymbolDistributionClusters.class.getResourceAsStream("SymbolDistribution-AB.txt"));
+		FindPattern feeder = new FindPattern("(.*?),");
 		Connector.connect(reader, feeder);
 		/* We then create a processor that computes the feature vector
 		 * from an input trace. */
@@ -124,18 +124,18 @@ public class SymbolDistributionClusters
 		{
 			GroupProcessor counter = new GroupProcessor(1, 1);
 			{
-				ConstantProcessor one = new ConstantProcessor(new Constant(1));
+				ReplaceWith one = new ReplaceWith(new Constant(1));
 				counter.associateInput(INPUT, one, INPUT);
 				CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 				Connector.connect(one, sum_one);
 				counter.associateOutput(OUTPUT, sum_one, OUTPUT);
 				counter.addProcessors(one, sum_one);
 			}
-			Slicer slicer = new Slicer(new IdentityFunction(1), counter);
-			FunctionProcessor to_normalized_vector = new FunctionProcessor(
+			Slice slicer = new Slice(new IdentityFunction(1), counter);
+			ApplyFunction to_normalized_vector = new ApplyFunction(
 					new FunctionTree(DoublePointCast.instance,
 					new FunctionTree(Normalize.instance,
-					new FunctionTree(ToValueArray.instance, new ArgumentPlaceholder(0)))));
+					new FunctionTree(ToValueArray.instance, StreamVariable.X))));
 			Connector.connect(slicer, to_normalized_vector);
 			vector.associateInput(INPUT, slicer, INPUT);
 			vector.associateOutput(OUTPUT, to_normalized_vector, OUTPUT);
@@ -146,7 +146,7 @@ public class SymbolDistributionClusters
 		pattern.add(new DoublePoint(new double[]{0.7, 0.3}));
 		pattern.add(new DoublePoint(new double[]{0.3, 0.7}));
 		TrendDistance<Set<DoublePoint>,Set<DoublePoint>,Number> alarm = new TrendDistance<Set<DoublePoint>,Set<DoublePoint>,Number>(pattern, 9, vector, new FunctionTree(Numbers.absoluteValue, 
-				new FunctionTree(new DistanceToClosest(new EuclideanDistance()), new ArgumentPlaceholder(0), new ArgumentPlaceholder(1))), 0.25, Numbers.isLessThan);
+				new FunctionTree(new DistanceToClosest(new EuclideanDistance()), StreamVariable.X, StreamVariable.Y)), 0.25, Numbers.isLessThan);
 		Connector.connect(feeder, alarm);
 		Pullable p = alarm.getPullableOutput();
 		boolean b = true;

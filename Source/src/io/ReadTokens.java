@@ -20,9 +20,9 @@ package io;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.io.Print;
-import ca.uqac.lif.cep.io.StringStreamReader;
+import ca.uqac.lif.cep.io.ReadStringStream;
 import ca.uqac.lif.cep.tmf.Pump;
-import ca.uqac.lif.cep.util.PatternScanner;
+import ca.uqac.lif.cep.util.FindPattern;
 
 /**
  * Read complete comma-separated tokens from the standard input.
@@ -91,7 +91,7 @@ public class ReadTokens
 	public static void main(String[] args) throws ProcessorException, InterruptedException 
 	{
 		/* Read from stdin using a StringStreamReader */
-		StringStreamReader reader = new StringStreamReader(System.in);
+		ReadStringStream reader = new ReadStringStream(System.in);
 		reader.setIsFile(false);
 		
 		/* We connect the reader to a pump, which will periodically ask
@@ -101,7 +101,7 @@ public class ReadTokens
 		Connector.connect(reader, pump);
 		
 		/* Create a CSV token feeder */
-		PatternScanner feeder = new PatternScanner("(.*?),");
+		FindPattern feeder = new FindPattern("(.*?),");
 		Connector.connect(pump, feeder);
 		
 		/* Print the output of the feeder */

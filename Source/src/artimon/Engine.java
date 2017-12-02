@@ -29,13 +29,13 @@ import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.TOP;
 import ca.uqac.lif.cep.Connector.ConnectorException;
-import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
+import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.FunctionTree;
-import ca.uqac.lif.cep.io.LineReader;
+import ca.uqac.lif.cep.io.ReadLines;
 import ca.uqac.lif.cep.util.Booleans;
 import ca.uqac.lif.cep.util.Equals;
 import ca.uqac.lif.cep.util.NthElement;
@@ -43,7 +43,7 @@ import ca.uqac.lif.cep.util.Numbers;
 import ca.uqac.lif.cep.util.Strings;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
-import ca.uqac.lif.cep.tmf.Slicer;
+import ca.uqac.lif.cep.tmf.Slice;
 import ca.uqac.lif.cep.tmf.Trim;
 
 /**
@@ -78,7 +78,7 @@ public class Engine
 		
 		/* We create a line reader which will read from an input stream. In the
 		 * present case, the stream is obtained from the file we specified. */
-		LineReader reader = new LineReader(Engine.class.getResourceAsStream(filename));
+		ReadLines reader = new ReadLines(Engine.class.getResourceAsStream(filename));
 		
 		/* The first line of the file is a comment line, so we ignore it */
 		Trim first_line = new Trim(1);
@@ -86,7 +86,7 @@ public class Engine
 		
 		/* We create an array feeder, which will read individual lines of text
 		 * and turn them into an array of primitive values. */
-		FunctionProcessor array_feeder = new FunctionProcessor(new Strings.SplitString(";"));
+		ApplyFunction array_feeder = new ApplyFunction(new Strings.SplitString(";"));
 		Connector.connect(first_line, array_feeder);
 		
 		/* Let us fork the stream of input tuples in two parts */
@@ -97,20 +97,20 @@ public class Engine
 		 * "puissance_elec" attribute, but only if it is negative. */
 		GroupProcessor add_negative_pe = new GroupProcessor(1, 1);
 		{
-			FunctionProcessor get_pe = new FunctionProcessor(new NthElement(PUISSANCE_ELEC));
+			ApplyFunction get_pe = new ApplyFunction(new NthElement(PUISSANCE_ELEC));
 			Fork anp_fork = new Fork(2);
 			Connector.connect(get_pe, anp_fork);
-			FunctionProcessor is_negative = new FunctionProcessor(
+			ApplyFunction is_negative = new ApplyFunction(
 				new FunctionTree(Numbers.isLessThan, 
-						new ArgumentPlaceholder(0),
-						new Constant(0)));
+						StreamVariable.X,
+						Constant.ZERO));
 			Filter filter = new Filter();
 			Connector.connect(anp_fork, 0, filter, TOP);
 			Connector.connect(anp_fork, 1, is_negative, INPUT);
 			Connector.connect(is_negative, OUTPUT, filter, BOTTOM);
 			CumulativeProcessor sum_of_negatives = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(filter, sum_of_negatives);
-			FunctionProcessor divide = new FunctionProcessor(new FunctionTree(Numbers.division, new ArgumentPlaceholder(0), new Constant(CBAT)));
+			ApplyFunction divide = new ApplyFunction(new FunctionTree(Numbers.division, StreamVariable.X, new Constant(CBAT)));
 			Connector.connect(sum_of_negatives, divide);
 			add_negative_pe.addProcessors(get_pe, anp_fork, is_negative, filter, sum_of_negatives, divide);
 			add_negative_pe.associateInput(INPUT, get_pe, INPUT);
@@ -119,22 +119,22 @@ public class Engine
 		
 		/* We create a slicer according to the cycle number, and connect it to
 		 * the first output of the fork. */
-		Slicer slicer = new Slicer(new NthElement(NO_CYCLE), add_negative_pe);
+		Slice slicer = new Slice(new NthElement(NO_CYCLE), add_negative_pe);
 		Connector.connect(fork, TOP, slicer, INPUT);
 		
 		/* In the second path, we determine when a cycle ends. This
 		 * is done by checking if two successive events have the same value
 		 * for their "cycle" attribute. */
-		FunctionProcessor get_cycle_nb = new FunctionProcessor(new NthElement(NO_CYCLE));
+		ApplyFunction get_cycle_nb = new ApplyFunction(new NthElement(NO_CYCLE));
 		Connector.connect(fork, BOTTOM, get_cycle_nb, INPUT);
 		Fork cycle_fork = new Fork(2);
 		Connector.connect(get_cycle_nb, cycle_fork);
 		Trim cycle_trim = new Trim(1);
 		Connector.connect(cycle_fork, BOTTOM, cycle_trim, INPUT);
-		FunctionProcessor cycle_change = new FunctionProcessor(Equals.instance);
+		ApplyFunction cycle_change = new ApplyFunction(Equals.instance);
 		Connector.connect(cycle_fork, 0, cycle_change, TOP);
 		Connector.connect(cycle_trim, OUTPUT, cycle_change, BOTTOM);
-		FunctionProcessor not = new FunctionProcessor(Booleans.not);
+		ApplyFunction not = new ApplyFunction(Booleans.not);
 		Connector.connect(cycle_change, not);
 		
 		/* We merge the two paths into a filter. */

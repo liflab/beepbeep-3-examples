@@ -21,7 +21,7 @@ import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.fsm.FunctionTransition;
 import ca.uqac.lif.cep.fsm.MooreMachine;
-import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
+import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.tmf.QueueSource;
@@ -81,16 +81,16 @@ public class SimpleMooreMachine
 		 * So here, UNSAFE will be the initial state. There can be only one
 		 * initial state. */
 		machine.addTransition(UNSAFE, new FunctionTransition(
-				new FunctionTree(Equals.instance, new ArgumentPlaceholder(), new Constant("hasnext")), SAFE));
+				new FunctionTree(Equals.instance, new StreamVariable(), new Constant("hasnext")), SAFE));
 		/* In state 0, if the incoming event is equal to "next", go to state 2 */
 		machine.addTransition(UNSAFE, new FunctionTransition(
-				new FunctionTree(Equals.instance, new ArgumentPlaceholder(), new Constant("next")), ERROR));
+				new FunctionTree(Equals.instance, new StreamVariable(), new Constant("next")), ERROR));
 		/* In state 1, if the incoming event is equal to "next", go to state 0 */
 		machine.addTransition(SAFE, new FunctionTransition(
-				new FunctionTree(Equals.instance, new ArgumentPlaceholder(), new Constant("next")), UNSAFE));
+				new FunctionTree(Equals.instance, new StreamVariable(), new Constant("next")), UNSAFE));
 		/* In state 1, if the incoming event is equal to "hasnext", stay in state 1 */
 		machine.addTransition(SAFE, new FunctionTransition(
-				new FunctionTree(Equals.instance, new ArgumentPlaceholder(), new Constant("hasnext")), SAFE));
+				new FunctionTree(Equals.instance, new StreamVariable(), new Constant("hasnext")), SAFE));
 		/* State 2 is a sink, you stay there forever. A possible way to say so
 		 * is to define the condition on its only transition as the constant true;
 		 * it will fire whatever the incoming event. */

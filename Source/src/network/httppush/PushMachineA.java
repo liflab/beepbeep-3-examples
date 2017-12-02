@@ -22,7 +22,7 @@ import java.util.Scanner;
 import network.CompoundObject;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.http.HttpUpstreamGateway;
 import ca.uqac.lif.cep.serialization.JsonSerializeString;
 import ca.uqac.lif.cep.tmf.QueueSource;
@@ -57,7 +57,7 @@ public class PushMachineA
 		source.addEvent(new CompoundObject(0, "foo", new CompoundObject(6, "z", null)));
 		
 		// Connect this queue to a serializer and an upstream gateway
-		FunctionProcessor serialize = new FunctionProcessor(new JsonSerializeString());
+		ApplyFunction serialize = new ApplyFunction(new JsonSerializeString());
 		HttpUpstreamGateway up_gateway = new HttpUpstreamGateway(url);
 		Connector.connect(source, serialize);
 		Connector.connect(serialize, up_gateway);

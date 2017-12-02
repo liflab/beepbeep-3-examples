@@ -9,7 +9,7 @@ import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
-import ca.uqac.lif.cep.tmf.ConstantProcessor;
+import ca.uqac.lif.cep.tmf.ReplaceWith;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.mtnp.util.FileHelper;
@@ -66,7 +66,7 @@ public class ProcessorParser extends ExpressionParser<GroupProcessor>
 		stack.pop(); // into
 		Processor p = (Processor) stack.pop();
 		stack.pop(); // Turn
-		ConstantProcessor mutator = new ConstantProcessor(new Constant(n));
+		ReplaceWith mutator = new ReplaceWith(new Constant(n));
 		Connector.connect(p, mutator);
 		m_builtObject.addProcessor(mutator);
 		stack.push(mutator);

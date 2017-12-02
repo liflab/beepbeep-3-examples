@@ -25,12 +25,12 @@ import java.util.Set;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.GroupProcessor;
-import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
+import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.FunctionException;
-import ca.uqac.lif.cep.functions.FunctionProcessor;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.IdentityFunction;
 import ca.uqac.lif.cep.peg.MapDistance.ToValueArray;
@@ -38,8 +38,8 @@ import ca.uqac.lif.cep.peg.Normalize;
 import ca.uqac.lif.cep.peg.ProcessorMiningFunction;
 import ca.uqac.lif.cep.peg.Sequence;
 import ca.uqac.lif.cep.peg.ml.KMeansFunction;
-import ca.uqac.lif.cep.tmf.ConstantProcessor;
-import ca.uqac.lif.cep.tmf.Slicer;
+import ca.uqac.lif.cep.tmf.ReplaceWith;
+import ca.uqac.lif.cep.tmf.Slice;
 import ca.uqac.lif.cep.util.Numbers;
 import mining.SequenceReader;
 
@@ -110,17 +110,17 @@ public class KmeansSymbolDistribution
 		{
 			GroupProcessor counter = new GroupProcessor(1, 1);
 			{
-				ConstantProcessor one = new ConstantProcessor(new Constant(1));
+				ReplaceWith one = new ReplaceWith(new Constant(1));
 				counter.associateInput(INPUT, one, INPUT);
 				CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
 				Connector.connect(one, sum_one);
 				counter.associateOutput(OUTPUT, sum_one, OUTPUT);
 				counter.addProcessors(one, sum_one);
 			}
-			Slicer slicer = new Slicer(new IdentityFunction(1), counter);
-			FunctionProcessor to_normalized_vector = new FunctionProcessor(
+			Slice slicer = new Slice(new IdentityFunction(1), counter);
+			ApplyFunction to_normalized_vector = new ApplyFunction(
 					new FunctionTree(Normalize.instance,
-					new FunctionTree(ToValueArray.instance, new ArgumentPlaceholder(0))));
+					new FunctionTree(ToValueArray.instance, StreamVariable.X)));
 			Connector.connect(slicer, to_normalized_vector);
 			vector.associateInput(INPUT, slicer, INPUT);
 			vector.associateOutput(OUTPUT, to_normalized_vector, OUTPUT);
@@ -130,7 +130,7 @@ public class KmeansSymbolDistribution
 		/* Finally, we instantiate a processor mining function, using the
 		 * pattern processor defined above, and the K-means clustering
 		 * algorithm as the aggregate function. */
-		ProcessorMiningFunction<String, ArrayList<?>> pmf = new ProcessorMiningFunction<String,ArrayList<?>>(vector, new FunctionProcessor(new KMeansFunction(2)));
+		ProcessorMiningFunction<String, ArrayList<?>> pmf = new ProcessorMiningFunction<String,ArrayList<?>>(vector, new ApplyFunction(new KMeansFunction(2)));
 		
 		/* Let us see the clusters computed by this mining function on the set
 		 * of input sequences. There should be two centroids, one roughly

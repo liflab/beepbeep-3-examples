@@ -25,7 +25,7 @@
  * <ul>
  * <li>{@link CountDecimate}</li>
  * <li>{@link Filter}</li>
- * <li>{@link FunctionProcessor}</li>
+ * <li>{@link ApplyFunction}</li>
  * <li>{@link QueueSink}</li>
  * <li>{@link QueueSource}</li>
  * </ul>

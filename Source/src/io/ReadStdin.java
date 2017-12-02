@@ -20,7 +20,7 @@ package io;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.io.Print;
-import ca.uqac.lif.cep.io.StringStreamReader;
+import ca.uqac.lif.cep.io.ReadStringStream;
 import ca.uqac.lif.cep.tmf.Pump;
 
 /**
@@ -111,7 +111,7 @@ public class ReadStdin
 		 * the standard input (represented in Java by the System.in object).
 		 * We must tell the reader that it is not reading from a file, and
 		 * that it should push whatever it receives. */
-		StringStreamReader reader = new StringStreamReader(System.in);
+		ReadStringStream reader = new ReadStringStream(System.in);
 		reader.setIsFile(false);
 		
 		/* We connect the reader to a pump, which will periodically ask

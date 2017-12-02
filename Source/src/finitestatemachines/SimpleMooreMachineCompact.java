@@ -21,7 +21,7 @@ import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.fsm.FunctionTransition;
 import ca.uqac.lif.cep.fsm.MooreMachine;
-import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
+import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.tmf.QueueSource;
@@ -91,7 +91,7 @@ public class SimpleMooreMachineCompact
 	 */
 	protected static void addTransition(MooreMachine m, int source, String label, int destination)
 	{
-		m.addTransition(source, new FunctionTransition(new FunctionTree(Equals.instance, new ArgumentPlaceholder(), new Constant(label)), destination));
+		m.addTransition(source, new FunctionTransition(new FunctionTree(Equals.instance, new StreamVariable(), new Constant(label)), destination));
 	}
 
 }

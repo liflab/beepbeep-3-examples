@@ -17,12 +17,12 @@
  */
 package functions;
 
-import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
+import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.FunctionException;
 
 /**
- * Use the {@link ca.uqac.lif.cep.functions.ArgumentPlaceholder ArgumentPlaceholder}
+ * Use the {@link ca.uqac.lif.cep.functions.StreamVariable ArgumentPlaceholder}
  * function to refer to the <i>i</i>-th argument of a function.
  * @author Sylvain Hallé
  */
@@ -34,7 +34,7 @@ public class PlaceholderUsage
 		 * function simply returns its <i>i</i>-th input argument, with
 		 * the value <i>i</i> passed to the constructor. Indices start
 		 * at zero. */
-		Function foo = new ArgumentPlaceholder(1);
+		Function foo = StreamVariable.Y;
 		Object values[] = new Object[1];
 		
 		/* A constant does not need any argument; we may pass
