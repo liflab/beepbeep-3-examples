@@ -30,8 +30,8 @@ import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.ApplyFunction;
+import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.http.HttpUpstreamGateway;
 import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.tmf.Filter;
@@ -59,7 +59,7 @@ public class TwinPrimesA
 		 * BigInteger "2" repeatedly, and it will return the cumulatve sum
 		 * of those "2" as its output. Since the start value of BigIntegerAdd
 		 * is one, the resulting sequence is made of all odd numbers. */
-		CumulativeProcessor counter = new CumulativeProcessor(new CumulativeFunction<BigInteger>(BigIntegerAdd.instance));
+		Cumulate counter = new Cumulate(new CumulativeFunction<BigInteger>(BigIntegerAdd.instance));
 		Connector.connect(source, counter);
 		
 		/* The events output from the counter are duplicated along two paths. */

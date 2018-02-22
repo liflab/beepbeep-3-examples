@@ -26,15 +26,15 @@ import java.util.Vector;
 import util.UtilityMethods;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
+import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * This processor simply generates the trace of numbers 0, 1, 2, ...
  * This is one of two possible ways of writing such a counter: by
- * encapsulating a <code>CumulativeProcessor</code> within a
+ * encapsulating a <code>Cumulate</code> within a
  * <code>GroupProcessor</code>. Another way is illustrated by the
  * {@link CounterSingle} class.
  * 
@@ -53,7 +53,7 @@ public class CounterGroup extends GroupProcessor
 		one_list.add(1);
 		QueueSource ones = new QueueSource();
 		ones.setEvents(one_list);
-		CumulativeProcessor counter = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
+		Cumulate counter = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 		connect(ones, OUTPUT, counter, INPUT);
 		// Adds the processors we created to the group
 		addProcessors(ones, counter);

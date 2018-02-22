@@ -23,8 +23,8 @@ import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.Constant;
+import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.IdentityFunction;
@@ -87,7 +87,7 @@ public class SlicerCollapse
 		GroupProcessor counter = new GroupProcessor(1, 1);
 		{
 			ReplaceWith to_one = new ReplaceWith(new Constant(1));
-			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
+			Cumulate sum = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(to_one, sum);
 			counter.addProcessors(to_one, sum);
 			counter.associateInput(INPUT, to_one, INPUT);
@@ -109,7 +109,7 @@ public class SlicerCollapse
 		 * cumulative function successively on every value of the input
 		 * set. Here the function is Maximum, meaning that the resulting
 		 * event is the maximum of all values in the input set. */
-		RunOn max = new RunOn(new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.maximum)));
+		RunOn max = new RunOn(new Cumulate(new CumulativeFunction<Number>(Numbers.maximum)));
 		Connector.connect(map_values, max);
 		
 		/* Let us now pull and print 10 events from the output. */

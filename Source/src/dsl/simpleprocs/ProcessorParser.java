@@ -8,7 +8,7 @@ import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.CumulativeProcessor;
+import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.tmf.ReplaceWith;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.QueueSource;
@@ -83,7 +83,7 @@ public class ProcessorParser extends ExpressionParser<GroupProcessor>
 	{
 		Processor p = (Processor) stack.pop();
 		stack.pop(); // Accumulate
-		CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
+		Cumulate sum = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(p, sum);
 		m_builtObject.addProcessor(sum);
 		stack.push(sum);

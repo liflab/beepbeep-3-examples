@@ -36,7 +36,7 @@ public class QueueSourceUsage
 {
 	public static void main(String[] args)
 	{
-		// Create an empty queue source
+		/// Create an empty queue source
 		QueueSource source = new QueueSource();
 		// Tell the source what events to output by giving it an array;
 		// in this case, we output the first powers of 2
@@ -53,5 +53,6 @@ public class QueueSourceUsage
 			int x = (Integer) p.pull();
 			System.out.println("The event is: " + x);
 		}
+		///
 	}
 }

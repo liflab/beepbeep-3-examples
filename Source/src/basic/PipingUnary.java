@@ -40,7 +40,7 @@ public class PipingUnary
 {
 	public static void main (String[] args)
 	{
-		/* Create a source of arbitrary numbers. */
+		/// Create a source of arbitrary numbers
 		QueueSource source = new QueueSource();
 		source.setEvents(1, 2, 3, 4, 5, 6);
 		
@@ -68,6 +68,7 @@ public class PipingUnary
 			// Sleep a little so you have time to read
 			UtilityMethods.pause(1000);
 		}
+		///
 	}
 
 	/**

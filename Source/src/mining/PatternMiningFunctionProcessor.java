@@ -27,7 +27,7 @@ import static ca.uqac.lif.cep.Connector.TOP;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.CumulativeProcessor;
+import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.FunctionException;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.peg.ProcessorMiningFunction;
@@ -69,7 +69,7 @@ public class PatternMiningFunctionProcessor
 			Filter filter = new Filter();
 			Connector.connect(ones, OUTPUT, filter, TOP);
 			Connector.connect(equals, OUTPUT, filter, BOTTOM);
-			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
+			Cumulate sum = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(filter, sum);
 			total_same.associateInput(INPUT, fork, INPUT);
 			total_same.associateOutput(OUTPUT, sum, OUTPUT);
@@ -79,7 +79,7 @@ public class PatternMiningFunctionProcessor
 		/* We then create an instance of our mining function. A mining function
 		 * takes as input a set of sequences, and returns for its output some
 		 * "pattern" extracted from this set of sequences. */
-		ProcessorMiningFunction<Number,Number> a_f = new ProcessorMiningFunction<Number,Number>(total_same, new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.maximum)), 0);
+		ProcessorMiningFunction<Number,Number> a_f = new ProcessorMiningFunction<Number,Number>(total_same, new Cumulate(new CumulativeFunction<Number>(Numbers.maximum)), 0);
 		
 		/* We then evaluate the function on our set of sequences. */
 		Object[] outputs = new Object[1];

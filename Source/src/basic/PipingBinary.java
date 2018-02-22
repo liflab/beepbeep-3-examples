@@ -38,6 +38,7 @@ public class PipingBinary
 {
 	public static void main (String[] args)
 	{
+		///
 		QueueSource source1 = new QueueSource();
 		source1.setEvents(2, 7, 1, 8, 3);
 		QueueSource source2 = new QueueSource();
@@ -51,5 +52,6 @@ public class PipingBinary
 			float x = (Float) p.pull();
 			System.out.println("The event is: " + x);
 		}
+		///
 	}
 }

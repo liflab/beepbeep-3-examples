@@ -25,8 +25,8 @@ import util.UtilityMethods;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.ApplyFunction;
+import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.util.Numbers;
 
@@ -40,7 +40,7 @@ import ca.uqac.lif.cep.util.Numbers;
  * and after reading the third, the average is (2 + 7 + 1)&nbsp;&div;&nbsp;3
  * = 3.33 --and so on.
  * <p>
- * This example illustrates the use of the {@link CumulativeProcessor} and
+ * This example illustrates the use of the {@link Cumulate} and
  * {@link CumulativeFunction} objects.
  * <p>
  * We will compute this average by computing the cumulative sum of a stream
@@ -80,7 +80,7 @@ public class Average
 		 * value of the cumulative function at the previous step. In our
 		 * case, the function we use is addition over numbers; hence the
 		 * output is the cumulative sum of all numbers received so far. */
-		CumulativeProcessor sum_proc = new CumulativeProcessor(
+		Cumulate sum_proc = new Cumulate(
 				new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(numbers, OUTPUT, sum_proc, INPUT);
 
@@ -89,7 +89,7 @@ public class Average
 		 * time. This effectively creates a counter outputting 1, 2, ... */
 		QueueSource ones = new QueueSource(1);
 		ones.addEvent(1);
-		CumulativeProcessor counter = new CumulativeProcessor(
+		Cumulate counter = new Cumulate(
 				new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(ones, OUTPUT, counter, INPUT);
 

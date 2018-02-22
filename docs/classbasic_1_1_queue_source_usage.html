@@ -62,8 +62,7 @@
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a9b38ed9956556837e106a1740c610d23"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b38ed9956556837e106a1740c610d23"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (String[] args)</td></tr>
+<tr class="memitem:a9b38ed9956556837e106a1740c610d23"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbasic_1_1_queue_source_usage.html#a9b38ed9956556837e106a1740c610d23">main</a> (String[] args)</td></tr>
 <tr class="separator:a9b38ed9956556837e106a1740c610d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -75,7 +74,35 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (Stri
  <p>Since it is a <em>source</em>, it has no input streams. We represent in a rectangle the queue of events that the source will dispense. </p><dl class="section author"><dt>Author</dt><dd>Sylvain Hallé  Easy </dd></dl>
 
 <p>Definition at line <a class="el" href="_queue_source_usage_8java_source.html#l00035">35</a> of file <a class="el" href="_queue_source_usage_8java_source.html">QueueSourceUsage.java</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a9b38ed9956556837e106a1740c610d23"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void basic.QueueSourceUsage.main </td>
+          <td>(</td>
+          <td class="paramtype">String[]&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Create an empty queue source </p>
+
+<p>Definition at line <a class="el" href="_queue_source_usage_8java_source.html#l00037">37</a> of file <a class="el" href="_queue_source_usage_8java_source.html">QueueSourceUsage.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {<span class="comment"></span></div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">        /// Create an empty queue source</span></div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"></span>        QueueSource source = <span class="keyword">new</span> QueueSource();</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment">// Tell the source what events to output by giving it an array;</span></div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="comment">// in this case, we output the first powers of 2</span></div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        source.setEvents(1, 2, 4, 8, 16, 32);</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">// Get a pullable to the source</span></div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        Pullable p = source.getPullableOutput();</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="comment">// Pull 8 events from the source. The queue source loops through</span></div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="comment">// its array of events; hence after reaching the last (32), it</span></div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="comment">// will restart from the beginning of its list.</span></div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 8; i++)</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="comment">// Method pull() returns an Object, hence we must manually cast</span></div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="comment">// it as an integer (this is indeed what we get)</span></div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordtype">int</span> x = (Integer) p.pull();</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            System.out.println(<span class="stringliteral">&quot;The event is: &quot;</span> + x);</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        }<span class="comment"></span></div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">        ///</span></div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"></span>    }</div></div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Source/src/basic/<a class="el" href="_queue_source_usage_8java_source.html">QueueSourceUsage.java</a></li>
 </ul>
 </div><!-- contents -->

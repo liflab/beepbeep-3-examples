@@ -32,7 +32,7 @@ import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.CumulativeProcessor;
+import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.IdentityFunction;
@@ -126,7 +126,7 @@ public class SymbolDistributionClusters
 			{
 				ReplaceWith one = new ReplaceWith(new Constant(1));
 				counter.associateInput(INPUT, one, INPUT);
-				CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
+				Cumulate sum_one = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 				Connector.connect(one, sum_one);
 				counter.associateOutput(OUTPUT, sum_one, OUTPUT);
 				counter.addProcessors(one, sum_one);

@@ -76,12 +76,12 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use the <a class="el" href="">ArgumentPlaceholder</a> function to refer to the <em>i</em>-th argument of a function.  <a href="classfunctions_1_1_placeholder_usage.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfunctions_1_1_polynomial.html">Polynomial</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use an <a class="el" href="">ArgumentPlaceholder</a> and a <a class="el" href="">FunctionTree</a> to create the polynomial function <em>x</em><sup>2</sup>+3.  <a href="classfunctions_1_1_polynomial.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use an <a class="el" href="">StreamVariable</a> and a <a class="el" href="">FunctionTree</a> to create the polynomial function <em>x</em><sup>2</sup>+3.  <a href="classfunctions_1_1_polynomial.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Create custom <a class="el" href="">Function</a> objects, directly or by combining existing functions. </p>
-<p>A particular aspect of BeepBeep 3 is the fact that functions are themselves objects. For example, the <a class="el" href="">FunctionProcessor</a> applies a function (any function) to each incoming event. The actual function that it uses is chosen by passing to this processor a <a class="el" href="">Function</a> object. </p>
+<p>A particular aspect of BeepBeep 3 is the fact that functions are themselves objects. For example, the <a class="el" href="">ApplyFunction</a> applies a function (any function) to each incoming event. The actual function that it uses is chosen by passing to this processor a <a class="el" href="">Function</a> object. </p>
 <p>BeepBeep and its supplemental palettes already define plenty of functions for specific uses. However, if no function suits your needs, it also provides simple means for creating your own function objects. This can be done in two ways: </p><ul>
 <li>
 By creating a new class that inherits from <a class="el" href="">Function</a> or one of its descendents </li>

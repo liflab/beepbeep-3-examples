@@ -27,7 +27,7 @@ import ca.uqac.lif.cep.diagnostics.Derivation;
 import ca.uqac.lif.cep.diagnostics.ThroughputMeter;
 import ca.uqac.lif.cep.diagnostics.WindowConsole;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.CumulativeProcessor;
+import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.tmf.BlackHole;
 import ca.uqac.lif.cep.tmf.QueueSource;
@@ -50,7 +50,7 @@ public class MeasureThroughput
 		 */
 		QueueSource source = new QueueSource();
 		source.addEvent(new BigInteger("2"));
-		CumulativeProcessor counter = new CumulativeProcessor(new CumulativeFunction<BigInteger>(BigIntegerAdd.instance));
+		Cumulate counter = new Cumulate(new CumulativeFunction<BigInteger>(BigIntegerAdd.instance));
 		Connector.connect(source, counter);
 		ApplyFunction prime_check = new ApplyFunction(IsPrime.instance);
 		Connector.connect(counter, prime_check);

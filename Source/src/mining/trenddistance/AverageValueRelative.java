@@ -26,7 +26,7 @@ import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.CumulativeProcessor;
+import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.peg.TrendDistance;
 import ca.uqac.lif.cep.tmf.ReplaceWith;
@@ -82,11 +82,11 @@ public class AverageValueRelative
 		{
 			Fork fork = new Fork(2);
 			average.associateInput(INPUT, fork, INPUT);
-			CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
+			Cumulate sum = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(fork, TOP, sum, INPUT);
 			ReplaceWith one = new ReplaceWith(new Constant(1));
 			Connector.connect(fork, BOTTOM, one, INPUT);
-			CumulativeProcessor sum_one = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
+			Cumulate sum_one = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(one, sum_one);
 			ApplyFunction div = new ApplyFunction(Numbers.division);
 			Connector.connect(sum, OUTPUT, div, TOP);

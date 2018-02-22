@@ -31,8 +31,8 @@ import static ca.uqac.lif.cep.Connector.TOP;
 import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.Constant;
+import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.io.ReadLines;
@@ -108,7 +108,7 @@ public class Engine
 			Connector.connect(anp_fork, 0, filter, TOP);
 			Connector.connect(anp_fork, 1, is_negative, INPUT);
 			Connector.connect(is_negative, OUTPUT, filter, BOTTOM);
-			CumulativeProcessor sum_of_negatives = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
+			Cumulate sum_of_negatives = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(filter, sum_of_negatives);
 			ApplyFunction divide = new ApplyFunction(new FunctionTree(Numbers.division, StreamVariable.X, new Constant(CBAT)));
 			Connector.connect(sum_of_negatives, divide);

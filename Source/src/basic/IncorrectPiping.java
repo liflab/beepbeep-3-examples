@@ -55,7 +55,7 @@ public class IncorrectPiping
 {
 	public static void main(String[] args)
 	{
-		/* Create a simple source with a single numerical event. */ 
+		/// Create a simple source with a single numerical event 
 		QueueSource source = new QueueSource();
 		source.setEvents(3);
 		
@@ -75,5 +75,6 @@ public class IncorrectPiping
 		 * execution will stop with the throwing of a ConnectorException on
 		 * the line above. */
 		System.out.println("This line will not be reached");
+		///
 	}
 }

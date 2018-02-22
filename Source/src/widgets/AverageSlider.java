@@ -8,8 +8,8 @@ import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.functions.Constant;
+import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.mtnp.DrawPlot;
 import ca.uqac.lif.cep.mtnp.UpdateTable;
@@ -46,7 +46,7 @@ import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
  * As one can see, this example is notable for its mix of various processors:
  * <ul>
  * <li>{@link ca.uqac.lif.cep.tmp.CountDecimate CountDecimate}</li>
- * <li>{@link ca.uqac.lif.cep.functions.CumulativeProcessor CumulativeProcessor}</li>
+ * <li>{@link ca.uqac.lif.cep.functions.Cumulate Cumulate}</li>
  * <li>{@link ca.uqac.lif.cep.mtnp.DrawPlot DrawPlot}</li>
  * <li>{@link ca.uqac.lif.cep.tmf.Fork Fork}</li>
  * <li>{@link ca.uqac.lif.cep.functions.ApplyFunction FunctionProcessor}</li>
@@ -71,7 +71,7 @@ public class AverageSlider
 		Connector.connect(pump, fork);
 		ApplyFunction one = new ApplyFunction(new Constant(1));
 		Connector.connect(fork, 0, one, INPUT);
-		CumulativeProcessor counter = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
+		Cumulate counter = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(one, counter);
 		Trim trim1 = new Trim(4);
 		Connector.connect(counter, trim1);

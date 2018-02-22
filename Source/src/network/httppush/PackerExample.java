@@ -23,8 +23,8 @@ import util.UtilityMethods;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.CumulativeProcessor;
 import ca.uqac.lif.cep.functions.ApplyFunction;
+import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.http.HttpDownstreamGateway;
 import ca.uqac.lif.cep.http.HttpUpstreamGateway;
 import ca.uqac.lif.cep.io.Print;
@@ -92,7 +92,7 @@ public class PackerExample
 		 * integers. */
 		QueueSource source = new QueueSource();
 		source.addEvent(1);
-		CumulativeProcessor sum = new CumulativeProcessor(new CumulativeFunction<Number>(Numbers.addition));
+		Cumulate sum = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(source, sum);
 		
 		/* Connect the output to a packer, and give it a time interval
