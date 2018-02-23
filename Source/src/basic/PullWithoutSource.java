@@ -54,12 +54,13 @@ public class PullWithoutSource
 {
 	public static void main(String[] args) 
 	{
-		/* Create a Passthrough processor */
+		/// Create a Passthrough processor
 		Passthrough passthrough = new Passthrough();
 		/* Get a reference to the Pullable for its input stream */
 		Pullable p = passthrough.getPullableOutput();
 		/* Try to pull an event. This will throw an exception and stop
 		 * the program. */
 		p.pull();
+		///
 	}
 }

@@ -52,12 +52,13 @@ public class PushWithoutSink
 {
 	public static void main(String[] args) 
 	{
-		/* Create a Passthrough processor */
+		/// Create a Passthrough processor
 		Passthrough passthrough = new Passthrough();
 		/* Get a reference to the Pushable for its input stream */
 		Pushable p = passthrough.getPushableInput();
 		/* Try to push an event. This will throw an exception and stop
 		 * the program. */
 		p.push("foo");
+		///
 	}
 }

@@ -62,8 +62,7 @@
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:abff91eb468b22108c937f2271e71a222"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abff91eb468b22108c937f2271e71a222"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (String[] args)</td></tr>
+<tr class="memitem:abff91eb468b22108c937f2271e71a222"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbasic_1_1_queue_sink_usage.html#abff91eb468b22108c937f2271e71a222">main</a> (String[] args)</td></tr>
 <tr class="separator:abff91eb468b22108c937f2271e71a222"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -72,11 +71,42 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (Stri
 <div class="image">
 <img src="./doc-files/basic/QueueSinkUsage.png"  alt="Processor graph"/>
 </div>
- <p>Since it is a <em>sink</em>, it has no output stream.</p>
-<dl class="section author"><dt>Author</dt><dd>Sylvain Hallé  Easy </dd></dl>
+ <p>Since it is a <em>sink</em>, it has no output stream. </p>
+<p>The expected output of this program is: </p><pre>
+Events in the sink: [foo, bar]
+Events in the sink: [bar, baz]
+</pre> <dl class="section author"><dt>Author</dt><dd>Sylvain Hallé  Easy </dd></dl>
 
-<p>Definition at line <a class="el" href="_queue_sink_usage_8java_source.html#l00036">36</a> of file <a class="el" href="_queue_sink_usage_8java_source.html">QueueSinkUsage.java</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p>Definition at line <a class="el" href="_queue_sink_usage_8java_source.html#l00041">41</a> of file <a class="el" href="_queue_sink_usage_8java_source.html">QueueSinkUsage.java</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="abff91eb468b22108c937f2271e71a222"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void basic.QueueSinkUsage.main </td>
+          <td>(</td>
+          <td class="paramtype">String[]&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Create a sink </p>
+
+<p>Definition at line <a class="el" href="_queue_sink_usage_8java_source.html#l00043">43</a> of file <a class="el" href="_queue_sink_usage_8java_source.html">QueueSinkUsage.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {<span class="comment"></span></div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">        /// Create a sink</span></div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"></span>        QueueSink sink = <span class="keyword">new</span> QueueSink();</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="comment">// Get a reference to the sink&#39;s Pushable</span></div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        Pushable p = sink.getPushableInput();</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="comment">// Push a few events into the sink</span></div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        p.push(<span class="stringliteral">&quot;foo&quot;</span>);</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        p.push(<span class="stringliteral">&quot;bar&quot;</span>);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="comment">// Get a reference to the sink&#39;s queue, where events are stored</span></div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        Queue&lt;Object&gt; queue = sink.getQueue();</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        System.out.println(<span class="stringliteral">&quot;Events in the sink: &quot;</span> + queue);</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment">// Events remain in the queue as long as you pop them out</span></div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        queue.remove(); <span class="comment">// Removes the first event</span></div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        p.push(<span class="stringliteral">&quot;baz&quot;</span>); <span class="comment">// Push another one</span></div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        System.out.println(<span class="stringliteral">&quot;Events in the sink: &quot;</span> + queue);<span class="comment"></span></div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">        ///</span></div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span>    }</div></div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Source/src/basic/<a class="el" href="_queue_sink_usage_8java_source.html">QueueSinkUsage.java</a></li>
 </ul>
 </div><!-- contents -->

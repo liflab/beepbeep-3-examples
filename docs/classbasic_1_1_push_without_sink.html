@@ -62,8 +62,7 @@
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a3b2ca3cad6342c1a69738a346d43283b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b2ca3cad6342c1a69738a346d43283b"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (String[] args)</td></tr>
+<tr class="memitem:a3b2ca3cad6342c1a69738a346d43283b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbasic_1_1_push_without_sink.html#a3b2ca3cad6342c1a69738a346d43283b">main</a> (String[] args)</td></tr>
 <tr class="separator:a3b2ca3cad6342c1a69738a346d43283b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -76,12 +75,40 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (Stri
 Exception in thread "main" ca.uqac.lif.cep.Pushable$PushableException:
 Output 0 of this processor is connected to nothing
  at ca.uqac.lif.cep.UniformProcessor$InputPushable.push(UniformProcessor.java:178)
- at basic.PushWithoutSink.main(<a class="el" href="_push_without_sink_8java_source.html">PushWithoutSink.java</a>:35)
+ at <a class="el" href="classbasic_1_1_push_without_sink.html#a3b2ca3cad6342c1a69738a346d43283b">basic.PushWithoutSink.main</a>(<a class="el" href="_push_without_sink_8java_source.html">PushWithoutSink.java</a>:35)
 </pre> <p>The opposite also happens when trying to pull events from a processor connected to no input. See <a class="el" href="classbasic_1_1_pull_without_source.html">PullWithoutSource</a>.</p>
 <dl class="section author"><dt>Author</dt><dd>Sylvain Hallé  Easy </dd></dl>
 
 <p>Definition at line <a class="el" href="_push_without_sink_8java_source.html#l00051">51</a> of file <a class="el" href="_push_without_sink_8java_source.html">PushWithoutSink.java</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3b2ca3cad6342c1a69738a346d43283b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void basic.PushWithoutSink.main </td>
+          <td>(</td>
+          <td class="paramtype">String[]&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Create a Passthrough processor </p>
+
+<p>Definition at line <a class="el" href="_push_without_sink_8java_source.html#l00053">53</a> of file <a class="el" href="_push_without_sink_8java_source.html">PushWithoutSink.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {<span class="comment"></span></div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">        /// Create a Passthrough processor</span></div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span>        Passthrough passthrough = <span class="keyword">new</span> Passthrough();</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="comment">/* Get a reference to the Pushable for its input stream */</span></div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        Pushable p = passthrough.getPushableInput();</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="comment">/* Try to push an event. This will throw an exception and stop</span></div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">         * the program. */</span></div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        p.push(<span class="stringliteral">&quot;foo&quot;</span>);<span class="comment"></span></div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">        ///</span></div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span>    }</div></div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Source/src/basic/<a class="el" href="_push_without_sink_8java_source.html">PushWithoutSink.java</a></li>
 </ul>
 </div><!-- contents -->

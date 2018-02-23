@@ -29,7 +29,12 @@ import ca.uqac.lif.cep.tmf.QueueSink;
  * <img src="{@docRoot}/doc-files/basic/QueueSinkUsage.png" alt="Processor graph">
  * <p>
  * Since it is a <em>sink</em>, it has no output stream.
- * 
+ * <p>
+ * The expected output of this program is:
+ * <pre>
+ * Events in the sink: [foo, bar]
+ * Events in the sink: [bar, baz]
+ * </pre>
  * @author Sylvain Hallé
  * @difficulty Easy
  */
@@ -37,7 +42,7 @@ public class QueueSinkUsage
 {
 	public static void main(String[] args)
 	{
-		// Create a sink
+		/// Create a sink
 		QueueSink sink = new QueueSink();
 		// Get a reference to the sink's Pushable
 		Pushable p = sink.getPushableInput();
@@ -51,6 +56,7 @@ public class QueueSinkUsage
 		queue.remove(); // Removes the first event
 		p.push("baz"); // Push another one
 		System.out.println("Events in the sink: " + queue);
+		///
 	}
 
 }
