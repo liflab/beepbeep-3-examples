@@ -19,11 +19,10 @@ package basic;
 
 import java.util.Queue;
 
+import basic.PipingBinary.Adder;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.tmf.QueueSource;
-import ca.uqac.lif.cep.util.Numbers;
 import util.UtilityMethods;
 
 /**
@@ -49,7 +48,7 @@ public class PipingBinaryWait
 		source1.setEvents(2, 7, 1, 8, 3);
 		QueueSource source2 = new QueueSource();
 		source2.setEvents(3, 1, 4, 1, 6);
-		ApplyFunction add = new ApplyFunction(Numbers.addition);
+		Adder add = new Adder();
 		Connector.connect(source1, 0, add, 0);
 		Connector.connect(source2, 0, add, 1);
 		Pullable p = add.getPullableOutput();

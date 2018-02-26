@@ -15,50 +15,40 @@
     You should have received a copy of the GNU Lesser General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package basic;
+package functions;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.tmf.QueueSource;
-import ca.uqac.lif.cep.util.Booleans;
+import ca.uqac.lif.cep.util.Numbers;
 
 /**
- * Use the {@link ca.uqac.lif.cep.functions.ApplyFunction FunctionProcessor}
- * to apply a function to each input event. Here, we apply the negation to
- * every Boolean event. This can be represented grahpically as follows:
+ * Apply a binary function on an input stream using the
+ * {@link ca.uqac.lif.cep.functions.ApplyFunction ApplyFunction}
+ * processor. The chain of processors in this example can be represented
+ * graphically as:
  * <p>
- * <img src="{@docRoot}/doc-files/basic/SimpleFunction.png" alt="Processor graph">
- * <p>
- * For an input stream with the values <tt>false</tt>, <tt>true</tt>, <tt>true</tt>,
- * <tt>false</tt>, <tt>true</tt>, the expected output should be:
- * <pre>
- * The event is: true
- * The event is: false
- * The event is: false
- * The event is: true
- * The event is: false
- * </pre>
+ * <img src="{@docRoot}/doc-files/functions/FunctionBinary.png" alt="Processor graph">
  * @author Sylvain Hallé
  * @difficulty Easy
  */
-public class SimpleFunction
+public class FunctionBinary
 {
-	/*
-	 * In this example, we apply the Negation function to a trace of
-	 * Boolean values.
-	 */
 	public static void main (String[] args)
 	{
 		///
-		QueueSource source = new QueueSource();
-		source.setEvents(false, true, true, false, true);
-		ApplyFunction not = new ApplyFunction(Booleans.not);
-		Connector.connect(source, not);
-		Pullable p = not.getPullableOutput();
+		QueueSource source1 = new QueueSource();
+		source1.setEvents(2, 7, 1, 8, 3);
+		QueueSource source2 = new QueueSource();
+		source2.setEvents(3, 1, 4, 1, 6);
+		ApplyFunction add = new ApplyFunction(Numbers.addition);
+		Connector.connect(source1, 0, add, 0);
+		Connector.connect(source2, 0, add, 1);
+		Pullable p = add.getPullableOutput();
 		for (int i = 0; i < 5; i++)
 		{
-			boolean x = (Boolean) p.pull();
+			float x = (Float) p.pull();
 			System.out.println("The event is: " + x);
 		}
 		///

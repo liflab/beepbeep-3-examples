@@ -17,11 +17,12 @@
  */
 package basic;
 
+import java.util.Queue;
+
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.functions.ApplyFunction;
+import ca.uqac.lif.cep.SingleProcessor;
 import ca.uqac.lif.cep.tmf.QueueSource;
-import ca.uqac.lif.cep.util.Numbers;
 
 /**
  * Pipe processors together using the {@link ca.uqac.lif.cep.Connector Connector}
@@ -43,7 +44,7 @@ public class PipingBinary
 		source1.setEvents(2, 7, 1, 8, 3);
 		QueueSource source2 = new QueueSource();
 		source2.setEvents(3, 1, 4, 1, 6);
-		ApplyFunction add = new ApplyFunction(Numbers.addition);
+		Adder add = new Adder();
 		Connector.connect(source1, 0, add, 0);
 		Connector.connect(source2, 0, add, 1);
 		Pullable p = add.getPullableOutput();
@@ -53,5 +54,30 @@ public class PipingBinary
 			System.out.println("The event is: " + x);
 		}
 		///
+	}
+	
+	/**
+	 * A simple processor that adds two numbers. It is used in examples
+	 * throughout this section.
+	 */
+	public static class Adder extends SingleProcessor
+	{
+		public Adder()
+		{
+			super(2, 1);
+		}
+
+		@Override
+		public Adder duplicate()
+		{
+			return new Adder();
+		}
+
+		@Override
+		protected boolean compute(Object[] inputs, Queue<Object[]> outputs)
+		{
+			outputs.add(new Object[]{((Integer) inputs[0]) + ((Integer) inputs[1])});
+			return true;
+		}
 	}
 }
