@@ -45,7 +45,7 @@ import ca.uqac.lif.cep.tmf.Passthrough;
  * The opposite also happens when trying to pull events from a processor
  * connected to no input. See {@link PullWithoutSource}.
  * 
- * @author Sylvain Hallé
+ * @author Sytlvain Hallé
  * @difficulty Easy
  */
 public class PushWithoutSink

@@ -85,14 +85,9 @@ public class Average
 				new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(numbers, OUTPUT, sum_proc, INPUT);
 
-		/* Now we create a source of 1s and sum it; this is done with the same
-		 * process as above, but on a stream that output the value 1 all the
-		 * time. This effectively creates a counter outputting 1, 2, ... */
-		QueueSource ones = new QueueSource(1);
-		ones.addEvent(1);
-		Cumulate counter = new Cumulate(
-				new CumulativeFunction<Number>(Numbers.addition));
-		Connector.connect(ones, OUTPUT, counter, INPUT);
+		/* Now we create a source of numbers acting as a counter. */
+		QueueSource counter = new QueueSource().setEvents(1, 2, 3, 4, 5, 6, 7);
+
 
 		/* Divide one trace by the other; the output is the cumulative average
 		 * of all numbers seen so far. */

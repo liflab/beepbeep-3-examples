@@ -39,9 +39,9 @@ import ca.uqac.lif.cep.util.Numbers;
  * is the average of all the numbers processed so far.
  * <p>
  * This example is similar to {@link Average}, except that the second queue
- * is replaced by a fork and a Constant processor.
- * Represented graphically, this example corresponds to the following chain
- * of processors:
+ * is replaced by a fork and a {@link ca.uqac.lif.cep.functions.TurnInto TurnInto}
+ * processor. Represented graphically, this example corresponds to the
+ * following chain of processors:
  * <p>
  * <img src="{@docRoot}/doc-files/basic/AverageFork.png" alt="Processor graph">
  * <p>
