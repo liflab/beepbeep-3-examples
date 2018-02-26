@@ -36,7 +36,7 @@
  * For example, the function <i>f</i>(<i>x</i>,<i>y</i>) = 2<i>x</i> + <i>y</i>
  * is a function of two arguments, defined by composing existing functions,
  * namely multiplication and addition. In BeepBeep, writing such an expression
- * is done by creating an instance of a {@link FunctionTree}.</li>
+ * is done by creating an instance of a {@link FunctionTreeUsage}.</li>
  * </ul>
  * @author Sylvain Hallé
  */

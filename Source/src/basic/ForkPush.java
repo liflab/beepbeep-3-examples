@@ -51,6 +51,7 @@ public class ForkPush
 		/* We create a fork processor that will replicate each input event
 		 * in three output streams. The "3" passed as an argument to the fork's
 		 * constructor signifies this. */
+		///
 		Fork fork = new Fork(3);
 		
 		/* We now create three "print" processors. Each simply prints to the
@@ -81,6 +82,7 @@ public class ForkPush
 		 * not exactly true: the fork processor pushes the event to each of its
 		 * outputs in sequence; however, since the time it takes to do so is so
 		 * short, we can consider this to be instantaneous. */
+		///
 		
 		/* Wait a little and do it again */
 		Thread.sleep(2000);

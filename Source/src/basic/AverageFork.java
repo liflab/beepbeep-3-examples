@@ -17,16 +17,20 @@
  */
 package basic;
 
+import static ca.uqac.lif.cep.Connector.BOTTOM;
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.LEFT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.RIGHT;
+import static ca.uqac.lif.cep.Connector.TOP;
 import util.UtilityMethods;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Cumulate;
+import ca.uqac.lif.cep.functions.TurnInto;
+import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.util.Numbers;
 
@@ -34,22 +38,12 @@ import ca.uqac.lif.cep.util.Numbers;
  * Compute the cumulative average of a list of numbers. The cumulative average
  * is the average of all the numbers processed so far.
  * <p>
- * Consider for example the stream of numbers 2, 7, 1, 8, &hellip;. After
- * reading the first event, the cumulative average is 2&nbsp;&div;&nbsp;1 = 2.
- * After reading the second event, the average is (2 + 7)&nbsp;&div;&nbsp;2,
- * and after reading the third, the average is (2 + 7 + 1)&nbsp;&div;&nbsp;3
- * = 3.33 --and so on.
- * <p>
- * This example illustrates the use of the {@link Cumulate} and
- * {@link CumulativeFunction} objects.
- * <p>
- * We will compute this average by computing the cumulative sum of a stream
- * of numbers, and dividing it by the value of a counter that increments by
- * 1 each time it is pulled.
+ * This example is similar to {@link Average}, except that the second queue
+ * is replaced by a fork and a Constant processor.
  * Represented graphically, this example corresponds to the following chain
  * of processors:
  * <p>
- * <img src="{@docRoot}/doc-files/basic/Average.png" alt="Processor graph">
+ * <img src="{@docRoot}/doc-files/basic/AverageFork.png" alt="Processor graph">
  * <p>
  * The output of this program should look like this:
  * <pre>
@@ -59,14 +53,11 @@ import ca.uqac.lif.cep.util.Numbers;
  * @author Sylvain Hallé
  * @difficulty Easy
  */
-public class Average
+public class AverageFork
 {
 
 	public static void main(String[] args)
 	{
-		/* Hello! */
-		UtilityMethods.printGreeting();
-		
 		/* Let us first create a source of arbitrary numbers. This is done
 		 * by instantiating a {@link QueueSource} object, and giving to it
 		 * an array of numbers. */
@@ -74,6 +65,10 @@ public class Average
 		QueueSource numbers = new QueueSource(1);
 		numbers.setEvents(new Object[]{2, 7, 1, 8, 2, 8, 1, 8, 2, 8,
 				4, 5, 9, 0, 4, 5, 2, 3, 5, 3, 6, 0, 2, 8, 7});
+		
+		/* We connect this source into a fork */
+		Fork fork = new Fork(2);
+		Connector.connect(numbers, fork);
 		
 		/* We pipe the output of this processor to a cumulative processor.
 		 * Such a processor applies a function with two arguments: the first
@@ -83,13 +78,13 @@ public class Average
 		 * output is the cumulative sum of all numbers received so far. */
 		Cumulate sum_proc = new Cumulate(
 				new CumulativeFunction<Number>(Numbers.addition));
-		Connector.connect(numbers, OUTPUT, sum_proc, INPUT);
+		Connector.connect(fork, TOP, sum_proc, INPUT);
 
 		/* Now we create a source of 1s and sum it; this is done with the same
 		 * process as above, but on a stream that output the value 1 all the
 		 * time. This effectively creates a counter outputting 1, 2, ... */
-		QueueSource ones = new QueueSource(1);
-		ones.addEvent(1);
+		TurnInto ones = new TurnInto(1);
+		Connector.connect(fork, BOTTOM, ones, INPUT);
 		Cumulate counter = new Cumulate(
 				new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(ones, OUTPUT, counter, INPUT);

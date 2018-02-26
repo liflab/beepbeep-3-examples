@@ -38,17 +38,17 @@ public class CumulativeSum
 {
 	public static void main(String[] args)
 	{
-		QueueSource source = new QueueSource();
-		source.setEvents(1, 2, 3, 4, 5, 6);
+		///
+		QueueSource source = new QueueSource().setEvents(1, 2, 3, 4, 5, 6);
 		Cumulate sum = new Cumulate(
 				new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(source, sum);
 		Pullable p = sum.getPullableOutput();
 		for (int i = 0; i < 5; i++)
 		{
-			float x = (Float) p.pull();
-			System.out.println("The event is: " + x);
+			System.out.println("The event is: " + p.pull());
 		}
+		///
 	}
 
 }
