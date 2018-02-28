@@ -76,13 +76,13 @@ public class SlicerSimple
 {
 	public static void main(String[] args)
 	{
-		/* We first setup a stream of numbers to be used as a source */
+		/// We first setup a stream of numbers to be used as a source
 		QueueSource source = new QueueSource();
 		source.setEvents(1, 6, 4, 3, 2, 1, 9);
 		
 		/* The function we'll use to create slices is the identity.
 		 * This will create one distinct subtrace per number .*/
-		Function slice_fct = new IdentityFunction(1);
+		Function slicing_fct = new IdentityFunction(1);
 		
 		/* The processor chain to apply to each subtrace is a simple
 		 * counter of events. */
@@ -98,7 +98,7 @@ public class SlicerSimple
 		
 		/* Create the slicer processor, by giving it the slicing function and
 		 * the processor to apply on each slide. */
-		Slice slicer = new Slice(slice_fct, counter);
+		Slice slicer = new Slice(slicing_fct, counter);
 		Connector.connect(source, slicer);
 		
 		/* Let us now pull and print 10 events from the slicer. */
@@ -108,7 +108,6 @@ public class SlicerSimple
 			Object o = p.pull();
 			System.out.println(o);
 		}
-		
+		///
 	}
-
 }

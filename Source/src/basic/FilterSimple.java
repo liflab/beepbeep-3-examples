@@ -17,9 +17,9 @@
  */
 package basic;
 
-import static ca.uqac.lif.cep.Connector.LEFT;
+import static ca.uqac.lif.cep.Connector.TOP;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
-import static ca.uqac.lif.cep.Connector.RIGHT;
+import static ca.uqac.lif.cep.Connector.BOTTOM;
 import static ca.uqac.lif.cep.Connector.connect;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.tmf.Filter;
@@ -38,7 +38,7 @@ public class FilterSimple
 {
 	public static void main(String[] args)
 	{
-		// Create a first trace of dummy values
+		/// Create a first trace of dummy values
 		QueueSource source_values = new QueueSource();
 		source_values.setEvents(6, 5, 3, 8, 9, 2, 1, 7, 4);
 		// Create a second trace of Boolean values
@@ -48,8 +48,8 @@ public class FilterSimple
 		// Create a filter
 		Filter filter = new Filter();
 		// Connect both to the filter
-		connect(source_values, OUTPUT, filter, LEFT);
-		connect(source_bool, OUTPUT, filter, RIGHT);
+		connect(source_values, OUTPUT, filter, TOP);
+		connect(source_bool, OUTPUT, filter, BOTTOM);
 		// Get a reference to the filter's output pullable
 		Pullable p = filter.getPullableOutput();
 		// Pull 5 events from p
@@ -58,6 +58,7 @@ public class FilterSimple
 			int x = (Integer) p.pull();
 			System.out.printf("Output event #%d is %d\n", i, x);
 		}
+		///
 	}
 
 }
