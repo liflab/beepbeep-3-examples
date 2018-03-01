@@ -57,7 +57,7 @@ import ca.uqac.lif.cep.util.Numbers;
  * @author Sylvain Hallé
  * @difficulty Easy
  */
-public class Decimation
+public class DecimationSum
 {
 	public static void main(String[] args)
 	{

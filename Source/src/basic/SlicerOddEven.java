@@ -33,30 +33,11 @@ import ca.uqac.lif.cep.tmf.Slice;
 import ca.uqac.lif.cep.util.Numbers;
 
 /**
- * Use the {@link ca.uqac.lif.cep.tmf.Slice SlicerMap} to perform a
- * computation on multiple subsets of an input stream.
+ * Use the {@link ca.uqac.lif.cep.tmf.Slice SlicerMap} to compute the
+ * sum of odd and even numbers separately.
+ * Graphically, this can be represented as: 
  * <p>
- * The principle of the <tt>SlicerMap</tt> processor is to "slice" an
- * input stream into multiple sub-streams. For this, a function, called
- * the <em>slicing function</em>, is evaluated on each input event. The
- * value of that function decides what sub-stream that event
- * belongs to. A different instance of a processor is created for each
- * possible value of the slicing function, and the input event is pushed
- * to the corresponding processor.
- * <p>
- * The slicer keeps an associative map; keys correspond to values of the
- * slicing function, and values are the last event produced by the
- * corresponding processor. Every time an event is received, it returns as
- * its output the updated map. 
- * <p>
- * In this program, the slicing function is the identity, and the processor
- * given to the slicer is a simple counter that increments every time an event
- * is received. Since there is one such counter for each different input
- * event, the slicer effectively maintains the count of how many times each
- * value has been seen in its input stream. Graphically, this can be
- * represented as: 
- * <p>
- * <img src="{@docRoot}/doc-files/basic/SlicerSimple.png" alt="Processor chain">
+ * <img src="{@docRoot}/doc-files/basic/SlicerOddEven.png" alt="Processor chain">
  * <p>
  * The expected output of this program is:
  * <pre>
@@ -70,6 +51,7 @@ import ca.uqac.lif.cep.util.Numbers;
  * &hellip;
  * </pre>
  * @author Sylvain Hallé
+ * @see SlicerSimple
  * @difficulty Easy
  */
 public class SlicerOddEven 
