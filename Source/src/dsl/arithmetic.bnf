@@ -1,0 +1,6 @@
+<exp> := <add> | <sub> | <mul> | <div> | - <exp> | <num>;
+<add> := <num> + <num> | <num> + ( <exp> ) | ( <exp> ) + <num> | ( <exp> ) + ( <exp> );
+<sub> := <num> - <num> | <num> - ( <exp> ) | ( <exp> ) - <num> | ( <exp> ) - ( <exp> );
+<mul> := <num> × <num> | ( <exp> × <exp> );
+<div> := <num> ÷ <num> | ( <exp> ÷ <exp> );
+<num> := ^[0-9]+;
