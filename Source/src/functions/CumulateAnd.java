@@ -29,7 +29,7 @@ import ca.uqac.lif.cep.util.Booleans;
  * a stream of Boolean values.
  * Graphically, this chain of processors can be represented as:
  * <p>
- * <img src="{@docRoot}/doc-files/functions/CumulateAnd.png" alt="Processor graph"> 
+ * <img src="{@docRoot}/doc-files/functionsthat /CumulateAnd.png" alt="Processor graph"> 
  * 
  * @author Sylvain Hallé
  * @difficulty Easy

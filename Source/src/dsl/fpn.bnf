@@ -1,0 +1,4 @@
+<exp> := <add> | <sbt> | <num>;
+<add> := + <exp> <exp>;
+<sbt> := - <exp> <exp>;
+<num> := ^[0-9]+;
