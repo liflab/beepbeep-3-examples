@@ -35,6 +35,7 @@ public class SimpleProcessorBuilder extends GroupProcessorBuilder
 	}
 	///
 
+	//!
 	@Builds(rule="<trim>", pop=true, clean=true)
 	public Trim handleTrim(Object ... parts)
 	{
@@ -45,7 +46,9 @@ public class SimpleProcessorBuilder extends GroupProcessorBuilder
 		add(trim);
 		return trim;
 	}
+	//!
 
+	//*
 	@Builds(rule="<decim>", pop=true, clean=true)
 	public CountDecimate handleDecimate(Object ... parts)
 	{
@@ -56,7 +59,9 @@ public class SimpleProcessorBuilder extends GroupProcessorBuilder
 		add(dec);
 		return dec;
 	}
+	//*
 
+	//@
 	@Builds(rule="<filter>", pop=true, clean=true)
 	public Filter handleFilter(Object ... parts)
 	{
@@ -68,6 +73,7 @@ public class SimpleProcessorBuilder extends GroupProcessorBuilder
 		add(filter);
 		return filter;
 	}
+	//@
 
 	@Builds(rule="<stream>")
 	public void handleStream(ArrayDeque<Object> stack)
