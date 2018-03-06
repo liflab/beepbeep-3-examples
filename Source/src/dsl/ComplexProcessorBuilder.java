@@ -173,7 +173,7 @@ public class ComplexProcessorBuilder extends GroupProcessorBuilder
 		stack.pop(); // (
 		list.add((Processor) stack.pop());
 		stack.pop(); // )
-		if (stack.peek() instanceof String)
+		if (stack.peek() instanceof String && ((String) stack.peek()).compareTo("AND") == 0)
 		{
 			stack.pop(); // AND
 			stack.pop(); // (
