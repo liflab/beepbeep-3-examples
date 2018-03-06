@@ -34,6 +34,7 @@ import ca.uqac.lif.bullwinkle.ParseNodeVisitor.VisitException;
  */
 public class ParserExample 
 {
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws FileNotFoundException, InvalidGrammarException, ParseException, VisitException 
 	{
 		///

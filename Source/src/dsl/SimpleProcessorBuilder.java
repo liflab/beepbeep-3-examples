@@ -7,6 +7,7 @@ import ca.uqac.lif.bullwinkle.Builds;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.Pullable;
+import ca.uqac.lif.cep.dsl.GroupProcessorBuilder;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Passthrough;
@@ -75,14 +76,17 @@ public class SimpleProcessorBuilder extends GroupProcessorBuilder
 	}
 	//@
 
+	//.
 	@Builds(rule="<stream>")
 	public void handleStream(ArrayDeque<Object> stack)
 	{
 		Integer n = Integer.parseInt((String) stack.pop());
 		stack.pop(); // INPUT
 		Passthrough p = forkInput(n);
+		add(p);
 		stack.push(p);
 	}
+	//.
 
 	public static void main(String[] args) throws ca.uqac.lif.bullwinkle.ParseTreeObjectBuilder.BuildException
 	{
@@ -98,12 +102,14 @@ public class SimpleProcessorBuilder extends GroupProcessorBuilder
 		}
 		{
 			System.out.println("Second query");
+			//m
 			Processor proc = builder.build("KEEP ONE EVERY 2 FROM (TRIM 3 FROM (INPUT 0))");
 			QueueSource src = new QueueSource().setEvents(0, 1, 2, 3, 4, 5, 6, 8);
 			Connector.connect(src, proc);
 			Pullable pul1 = proc.getPullableOutput();
 			for (int i = 0; i < 5; i++)
 				System.out.println(pul1.pull());
+			//m
 		}
 		{
 			System.out.println("Third query");

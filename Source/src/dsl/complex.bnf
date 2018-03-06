@@ -1,0 +1,15 @@
+<proc>      := <trim> | <decim> | <filter> | <apply> | <stream> ;
+<trim>      := TRIM <num> FROM ( <proc> );
+<decim>     := KEEP ONE EVERY <num> FROM ( <proc> ) ;
+<filter>    := FILTER ( <proc> ) WITH ( <proc> ) ;
+<stream>    := INPUT <num> ;
+<apply>     := APPLY <fct> ON <proclist> ;
+<proclist>  := ( <proc> ) AND ( <proc> ) | ( <proc> ) ; 
+<fct>       := <add> | <sbt> | <lt> | <abs> | <cons> | <svar> ;
+<abs>       := ABS <fct> ;
+<add>       := + <fct> <fct> ;
+<sbt>       := - <fct> <fct> ;
+<lt>        := LT <fct> <fct> ;
+<svar>      := X | Y ;
+<cons>      := <num> ;
+<num>       := ^[0-9]+;
