@@ -1,9 +1,17 @@
 package dsl;
 
+import static ca.uqac.lif.cep.Connector.BOTTOM;
+import static ca.uqac.lif.cep.Connector.INPUT;
+import static ca.uqac.lif.cep.Connector.LEFT;
+import static ca.uqac.lif.cep.Connector.OUTPUT;
+import static ca.uqac.lif.cep.Connector.RIGHT;
+import static ca.uqac.lif.cep.Connector.TOP;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
+import basic.TurnInto;
 import ca.uqac.lif.bullwinkle.BnfParser.InvalidGrammarException;
 import ca.uqac.lif.bullwinkle.Builds;
 import ca.uqac.lif.cep.Connector;
@@ -12,11 +20,14 @@ import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.dsl.GroupProcessorBuilder;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Constant;
+import ca.uqac.lif.cep.functions.Cumulate;
+import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.Filter;
+import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Passthrough;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.tmf.Trim;
@@ -129,7 +140,7 @@ public class ComplexProcessorBuilder extends GroupProcessorBuilder
 		stack.pop(); // To remove the "-" symbol
 		stack.push(new FunctionTree(Numbers.subtraction, f1, f2));
 	}
-	
+
 	@Builds(rule="<lt>")
 	public void handleLt(ArrayDeque<Object> stack)
 	{
@@ -138,7 +149,7 @@ public class ComplexProcessorBuilder extends GroupProcessorBuilder
 		stack.pop(); // To remove the "LT" symbol
 		stack.push(new FunctionTree(Numbers.isLessThan, f1, f2));
 	}
-	
+
 	@Builds(rule="<abs>")
 	public void handleAbs(ArrayDeque<Object> stack)
 	{
@@ -146,13 +157,13 @@ public class ComplexProcessorBuilder extends GroupProcessorBuilder
 		stack.pop(); // To remove the "ABS" symbol
 		stack.push(new FunctionTree(Numbers.absoluteValue, f1));
 	}
-	
+
 	@Builds(rule="<cons>")
 	public void handleCons(ArrayDeque<Object> stack)
 	{
 		stack.push(new Constant(Integer.parseInt((String) stack.pop())));
 	}
-	
+
 	//s
 	@Builds(rule="<svar>")
 	public void handleStreamVariable(ArrayDeque<Object> stack)
@@ -164,7 +175,7 @@ public class ComplexProcessorBuilder extends GroupProcessorBuilder
 			stack.push(StreamVariable.Y);
 	}
 	//s
-	
+
 	//l
 	@Builds(rule="<proclist>")
 	public void handleProcList(ArrayDeque<Object> stack)
@@ -183,7 +194,28 @@ public class ComplexProcessorBuilder extends GroupProcessorBuilder
 		stack.push(list);
 	}
 	//l
-	
+
+	//a
+	@Builds(rule="<avg>", pop=true, clean=true)
+	public Processor handleAvg(Object ... parts)
+	{
+		Fork fork = new Fork(2);
+		Connector.connect((Processor) parts[0], fork);
+		Cumulate sum_proc = new Cumulate(
+				new CumulativeFunction<Number>(Numbers.addition));
+		Connector.connect(fork, TOP, sum_proc, INPUT);
+		TurnInto ones = new TurnInto(1);
+		Connector.connect(fork, BOTTOM, ones, INPUT);
+		Cumulate counter = new Cumulate(
+				new CumulativeFunction<Number>(Numbers.addition));
+		Connector.connect(ones, OUTPUT, counter, INPUT);
+		ApplyFunction division = new ApplyFunction(Numbers.division);
+		Connector.connect(sum_proc, OUTPUT, division, LEFT);
+		Connector.connect(counter, OUTPUT, division, RIGHT);
+		add(fork, sum_proc, ones, counter, division);
+		return division;
+	}
+	//a
 
 	public static void main(String[] args) throws ca.uqac.lif.bullwinkle.ParseTreeObjectBuilder.BuildException
 	{
