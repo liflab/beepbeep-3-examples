@@ -91,7 +91,7 @@ import ca.uqac.lif.cep.tmf.Pump;
  * Unix programs can be connected into each other.
  * <p>
  * This can be used to read a file. Instead of redirecting a named pipe to
- * the program, one can use the {@code cat} command with an actualy filename:
+ * the program, one can use the {@code cat} command with an actual filename:
  * <pre>
  * $ cat somefile.txt &gt; java -jar read-stdin.jar
  * </pre>
@@ -111,6 +111,7 @@ public class ReadStdin
 		 * the standard input (represented in Java by the System.in object).
 		 * We must tell the reader that it is not reading from a file, and
 		 * that it should push whatever it receives. */
+		///
 		ReadStringStream reader = new ReadStringStream(System.in);
 		reader.setIsFile(false);
 		
@@ -136,6 +137,7 @@ public class ReadStdin
 		{
 			Thread.sleep(10000);
 		}
+		///
 	}
 
 }
