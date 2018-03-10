@@ -17,6 +17,8 @@
  */
 package util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -88,6 +90,21 @@ public abstract class UtilityMethods
 				// Do nothing
 			}
 		}
+	}
+	
+	/**
+	 * Creates a list out of a variable number of elements
+	 * @param elements The elements to put in the list
+	 * @return The list
+	 */
+	public static List<Object> createList(Object ... elements)
+	{
+		List<Object> list = new ArrayList<Object>();
+		for (Object o : elements)
+		{
+			list.add(o);
+		}
+		return list;
 	}
 
 	/**
