@@ -36,6 +36,7 @@ import ca.uqac.lif.cep.http.HttpUpstreamGateway;
 import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
+import ca.uqac.lif.cep.tmf.Pump;
 import ca.uqac.lif.cep.tmf.QueueSource;
 
 /**
@@ -46,21 +47,25 @@ public class TwinPrimesA
 {
 	public static void main(String[] args) throws ProcessorException
 	{
+		///
 		/* The URL where prime numbers will be pushed downstream. Change
 		 * this string to correspond to Machine B's address and port. */ 
 		String push_url = "http://localhost:12312/bigprime";
 		
 		/* The first processor is a source that will push the BigInteger
 		 * "2" repeatedly. */
-		QueueSource source = new QueueSource();
-		source.addEvent(new BigInteger("2"));
+		QueueSource source = new QueueSource().addEvent(new BigInteger("2"));
+		
+		/* We the connect a pump to that source. */
+		Pump pump = new Pump(500);
+		Connector.connect(source, pump);
 		
 		/* The second processor is a simple counter. We will feed it with the
 		 * BigInteger "2" repeatedly, and it will return the cumulatve sum
 		 * of those "2" as its output. Since the start value of BigIntegerAdd
 		 * is one, the resulting sequence is made of all odd numbers. */
 		Cumulate counter = new Cumulate(new CumulativeFunction<BigInteger>(BigIntegerAdd.instance));
-		Connector.connect(source, counter);
+		Connector.connect(pump, counter);
 		
 		/* The events output from the counter are duplicated along two paths. */
 		Fork fork1 = new Fork(2);
@@ -90,6 +95,7 @@ public class TwinPrimesA
 		HttpUpstreamGateway up_gateway = new HttpUpstreamGateway(push_url);
 		Connector.connect(fork2, RIGHT, int_to_string, INPUT);
 		Connector.connect(int_to_string, up_gateway);
+		///
 		
 		/* All set! We are ready to start the gateway, and repeatedly push
 		 * primes to Machine B. */
@@ -98,12 +104,6 @@ public class TwinPrimesA
 		System.out.println("Let's go! Pushing prime numbers to " + push_url);
 		System.out.println("Press Ctrl+C to stop.");
 		up_gateway.start();
-		while (true)
-		{
-			source.push();
-			/* Sleep a little to let the requests go through. We deliberately loop
-			   slowly so you have time to look at the screen! */
-			UtilityMethods.pause(500);
-		}
+		pump.start();
 	}
 }

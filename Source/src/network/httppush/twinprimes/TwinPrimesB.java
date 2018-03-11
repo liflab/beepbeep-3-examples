@@ -29,6 +29,8 @@ import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
 import ca.uqac.lif.cep.functions.ApplyFunction;
+import ca.uqac.lif.cep.functions.FunctionTree;
+import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.http.HttpDownstreamGateway;
 import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.tmf.Filter;
@@ -45,17 +47,16 @@ public class TwinPrimesB
 	{
 		/* First, we create an HttpDownstreamGateway to receive strings
 		 * from Machine A. */
+		///
 		HttpDownstreamGateway dn_gateway = new HttpDownstreamGateway(12312, "/bigprime", Method.POST);
 		
 		/* The next step is to convert the string received from the gateway
-		 * back into a BigInteger. */
-		ApplyFunction string_to_bigint = new ApplyFunction(StringToBigInteger.instance);
-		Connector.connect(dn_gateway, string_to_bigint);
-		
-		/* We then increment this number by 2. We do this with a special
-		 * function. */
-		ApplyFunction big_int_plus_2 = new ApplyFunction(new BigIntegerFunctions.IncrementBigInteger(new BigInteger("2")));
-		Connector.connect(string_to_bigint, big_int_plus_2);
+		 * back into a BigInteger. We then increment this number by 2. We do
+		 * this with a special function. */
+		ApplyFunction big_int_plus_2 = new ApplyFunction(new FunctionTree(
+				new BigIntegerFunctions.IncrementBigInteger(new BigInteger("2")),
+				new FunctionTree(StringToBigInteger.instance, StreamVariable.X)));
+		Connector.connect(dn_gateway, big_int_plus_2);
 		
 		/* Fork the output */
 		Fork fork = new Fork(2);
@@ -78,6 +79,7 @@ public class TwinPrimesB
 		/* All set! Start the gateway so it can listen to requests from
 		 * Machine A. */
 		dn_gateway.start();
+		///
 		
 		/* Loop indefinitely */
 		System.out.println("Machine B listening for requests. Every number displayed below");

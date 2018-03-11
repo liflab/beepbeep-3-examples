@@ -44,6 +44,7 @@ public class PushLocal
 {
 	public static void main(String[] args) throws ProcessorException, InterruptedException
 	{
+		///
 		/* We first setup a {@link FunctionProcessor} that will execute
 		 * the function {@link JsonSerializeString} on each input event. This function
 		 * transforms an incoming object into a character string in the JSON format,
@@ -141,5 +142,6 @@ public class PushLocal
 		dn_gateway.stop();
 		
 		/* That's all folks! */
+		///
 	}
 }

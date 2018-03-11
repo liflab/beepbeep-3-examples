@@ -32,7 +32,7 @@ import ca.uqac.lif.cep.serialization.JsonDeserializeString;
 import ca.uqac.lif.cep.serialization.JsonSerializeString;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.tmf.TimeDecimate;
-import ca.uqac.lif.cep.util.Lists.Pack;
+import ca.uqac.lif.cep.util.Lists.TimePack;
 import ca.uqac.lif.cep.util.Lists.Unpack;
 import ca.uqac.lif.cep.util.Numbers;
 import ca.uqac.lif.jerrydog.RequestCallback.Method;
@@ -53,7 +53,7 @@ import ca.uqac.lif.jerrydog.RequestCallback.Method;
  * However, each request has an associated overhead, which places an upper
  * bound on the number of requests per second that can be sent.
  * <p>
- * The {@link Pack} processor can be used to reduce the number of
+ * The {@link TimePack} processor can be used to reduce the number of
  * such requests. The packer accumulates events for a predetermined amount
  * of time (say, one second), and outputs all accumulated events as a single
  * <code>List</code> object when the time interval is expired. When coupled
@@ -97,7 +97,7 @@ public class PackerExample
 		
 		/* Connect the output to a packer, and give it a time interval
 		 * 1 second. */
-		Pack packer = new Pack();
+		TimePack packer = new TimePack();
 		packer.setInterval(1000);
 		Connector.connect(sum, packer);
 

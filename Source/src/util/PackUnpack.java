@@ -19,44 +19,47 @@ package util;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.functions.Cumulate;
-import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.tmf.QueueSource;
-import ca.uqac.lif.cep.util.Bags;
-import ca.uqac.lif.cep.util.Numbers;
+import ca.uqac.lif.cep.util.Lists;
 
 /**
- * Apply a processor on collections of events 
- * using the {@link ca.uqac.cep.util.Bags.RunOn RunOn} processor.
+ * See the effect of chaining a {@link ca.uqac.lif.cep.util.Lists.Pack Pack}
+ * processor to an {@link ca.uqac.lif.cep.util.Lists.Unpack Unpack} processor.
  * Graphically, this chain of processors can be represented as:
  * <p>
- * <img src="{@docRoot}/doc-files/util/RunOnExample.png" alt="Processor graph">
- * <p>
+ * <img src="{@docRoot}/doc-files/util/PackUnpack.png" alt="Processor graph">
+*  <p>
  * The output of this program is:
  * <pre>
- * 9.0
- * 6.0
- * 16.0
- * 10.0
+ * 3
+ * 1
+ * 4
+ * 1
+ * 5
+ * 9
+ * &hellip;
  * </pre>
+ * 
  * @author Sylvain Hallé
- *
+ * @difficulty Easy
  */
-public class RunOnExample
+public class PackUnpack 
 {
+
 	public static void main(String[] args) 
 	{
 		///
 		QueueSource src1 = new QueueSource();
-		src1.addEvent(UtilityMethods.createList(1f, 3f, 5f));
-		src1.addEvent(UtilityMethods.createList(4f, 2f));
-		src1.addEvent(UtilityMethods.createList(4f, 4f, 8f));
-		src1.addEvent(UtilityMethods.createList(6f, 4f));
-		Bags.RunOn run = new Bags.RunOn(
-				new Cumulate(new CumulativeFunction<Number>(Numbers.addition)));
-		Connector.connect(src1, run);
-		Pullable p = run.getPullableOutput();
-		for (int i = 0; i < 4; i++)
+		src1.setEvents(3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5);
+		QueueSource src2 = new QueueSource();
+		src2.setEvents(false, true, false, false, false, true, false, true);
+		Lists.Pack pack = new Lists.Pack();
+		Connector.connect(src1, 0, pack, 0);
+		Connector.connect(src2, 0, pack, 1);
+		Lists.Unpack unpack = new Lists.Unpack();
+		Connector.connect(pack, 0, unpack, 0);
+		Pullable p = unpack.getPullableOutput();
+		for (int i = 0; i < 6; i++)
 		{
 			System.out.println(p.pull());
 		}

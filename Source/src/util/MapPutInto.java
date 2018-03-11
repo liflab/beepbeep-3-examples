@@ -19,43 +19,33 @@ package util;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.functions.Cumulate;
-import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.tmf.QueueSource;
-import ca.uqac.lif.cep.util.Bags;
-import ca.uqac.lif.cep.util.Numbers;
+import ca.uqac.lif.cep.util.Maps;
 
 /**
- * Apply a processor on collections of events 
- * using the {@link ca.uqac.cep.util.Bags.RunOn RunOn} processor.
- * Graphically, this chain of processors can be represented as:
- * <p>
- * <img src="{@docRoot}/doc-files/util/RunOnExample.png" alt="Processor graph">
+ * Use the {@link ca.uqac.lif.cep.util.Maps.PutInto PutInto} processor
+ * to update a map from two input streams.
  * <p>
  * The output of this program is:
  * <pre>
- * 9.0
- * 6.0
- * 16.0
- * 10.0
+ * {foo=1}
+ * {bar=abc, foo=1}
+ * {bar=abc, foo=def}
+ * {bar=abc, foo=def, baz=6}
  * </pre>
  * @author Sylvain Hallé
- *
  */
-public class RunOnExample
+public class MapPutInto
 {
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
 		///
-		QueueSource src1 = new QueueSource();
-		src1.addEvent(UtilityMethods.createList(1f, 3f, 5f));
-		src1.addEvent(UtilityMethods.createList(4f, 2f));
-		src1.addEvent(UtilityMethods.createList(4f, 4f, 8f));
-		src1.addEvent(UtilityMethods.createList(6f, 4f));
-		Bags.RunOn run = new Bags.RunOn(
-				new Cumulate(new CumulativeFunction<Number>(Numbers.addition)));
-		Connector.connect(src1, run);
-		Pullable p = run.getPullableOutput();
+		QueueSource keys = new QueueSource().setEvents("foo", "bar", "foo", "baz");
+		QueueSource values = new QueueSource().setEvents(1, "abc", "def", 6);
+		Maps.PutInto put = new Maps.PutInto();
+		Connector.connect(keys, 0, put, 0);
+		Connector.connect(values, 0, put, 1);
+		Pullable p = put.getPullableOutput();
 		for (int i = 0; i < 4; i++)
 		{
 			System.out.println(p.pull());
