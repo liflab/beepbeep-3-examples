@@ -33,6 +33,7 @@ public class CompoundObject
 		super();
 	}
 	
+	///
 	public CompoundObject(int a, String b, CompoundObject c)
 	{
 		super();
@@ -40,6 +41,13 @@ public class CompoundObject
 		this.b = b;
 		this.c = c;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return "a = " + a + ", b = " + b + ", c = (" + c + ")";
+	}
+	///
 	
 	@Override
 	public boolean equals(Object o)
@@ -58,11 +66,5 @@ public class CompoundObject
 			return true;
 		}
 		return false;
-	}
-	
-	@Override
-	public String toString()
-	{
-		return "a = " + a + ", b = " + b + ", c = (" + c + ")";
 	}
 }
