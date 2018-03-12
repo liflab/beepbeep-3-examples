@@ -23,7 +23,7 @@
  * Events are produced upstream, and are pushed to the downstream
  * processors.
  * <p>
- * You are advised to first look at {@link PushLocal}, which contains
+ * You are advised to first look at {@link PushLocalSerialize}, which contains
  * a single-machine simulation with detailed step-by-step documentation.
  * You can then see the programs {@link PushMachineA} and {@link PushMachineB},
  * which perform the same computation, but across two independent programs

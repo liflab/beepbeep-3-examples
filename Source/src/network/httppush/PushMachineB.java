@@ -28,10 +28,10 @@ import ca.uqac.lif.cep.serialization.JsonDeserializeString;
 import ca.uqac.lif.jerrydog.RequestCallback.Method;
 
 /**
- * This is the same example as {@link PushLocal}, but with the
+ * This is the same example as {@link PushLocalSerialize}, but with the
  * "Machine A" and "Machine B" parts of the chain split into two independent
  * programs, with some user interaction added. You are advised to first
- * go through the {@link PushLocal} example.
+ * go through the {@link PushLocalSerialize} example.
  * This file corresponds to Machine B.
  * <p>
  * You can actually run this example on two physical machines if you

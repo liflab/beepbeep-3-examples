@@ -47,7 +47,7 @@ import ca.uqac.lif.jerrydog.RequestCallback.Method;
  * <p>
  * In this example, we send a relatively fast flow of events (about 1,000
  * per second) from one host to another using HTTP gateways
- * (see {@link PushLocal} for an explanation of gateways). If we used
+ * (see {@link PushLocalSerialize} for an explanation of gateways). If we used
  * the {@link HttpUpstreamGateway} directly, this would result in one
  * HTTP request-response cycle for each event to be pushed over the network.
  * However, each request has an associated overhead, which places an upper

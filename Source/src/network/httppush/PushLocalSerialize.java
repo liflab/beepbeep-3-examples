@@ -40,7 +40,7 @@ import ca.uqac.lif.jerrydog.RequestCallback.Method;
  * @author Sylvain Hallé
  *
  */
-public class PushLocal 
+public class PushLocalSerialize 
 {
 	public static void main(String[] args) throws ProcessorException, InterruptedException
 	{
