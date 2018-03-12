@@ -81,7 +81,8 @@ public class PushLocalSerialize
 		 * this function must be given the class of the objects
 		 * to be deserialized, so that it knows instances of what kind of objects
 		 * to create. */
-		ApplyFunction deserialize = new ApplyFunction(new JsonDeserializeString<CompoundObject>(CompoundObject.class));
+		ApplyFunction deserialize = new ApplyFunction(
+				new JsonDeserializeString<CompoundObject>(CompoundObject.class));
 		
 		/* Just so that we can see something, we plug a {@link Print} processor at
 		 * the end; it will print to the standard output whatever object it receives
@@ -109,10 +110,12 @@ public class PushLocalSerialize
 		 * program already running, the call to start will throw an Exception. */
 		up_gateway.start();
 		dn_gateway.start();
+		///
 
 		/* We are now ready to push events and see what happens. First, we get
 		 * a handle on the {@link Pushable} of the very first processor of the
 		 * chain, <code>serialize</code> (which resides on Machine A). */
+		//!
 		Pushable p = serialize.getPushableInput();
 		
 		/* Let's push some dummy object. After the call to push, the standard
@@ -134,6 +137,7 @@ public class PushLocalSerialize
 		
 		/* Let's push again. You know the drill. */
 		p.push(new CompoundObject(0, "foo", new CompoundObject(6, "z", null)));
+		//!
 		
 		/* Once everything is done, we have to stop the servers to free the
 		 * TCP ports on your machine. This is done by calling
