@@ -91,6 +91,7 @@ public class ReadTokens
 	public static void main(String[] args) throws ProcessorException, InterruptedException 
 	{
 		/* Read from stdin using a StringStreamReader */
+		///
 		ReadStringStream reader = new ReadStringStream(System.in);
 		reader.setIsFile(false);
 		
@@ -114,6 +115,7 @@ public class ReadTokens
 		{
 			Thread.sleep(10000);
 		}
+		///
 
 	}
 

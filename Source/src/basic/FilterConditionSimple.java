@@ -42,7 +42,7 @@ public class FilterConditionSimple
 {
 	public static void main(String[] args)
 	{
-		// Create a trace of dummy values
+		/// Create a trace of dummy values
 		QueueSource source_values = new QueueSource();
 		source_values.setEvents(6, 5, 3, 8, 9, 2, 1, 7, 4);
 		// Fork the trace in two
@@ -66,7 +66,6 @@ public class FilterConditionSimple
 			int x = (Integer) p.pull();
 			System.out.printf("Output event #%d is %d\n", i, x);
 		}
-
-
+		///
 	}
 }

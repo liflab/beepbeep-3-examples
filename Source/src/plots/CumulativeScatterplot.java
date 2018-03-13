@@ -20,10 +20,10 @@ package plots;
 import ca.uqac.lif.cep.Connector;
 import static ca.uqac.lif.cep.Connector.TOP;
 import static ca.uqac.lif.cep.Connector.BOTTOM;
-
 import ca.uqac.lif.cep.mtnp.DrawPlot;
 import ca.uqac.lif.cep.mtnp.UpdateTable;
 import ca.uqac.lif.cep.mtnp.UpdateTableStream;
+import ca.uqac.lif.cep.tmf.Pump;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
 
@@ -49,11 +49,12 @@ public class CumulativeScatterplot
 		/* A stream of (x,y) pairs is first created,
 		 * with x an incrementing integer, and y a randomly selected number
 		 * (see {@link RandomTwoD}).
-		 * */
-		QueueSource one = new QueueSource();
-		one.addEvent(1);
+		*/
+		///
+		QueueSource one = new QueueSource().setEvents(1);
+		Pump pump = new Pump(1000);
 		RandomTwoD random = new RandomTwoD();
-		Connector.connect(one, random);
+		Connector.connect(one, pump, random);
 
 		/* The resulting x-stream and y-streams are then pushed into an
 		 * {@link UpdateTableStream} processor. We instantiate this processor,
@@ -93,10 +94,8 @@ public class CumulativeScatterplot
 		 * more and more data points.
 		 */
 		System.out.println("Displaying plot. Press Ctrl+C or close the window to end.");
-		while (true)
-		{
-			one.push();
-			Thread.sleep(1000); // Sleep a little so the graph does not update too fast
-		}
+		Thread th = new Thread(pump);
+		th.start();
+		///
 	}
 }
