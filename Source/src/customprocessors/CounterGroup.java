@@ -24,6 +24,7 @@ import static ca.uqac.lif.cep.Connector.connect;
 import java.util.Vector;
 
 import util.UtilityMethods;
+import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.Cumulate;
@@ -43,38 +44,14 @@ import ca.uqac.lif.cep.util.Numbers;
  */
 public class CounterGroup extends GroupProcessor
 {
-
 	public CounterGroup()
 	{
-		super(0, 1);
-		// Now create a source of 1s and sum it; this
-		// effectively creates a counter outputting 1, 2, ...
-		Vector<Object> one_list = new Vector<Object>();
-		one_list.add(1);
-		QueueSource ones = new QueueSource();
-		ones.setEvents(one_list);
-		Cumulate counter = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
-		connect(ones, OUTPUT, counter, INPUT);
-		// Adds the processors we created to the group
-		addProcessors(ones, counter);
-		// Associate the output of the group to the output of counter
-		associateOutput(OUTPUT, counter, OUTPUT);
-		// This processor has no input; otherwise, we would also need to
-		// associate the input of the group to the input of some processor
-	}
-
-	/*
-	 * Simple main showing what the processor does. It should output the numbers 1 to 10.
-	 */
-	public static void main(String[] args)
-	{
-		CounterGroup counter = new CounterGroup();
-		Pullable p = counter.getPullableOutput();
-		for (int i = 0; i < 10; i++)
-		{
-			float n = (Float) p.pull();
-			System.out.println(n);
-			UtilityMethods.pause(1000);
-		}
+		super(1, 1);
+		TurnInto one = new TurnInto(1);
+		Cumulate sum = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
+		Connector.connect(one, sum);
+		associateInput(0, one, 0);
+		associateOutput(0, sum, 0);
+		addProcessors(one, sum);
 	}
 }
