@@ -20,14 +20,14 @@ public class Relationships {
 
 	public static void main(String[] args)
 	{
-		InputStream is = Relationships.class.getResourceAsStream("file1.csv");
+		InputStream is = Relationships.class.getResourceAsStream("arf.csv");
 		ReadLines reader = new ReadLines(is);
 		TupleFeeder tuples = new TupleFeeder();
 		Connector.connect(reader, tuples);
 		ApplyFunction pairs = new ApplyFunction(new FunctionTree(Bags.product,
 				new FunctionTree(new Bags.ToSet(String.class),
 						new FunctionTree(new FetchAttribute("author"), StreamVariable.X)),
-				new FunctionTree(new Strings.FindRegex("@(\\w*)"),
+				new FunctionTree(new Strings.FindRegex("@([_\\d\\w]*)"),
 						new FunctionTree(new FetchAttribute("text"), StreamVariable.X))));
 		Connector.connect(tuples, pairs);
 		Lists.Unpack unpack = new Lists.Unpack();
@@ -35,13 +35,14 @@ public class Relationships {
 		ApplyFunction explode = new ApplyFunction(new Lists.Explode(String.class, String.class));
 		Connector.connect(unpack, explode);
 		UpdateGraph graph = new UpdateGraph();
-		Connector.connect(explode, graph);
 		ApplyFunction td = new ApplyFunction(ToDot.instance);
-		Connector.connect(graph, td);
+		Connector.connect(explode, graph, td);
 		Pullable p = td.getPullableOutput();
+		String dot = "";
 		while (p.hasNext())
 		{
-			System.out.println(p.pull());
+			dot = (String) p.next();
 		}
+		System.out.println(dot);
 	}
 }
