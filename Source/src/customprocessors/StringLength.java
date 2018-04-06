@@ -19,7 +19,7 @@ public class StringLength extends SingleProcessor
 	}
 
 	@Override
-	public Processor duplicate() 
+	public Processor duplicate(boolean with_state) 
 	{
 		return new StringLength();
 	}

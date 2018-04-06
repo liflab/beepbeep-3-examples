@@ -88,7 +88,7 @@ public class CounterSingle extends SingleProcessor
 	 * returning a new instance of MyCounter.
 	 */
 	@Override
-	public CounterSingle duplicate()
+	public CounterSingle duplicate(boolean with_state)
 	{
 		return new CounterSingle();
 	}

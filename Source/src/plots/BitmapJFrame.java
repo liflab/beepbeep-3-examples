@@ -72,7 +72,7 @@ public class BitmapJFrame extends Sink
 	}
 
 	@Override
-	public Processor duplicate() 
+	public Processor duplicate(boolean with_state) 
 	{
 		// Don't care
 		return null;

@@ -96,7 +96,7 @@ public class FunctionUsage
 		}
 		
 		@Override
-		public Function duplicate() 
+		public Function duplicate(boolean with_state) 
 		{
 			return instance;
 		}

@@ -18,7 +18,7 @@ public class CutString extends Function
 		return 1;
 	}
 	
-	public Function duplicate() {
+	public Function duplicate(boolean with_state) {
 		return new CutString();
 	}
 

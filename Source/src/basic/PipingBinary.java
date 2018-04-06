@@ -68,7 +68,7 @@ public class PipingBinary
 		}
 
 		@Override
-		public Adder duplicate()
+		public Adder duplicate(boolean with_state)
 		{
 			return new Adder();
 		}

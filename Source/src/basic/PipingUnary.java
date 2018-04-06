@@ -90,7 +90,7 @@ public class PipingUnary
 		}
 
 		@Override
-		public Processor duplicate()
+		public Processor duplicate(boolean with_state)
 		{
 			return this;
 		}

@@ -99,7 +99,7 @@ public class SliderFrame extends Source
 	}
 
 	@Override
-	public Processor duplicate()
+	public Processor duplicate(boolean with_state)
 	{
 		// Don't care for this example
 		return null;

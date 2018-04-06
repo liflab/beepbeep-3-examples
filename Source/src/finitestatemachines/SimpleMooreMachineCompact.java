@@ -64,7 +64,7 @@ public class SimpleMooreMachineCompact
 		/* Since a Moore machine outputs a symbol when jumping into a
 		 * new state, we must associate symbols to each of the three states. 
 		 * These symbols can be any object; here we use character strings. */
-		machine.addSymbol(UNSAFE, "safe").addSymbol(SAFE, "unsafe").addSymbol(ERROR, "error");
+		machine.addSymbol(UNSAFE, new Constant("safe")).addSymbol(SAFE, new Constant("unsafe")).addSymbol(ERROR, new Constant("error"));
 		
 		/* Done! We can now try our Moore machine on a sequence of events .*/
 		QueueSource source = new QueueSource();

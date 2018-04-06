@@ -22,7 +22,7 @@ public class Stuttering extends SingleProcessor {
 	}
 
 	@Override
-	public Processor duplicate() {
+	public Processor duplicate(boolean with_state) {
 		return new Stuttering();
 	}
 }

@@ -68,7 +68,7 @@ public class ThreadGroups
 		}
 
 		@Override
-		public Processor duplicate()
+		public Processor duplicate(boolean with_state)
 		{
 			// Don't care
 			return this;
@@ -136,7 +136,7 @@ public class ThreadGroups
 		}
 
 		@Override
-		public Processor duplicate()
+		public Processor duplicate(boolean with_state)
 		{
 			// Don't care
 			return this;
@@ -209,7 +209,7 @@ public class ThreadGroups
 		}
 
 		@Override
-		public Processor duplicate()
+		public Processor duplicate(boolean with_state)
 		{
 			// TODO Auto-generated method stub
 			return null;
