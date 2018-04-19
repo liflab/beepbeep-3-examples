@@ -122,7 +122,7 @@ public class PlotSpeed
 		/* Since the weekly distance is very close to the measurement's
 		 * precision, smoothen those values by averaging each two successive
 		 * points. */
-		Smoothen smooth = new Smoothen(12);
+		Smoothen smooth = new Smoothen(3);
 		Connector.connect(distance, smooth);
 		
 		Fork f2 = new Fork(2);
