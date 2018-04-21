@@ -104,13 +104,13 @@ public class PlotSpeed
 		Connector.connect(fork, 0, format_date, INPUT);
 		
 		/* From second stream, extract distance */
-		ApplyFunction get_au1 = new ApplyFunction(new FunctionTree(ToSciNumber.instance, new FunctionTree(new NthElement(3), StreamVariable.X)));
+		ApplyFunction get_au1 = new ApplyFunction(new FunctionTree(Numbers.numberCast, new FunctionTree(new NthElement(3), StreamVariable.X)));
 		Connector.connect(fork, 1, get_au1, INPUT);
 		
 		/* Delay third stream by one reading, and extract distance */
 		Trim cd_delay = new Trim(1);
 		Connector.connect(fork, 2, cd_delay, INPUT);
-		ApplyFunction get_au2 = new ApplyFunction(new FunctionTree(ToSciNumber.instance, new FunctionTree(new NthElement(3), StreamVariable.X)));
+		ApplyFunction get_au2 = new ApplyFunction(new FunctionTree(Numbers.numberCast, new FunctionTree(new NthElement(3), StreamVariable.X)));
 		Connector.connect(cd_delay, get_au2);
 		
 		/* Subtract third and second streams, giving the weekly distance

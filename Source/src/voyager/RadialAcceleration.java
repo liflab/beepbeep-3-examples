@@ -1,36 +1,44 @@
+/*
+    BeepBeep, an event stream processor
+    Copyright (C) 2008-2018 Sylvain Hallé
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package voyager;
 
-import plots.BitmapJFrame;
-import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Pullable;
-import static ca.uqac.lif.cep.Connector.BOTTOM;
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
-import static ca.uqac.lif.cep.Connector.TOP;
+
+import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.functions.ApplyFunction;
-import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.io.ReadLines;
 import ca.uqac.lif.cep.mtnp.DrawPlot;
 import ca.uqac.lif.cep.mtnp.UpdateTableStream;
-import ca.uqac.lif.cep.signal.Limiter;
-import ca.uqac.lif.cep.signal.PeakFinderLocalMaximum;
-import ca.uqac.lif.cep.signal.PeakFinderTravelRise;
 import ca.uqac.lif.cep.signal.Smoothen;
-import ca.uqac.lif.cep.signal.Threshold;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.Fork;
-import ca.uqac.lif.cep.tmf.Passthrough;
 import ca.uqac.lif.cep.tmf.Pump;
 import ca.uqac.lif.cep.tmf.Splice;
 import ca.uqac.lif.cep.tmf.Trim;
-import ca.uqac.lif.cep.util.Bags;
 import ca.uqac.lif.cep.util.NthElement;
 import ca.uqac.lif.cep.util.Numbers;
 import ca.uqac.lif.cep.util.Strings;
 import ca.uqac.lif.mtnp.plot.TwoDimensionalPlot.Axis;
 import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
+import plots.BitmapJFrame;
 
 /**
  * Detect planetary encounters of Voyager 2 by analyzing its distance from
@@ -85,7 +93,7 @@ public class RadialAcceleration
 		Connector.connect(fork, 0, format_date, INPUT);
 		
 		/* From second stream, extract distance */
-		ApplyFunction get_au1 = new ApplyFunction(new FunctionTree(ToSciNumber.instance, new FunctionTree(new NthElement(3), StreamVariable.X)));
+		ApplyFunction get_au1 = new ApplyFunction(new FunctionTree(Numbers.numberCast, new FunctionTree(new NthElement(3), StreamVariable.X)));
 		Connector.connect(fork, 1, get_au1, INPUT);
 		
 		/* Compute rate of change of distance */

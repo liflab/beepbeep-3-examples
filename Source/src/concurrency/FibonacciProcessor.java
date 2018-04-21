@@ -1,7 +1,23 @@
+/*
+    BeepBeep, an event stream processor
+    Copyright (C) 2008-2018 Sylvain Hallé
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package concurrency;
 
 import java.math.BigInteger;
-import java.util.concurrent.locks.ReentrantLock;
 
 import ca.uqac.lif.cep.UniformProcessor;
 
@@ -10,18 +26,6 @@ import ca.uqac.lif.cep.UniformProcessor;
  */
 public class FibonacciProcessor extends UniformProcessor
 {
-	private static ReentrantLock s_callLock = new ReentrantLock();
-	private static int s_calls = 0;
-	
-	public static int getCalls()
-	{
-		int calls = 0;
-		s_callLock.lock();
-		calls = s_calls;
-		s_callLock.unlock();
-		return calls;
-	}
-	
 	public FibonacciProcessor()
 	{
 		super(1, 1);
@@ -33,11 +37,7 @@ public class FibonacciProcessor extends UniformProcessor
 		// Perform some long computation
 		int index = (Integer) inputs[0];
 		BigInteger i = fib(index);
-		//System.out.println("FIB : " + index  + " DONE");
 		outputs[0] = i;
-		s_callLock.lock();
-		s_calls++;
-		s_callLock.unlock();
 		return true;
 	}
 
@@ -56,7 +56,6 @@ public class FibonacciProcessor extends UniformProcessor
 	 */
 	static BigInteger fib(long nth)
 	{
-		//System.out.println("FIB : " + nth);
 		nth = nth - 1;
 		long count = 0;
 		BigInteger first = BigInteger.ZERO;

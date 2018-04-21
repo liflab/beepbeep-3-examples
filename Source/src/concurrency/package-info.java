@@ -1,6 +1,6 @@
 /*
     BeepBeep, an event stream processor
-    Copyright (C) 2008-2016 Sylvain Hallé
+    Copyright (C) 2008-2018 Sylvain Hallé
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published
@@ -18,8 +18,26 @@
 
 /**
  * Allocate multiple threads for the execution of specific parts of a
- * processor chain.
- * 
+ * processor chain. This section showcases various processors of the
+ * Concurrency palette, which make it possible to encase portions of
+ * a processor chain into "wrapper" processors that use multiple threads.
+ * <p>
+ * Most programs in this section come in pairs: a "sequential" program and a
+ * "parallel" program. The two programs perform the same computation, except
+ * that the second inserts some thread-aware processors into the chain. These
+ * programs generally run a CPU-intensive algorithm (such as computing the
+ * n-th Fibonacci number). The actual computation does not really matter;
+ * it is only meant to illustrate how the two programs handle the same
+ * computing load. 
+ * <p>
+ * Examples in this section:
+ * <ul>
+ * <li>Use of a {@link ca.uqac.lif.cep.concurrency.PushPipeline PushPipeline}
+ *   to push events to a stateless processor in parallel 
+ *   ({@link FibonacciSequential} and {@link FibonacciParallel})</li>
+ * <li>Parallelism for sliding window computations
+ *   ({@link WindowSequential} and {@link WindowParallel})</li>
+ * </ul>
  * @author Sylvain Hallé
  */
 package concurrency;
