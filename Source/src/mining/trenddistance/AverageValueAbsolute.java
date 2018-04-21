@@ -25,7 +25,6 @@ import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.StreamVariable;
-import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.ApplyFunction;
@@ -99,7 +98,7 @@ public class AverageValueAbsolute
 			average.associateInput(INPUT, fork, INPUT);
 			Cumulate sum = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(fork, TOP, sum, INPUT);
-			ReplaceWith one = new ReplaceWith(new Constant(1));
+			ReplaceWith one = new ReplaceWith(1);
 			Connector.connect(fork, BOTTOM, one, INPUT);
 			Cumulate sum_one = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(one, sum_one);
