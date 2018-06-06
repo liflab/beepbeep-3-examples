@@ -63,7 +63,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="textblock"><p>What happens when trying to pull events on a processor connected to no input. </p>
 <p>The chain of processors in this example is very simple, it is composed of a single <a class="el" href="">Passthrough</a> processor: </p>
 <div class="image">
-<img src="{@docRoot}/doc-files/basic/Passthrough.png" alt="Processor chain"/>
+<img src="./doc-files/basic/Passthrough.png" alt="Processor chain"/>
 </div>
  <p>When attempting to pull an event into the input of this processor, the passthrough will attempt to pull it, in turn, from its input. The problem lies in the fact that <em>nothing</em> is connect to the input. In BeepBeep, every input stream of every processor <em>must</em> be connected to something. The only way to close a chain is by using a <a class="el" href="">Source</a> (a processor with zero input stream). <br />
 Thus, the expected output of this program is this: </p><pre>

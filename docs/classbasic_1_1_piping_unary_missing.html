@@ -64,7 +64,7 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (Stri
 <div class="textblock"><p>Instantiates two processors, but forgets to connect them. </p>
 <p>This example is identical to <a class="el" href="classbasic_1_1_piping_unary.html">PipingUnary</a>, but without the call to</p><div class="fragment"><div class="line">connect </div></div><!-- fragment --><p> . </p>
 <div class="image">
-<img src="{@docRoot}/doc-files/basic/PipingUnaryMissing.png" alt="Processor graph"/>
+<img src="./doc-files/basic/PipingUnaryMissing.png" alt="Processor graph"/>
 </div>
  <p>Notice how a pipe between the source and the Doubler processor is missing. Attempting to call</p><div class="fragment"><div class="line">pull </div></div><!-- fragment --><p> on</p><div class="fragment"><div class="line">doubler </div></div><!-- fragment --><p> will throw an exception. The expected output of the program should look like this: </p><pre>
 Exception in thread "main" ca.uqac.lif.cep.Pullable$PullableException: Input 0 of this processor is connected to nothing

@@ -78,7 +78,7 @@ Classes</h2></td></tr>
 <div class="textblock"><p>Evaluate an event stream based on a distance to a reference trend. </p>
 <p>The examples in this section make use of the <code>TrendDistance</code> pattern, illustrated as follows. </p>
 <div class="image">
-<img src="{@docRoot}/doc-files/mining/trenddistance/TrendDistance.png" alt="Processor graph"/>
+<img src="./doc-files/mining/trenddistance/TrendDistance.png" alt="Processor graph"/>
 </div>
  <p>This pattern can be interpreted as follows: </p><ol>
 <li>
@@ -92,7 +92,7 @@ The resulting <em>distance</em> is given to a comparison function (<code>⊑</co
 </ol>
 <p>It is possible, however, to encapsulate this process into a <a class="el" href="">GroupProcessor</a>, which becomes a generic <em>pattern</em> whose actual computation is based on six parameters: <code>n</code>, &beta;, <code>P</code>, &delta;, ⊑, and <code>d</code>. </p>
 <div class="image">
-<img src="{@docRoot}/doc-files/mining/trenddistance/TrendDistanceBox.png" alt="Processor graph"/>
+<img src="./doc-files/mining/trenddistance/TrendDistanceBox.png" alt="Processor graph"/>
 </div>
  <p>Depending on how these six parameters are instantiated, the <code>TrendDistance</code> processor computes different things. The examples in this section show different ways of using the <code>TrendDistance</code> pattern.</p>
 <dl class="section author"><dt>Author</dt><dd>Sylvain Hallé </dd></dl>
