@@ -32,7 +32,7 @@ public class Relationships {
 		Connector.connect(tuples, pairs);
 		Lists.Unpack unpack = new Lists.Unpack();
 		Connector.connect(pairs, unpack);
-		ApplyFunction explode = new ApplyFunction(new Lists.Explode(String.class, String.class));
+		ApplyFunction explode = new ApplyFunction(new Bags.Explode(String.class, String.class));
 		Connector.connect(unpack, explode);
 		UpdateGraph graph = new UpdateGraph();
 		ApplyFunction td = new ApplyFunction(ToDot.instance);
