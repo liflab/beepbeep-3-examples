@@ -68,6 +68,7 @@ public class PlotSpeed
 {
 	public static void main(String[] args)
 	{
+		///
 		int start_year = 1977, end_year = 1992;
 		
 		/* The Voyager data is split into multiple CSV files, one per civil
@@ -75,7 +76,8 @@ public class PlotSpeed
 		ReadLines[] readers = new ReadLines[end_year - start_year + 1];
 		for (int y = start_year; y <= end_year; y++)
 		{
-			readers[y - start_year] = new ReadLines(PlotSpeed.class.getResourceAsStream("data/vy2_" + y + ".asc"));
+			readers[y - start_year] = new ReadLines(
+					PlotSpeed.class.getResourceAsStream("data/vy2_" + y + ".asc"));
 		}
 		
 		/* Pass this array of readers to the Splice processors, so that their
@@ -94,6 +96,7 @@ public class PlotSpeed
 		/* Split the surviving lines into arrays with the TAB character. */
 		ApplyFunction to_array = new ApplyFunction(new Strings.SplitString("\\s+"));
 		Connector.connect(ignore_beginning, to_array);
+		///
 		
 		/* Fork this stream of arrays in three. */
 		Fork fork = new Fork(3);
