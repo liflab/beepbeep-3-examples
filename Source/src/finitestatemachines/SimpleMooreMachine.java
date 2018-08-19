@@ -60,16 +60,17 @@ public class SimpleMooreMachine
 {
 	public static void main(String[] args)
 	{
+	  ///
+	  /* Create an empty Moore machine. This machine receives one stream of
+     * events as its input, and produces one stream of events as its
+     * output. */
+    MooreMachine machine = new MooreMachine(1, 1);
+    
 		/* Define symbolic constants for the three states of the
 		 * Moore machine. It is recommended that the actual numbers for
 		 * each state form a contiguous interval of integers starting
 		 * at 0. */
 		final int UNSAFE = 0, SAFE = 1, ERROR = 2;
-		
-		/* Create an empty Moore machine. This machine receives one stream of
-		 * events as its input, and produces one stream of events as its
-		 * output. */
-		MooreMachine machine = new MooreMachine(1, 1);
 		
 		/* Let us now define the transitions for this machine. This is just
 		 * a tedious enumeration of all the arrows that are present in a
@@ -81,28 +82,34 @@ public class SimpleMooreMachine
 		 * So here, UNSAFE will be the initial state. There can be only one
 		 * initial state. */
 		machine.addTransition(UNSAFE, new FunctionTransition(
-				new FunctionTree(Equals.instance, new StreamVariable(), new Constant("hasnext")), SAFE));
+				new FunctionTree(Equals.instance, StreamVariable.X, new Constant("hasnext")), SAFE));
 		/* In state 0, if the incoming event is equal to "next", go to state 2 */
 		machine.addTransition(UNSAFE, new FunctionTransition(
-				new FunctionTree(Equals.instance, new StreamVariable(), new Constant("next")), ERROR));
+				new FunctionTree(Equals.instance, StreamVariable.X, new Constant("next")), ERROR));
 		/* In state 1, if the incoming event is equal to "next", go to state 0 */
 		machine.addTransition(SAFE, new FunctionTransition(
-				new FunctionTree(Equals.instance, new StreamVariable(), new Constant("next")), UNSAFE));
+				new FunctionTree(Equals.instance, StreamVariable.X, new Constant("next")), UNSAFE));
 		/* In state 1, if the incoming event is equal to "hasnext", stay in state 1 */
 		machine.addTransition(SAFE, new FunctionTransition(
-				new FunctionTree(Equals.instance, new StreamVariable(), new Constant("hasnext")), SAFE));
+				new FunctionTree(Equals.instance, StreamVariable.X, new Constant("hasnext")), SAFE));
 		/* State 2 is a sink, you stay there forever. A possible way to say so
 		 * is to define the condition on its only transition as the constant true;
 		 * it will fire whatever the incoming event. */
 		machine.addTransition(ERROR, new FunctionTransition(
 				new Constant(true), ERROR));
+		///
 		
 		/* Since a Moore machine outputs a symbol when jumping into a
 		 * new state, we must associate symbols to each of the three states. 
 		 * These symbols can be any object; here we use character strings. */
-		machine.addSymbol(UNSAFE, new Constant("safe")).addSymbol(SAFE, new Constant("unsafe")).addSymbol(ERROR, new Constant("error"));
+		//*
+		machine.addSymbol(UNSAFE, new Constant("safe"));
+		machine.addSymbol(SAFE, new Constant("unsafe"));
+		machine.addSymbol(ERROR, new Constant("error"));
+		//*
 		
 		/* Done! We can now try our Moore machine on a sequence of events .*/
+		//!
 		QueueSource source = new QueueSource();
 		source.setEvents("hasnext", "next", "hasnext", "hasnext", "next", "next");
 		Connector.connect(source, machine);
@@ -114,6 +121,7 @@ public class SimpleMooreMachine
 			String s = (String) p.pull();
 			System.out.println(s);
 		}
+		//!
 	}
 
 }
