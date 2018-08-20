@@ -28,14 +28,14 @@ import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.util.Equals;
 
 /**
- * Check the proper ordering of next/hasnext strings. In this example, we
+ * Check the proper ordering of next/hasNext strings. In this example, we
  * suppose we get a stream of method calls on an <tt>Iterator</tt> object.
  * The proper use of an iterator stipulates that one should never call method
  * <code>next()</code> before first calling method <code>hasNext()</code>.
  * The correct ordering of these calls can be expressed by a finite-state
  * machine with three states. 
  * <p>
- * On the input stream "hasnext", "next", "hasnext", "hasnext", "next", "next", 
+ * On the input stream "hasNext", "next", "hasNext", "hasNext", "next", "next", 
  * the expected output of this program is:
  * <pre>
  * unsafe
@@ -58,70 +58,74 @@ import ca.uqac.lif.cep.util.Equals;
  */
 public class SimpleMooreMachine 
 {
-	public static void main(String[] args)
-	{
-	  ///
-	  /* Create an empty Moore machine. This machine receives one stream of
+  public static void main(String[] args)
+  {
+    ///
+    /* Create an empty Moore machine. This machine receives one stream of
      * events as its input, and produces one stream of events as its
      * output. */
     MooreMachine machine = new MooreMachine(1, 1);
-    
-		/* Define symbolic constants for the three states of the
-		 * Moore machine. It is recommended that the actual numbers for
-		 * each state form a contiguous interval of integers starting
-		 * at 0. */
-		final int UNSAFE = 0, SAFE = 1, ERROR = 2;
-		
-		/* Let us now define the transitions for this machine. This is just
-		 * a tedious enumeration of all the arrows that are present in a
-		 * graphical representation of the FSM. First, in state 0, if the
-		 * incoming event is equal to "hasnext", go to state 1. 
-		 * 
-		 * By default, the first state number that is ever given to the
-		 * MooreMachine object is taken as the initial state of that machine.
-		 * So here, UNSAFE will be the initial state. There can be only one
-		 * initial state. */
-		machine.addTransition(UNSAFE, new FunctionTransition(
-				new FunctionTree(Equals.instance, StreamVariable.X, new Constant("hasnext")), SAFE));
-		/* In state 0, if the incoming event is equal to "next", go to state 2 */
-		machine.addTransition(UNSAFE, new FunctionTransition(
-				new FunctionTree(Equals.instance, StreamVariable.X, new Constant("next")), ERROR));
-		/* In state 1, if the incoming event is equal to "next", go to state 0 */
-		machine.addTransition(SAFE, new FunctionTransition(
-				new FunctionTree(Equals.instance, StreamVariable.X, new Constant("next")), UNSAFE));
-		/* In state 1, if the incoming event is equal to "hasnext", stay in state 1 */
-		machine.addTransition(SAFE, new FunctionTransition(
-				new FunctionTree(Equals.instance, StreamVariable.X, new Constant("hasnext")), SAFE));
-		/* State 2 is a sink, you stay there forever. A possible way to say so
-		 * is to define the condition on its only transition as the constant true;
-		 * it will fire whatever the incoming event. */
-		machine.addTransition(ERROR, new FunctionTransition(
-				new Constant(true), ERROR));
-		///
-		
-		/* Since a Moore machine outputs a symbol when jumping into a
-		 * new state, we must associate symbols to each of the three states. 
-		 * These symbols can be any object; here we use character strings. */
-		//*
-		machine.addSymbol(UNSAFE, new Constant("safe"));
-		machine.addSymbol(SAFE, new Constant("unsafe"));
-		machine.addSymbol(ERROR, new Constant("error"));
-		//*
-		
-		/* Done! We can now try our Moore machine on a sequence of events .*/
-		//!
-		QueueSource source = new QueueSource();
-		source.setEvents("hasnext", "next", "hasnext", "hasnext", "next", "next");
-		Connector.connect(source, machine);
-		
-		/* Let's pull a few events to see what comes out... */
-		Pullable p = machine.getPullableOutput();
-		for (int i = 0; i < 7; i++)
-		{
-			String s = (String) p.pull();
-			System.out.println(s);
-		}
-		//!
-	}
+
+    /* Define symbolic constants for the three states of the
+     * Moore machine. It is recommended that the actual numbers for
+     * each state form a contiguous interval of integers starting
+     * at 0. */
+    final int UNSAFE = 0, SAFE = 1, ERROR = 2;
+
+    /* Let us now define the transitions for this machine. This is just
+     * a tedious enumeration of all the arrows that are present in a
+     * graphical representation of the FSM. First, in state 0, if the
+     * incoming event is equal to "hasNext", go to state 1. 
+     * 
+     * By default, the first state number that is ever given to the
+     * MooreMachine object is taken as the initial state of that machine.
+     * So here, UNSAFE will be the initial state. There can be only one
+     * initial state. */
+    machine.addTransition(UNSAFE, new FunctionTransition(
+        new FunctionTree(Equals.instance, 
+            StreamVariable.X, new Constant("hasNext")), SAFE));
+    /* In state 0, if the incoming event is equal to "next", go to state 2 */
+    machine.addTransition(UNSAFE, new FunctionTransition(
+        new FunctionTree(Equals.instance, 
+            StreamVariable.X, new Constant("next")), ERROR));
+    /* In state 1, if the incoming event is equal to "next", go to state 0 */
+    machine.addTransition(SAFE, new FunctionTransition(
+        new FunctionTree(Equals.instance, 
+            StreamVariable.X, new Constant("next")), UNSAFE));
+    /* In state 1, if the incoming event is equal to "hasNext", stay in state 1 */
+    machine.addTransition(SAFE, new FunctionTransition(
+        new FunctionTree(Equals.instance, 
+            StreamVariable.X, new Constant("hasNext")), SAFE));
+    /* State 2 is a sink, you stay there forever. A possible way to say so
+     * is to define the condition on its only transition as the constant true;
+     * it will fire whatever the incoming event. */
+    machine.addTransition(ERROR, new FunctionTransition(
+        new Constant(true), ERROR));
+    ///
+
+    /* Since a Moore machine outputs a symbol when jumping into a
+     * new state, we must associate symbols to each of the three states. 
+     * These symbols can be any object; here we use Boolean values. */
+    //*
+    machine.addSymbol(UNSAFE, new Constant(true));
+    machine.addSymbol(SAFE, new Constant(true));
+    machine.addSymbol(ERROR, new Constant(false));
+    //*
+
+    /* Done! We can now try our Moore machine on a sequence of events .*/
+    //!
+    QueueSource source = new QueueSource();
+    source.setEvents("hasNext", "next", "hasNext", "hasNext", "next", "next");
+    Connector.connect(source, machine);
+
+    /* Let's pull a few events to see what comes out... */
+    Pullable p = machine.getPullableOutput();
+    for (int i = 0; i < 7; i++)
+    {
+      Boolean b = (Boolean) p.pull();
+      System.out.println(b);
+    }
+    //!
+  }
 
 }
