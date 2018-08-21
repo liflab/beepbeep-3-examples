@@ -27,8 +27,8 @@ import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.ApplyFunction;
+import ca.uqac.lif.cep.functions.TurnInto;
 import ca.uqac.lif.cep.peg.TrendDistance;
-import ca.uqac.lif.cep.tmf.ReplaceWith;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.util.Numbers;
@@ -83,7 +83,7 @@ public class AverageValueRelative
 			average.associateInput(INPUT, fork, INPUT);
 			Cumulate sum = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(fork, TOP, sum, INPUT);
-			ReplaceWith one = new ReplaceWith(1);
+			TurnInto one = new TurnInto(1);
 			Connector.connect(fork, BOTTOM, one, INPUT);
 			Cumulate sum_one = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(one, sum_one);

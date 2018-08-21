@@ -33,12 +33,12 @@ import ca.uqac.lif.cep.functions.FunctionException;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.IdentityFunction;
+import ca.uqac.lif.cep.functions.TurnInto;
 import ca.uqac.lif.cep.peg.MapDistance.ToValueArray;
 import ca.uqac.lif.cep.peg.Normalize;
 import ca.uqac.lif.cep.peg.ProcessorMiningFunction;
 import ca.uqac.lif.cep.peg.Sequence;
 import ca.uqac.lif.cep.peg.ml.KMeansFunction;
-import ca.uqac.lif.cep.tmf.ReplaceWith;
 import ca.uqac.lif.cep.tmf.Slice;
 import ca.uqac.lif.cep.util.Numbers;
 import mining.SequenceReader;
@@ -110,7 +110,7 @@ public class KmeansSymbolDistribution
 		{
 			GroupProcessor counter = new GroupProcessor(1, 1);
 			{
-				ReplaceWith one = new ReplaceWith(new Constant(1));
+				TurnInto one = new TurnInto(new Constant(1));
 				counter.associateInput(INPUT, one, INPUT);
 				Cumulate sum_one = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 				Connector.connect(one, sum_one);

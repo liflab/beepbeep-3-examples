@@ -27,7 +27,7 @@ import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.IdentityFunction;
-import ca.uqac.lif.cep.tmf.ReplaceWith;
+import ca.uqac.lif.cep.functions.TurnInto;
 import ca.uqac.lif.cep.tmf.QueueSource;
 import ca.uqac.lif.cep.tmf.Slice;
 import ca.uqac.lif.cep.util.Numbers;
@@ -70,7 +70,7 @@ public class SlicerOddEven
 		 * counter of events. */
 		GroupProcessor counter = new GroupProcessor(1, 1);
 		{
-			ReplaceWith to_one = new ReplaceWith(new Constant(1));
+			TurnInto to_one = new TurnInto(new Constant(1));
 			Cumulate sum = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(to_one, sum);
 			counter.addProcessors(to_one, sum);

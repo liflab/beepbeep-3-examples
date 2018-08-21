@@ -30,10 +30,10 @@ import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.IdentityFunction;
+import ca.uqac.lif.cep.functions.TurnInto;
 import ca.uqac.lif.cep.io.ReadStringStream;
 import ca.uqac.lif.cep.peg.MapDistance;
 import ca.uqac.lif.cep.peg.TrendDistance;
-import ca.uqac.lif.cep.tmf.ReplaceWith;
 import ca.uqac.lif.cep.tmf.Slice;
 import ca.uqac.lif.cep.util.Numbers;
 import ca.uqac.lif.cep.util.FindPattern;
@@ -89,7 +89,7 @@ public class MaxSymbols
 		Connector.connect(reader, feeder);
 		GroupProcessor counter = new GroupProcessor(1, 1);
 		{
-			ReplaceWith one = new ReplaceWith(1);
+			TurnInto one = new TurnInto(1);
 			counter.associateInput(INPUT, one, INPUT);
 			Cumulate sum_one = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 			Connector.connect(one, sum_one);
