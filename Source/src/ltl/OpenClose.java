@@ -8,6 +8,7 @@ import static ca.uqac.lif.cep.Connector.TOP;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pushable;
 import ca.uqac.lif.cep.functions.ApplyFunction;
+import ca.uqac.lif.cep.functions.ApplyFunctionLazy;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.StreamVariable;
@@ -25,7 +26,7 @@ public class OpenClose
   {
     ///
     Fork f1 = new Fork(2);
-    ApplyFunction imp = new ApplyFunction(
+    ApplyFunctionLazy imp = new ApplyFunctionLazy(
         new FunctionTree(Booleans.implies,
             new FunctionTree(Equals.instance, 
                 StreamVariable.X, new Constant("open")),
@@ -44,6 +45,7 @@ public class OpenClose
     Connector.connect(f1, TOP, filter, TOP);
     Connector.connect(imp, OUTPUT, filter, BOTTOM);
     Print print = new Print();
+    print.setPrefix("Output: ").setSeparator("\n");
     Connector.connect(filter, print);
     Pushable p = f1.getPushableInput();
     System.out.println("Pushing nop");

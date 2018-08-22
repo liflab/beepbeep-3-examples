@@ -4,7 +4,7 @@ import java.util.Queue;
 
 import ca.uqac.lif.cep.*;
 
-public class MyMax extends SingleProcessor
+public class MyMax extends SynchronousProcessor
 {
 	Number last = null;
 

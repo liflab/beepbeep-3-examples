@@ -4,7 +4,7 @@ import java.util.Queue;
 
 import ca.uqac.lif.cep.*;
 
-public class OutIfPositive extends SingleProcessor {
+public class OutIfPositive extends SynchronousProcessor {
 
 	public OutIfPositive() {
 		super(1, 1);

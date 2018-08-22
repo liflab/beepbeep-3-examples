@@ -23,7 +23,7 @@ import util.UtilityMethods;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.SingleProcessor;
+import ca.uqac.lif.cep.SynchronousProcessor;
 import ca.uqac.lif.cep.tmf.QueueSource;
 
 /**
@@ -75,7 +75,7 @@ public class PipingUnary
 	 * A processor that doubles every number it is given. What this
 	 * processor does is not really important for our example.
 	 */
-	public static class Doubler extends SingleProcessor
+	public static class Doubler extends SynchronousProcessor
 	{
 		public Doubler()
 		{
@@ -85,7 +85,7 @@ public class PipingUnary
 		@Override
 		protected boolean compute(Object[] inputs, Queue<Object[]> outputs)
 		{
-			outputs.add(wrapObject(2 * ((Number) inputs[0]).intValue()));
+			outputs.add(new Object[] {2 * ((Number) inputs[0]).intValue()});
 			return true;
 		}
 

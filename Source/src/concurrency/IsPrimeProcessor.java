@@ -20,13 +20,13 @@ package concurrency;
 import java.math.BigInteger;
 import java.util.Queue;
 
-import ca.uqac.lif.cep.SingleProcessor;
+import ca.uqac.lif.cep.SynchronousProcessor;
 
 /**
  * Processor that checks the primality of a big integer.
  * Its goal is not to be efficient, but rather to be CPU-intensive.
  */
-public class IsPrimeProcessor extends SingleProcessor
+public class IsPrimeProcessor extends SynchronousProcessor
 {
 	public IsPrimeProcessor()
 	{

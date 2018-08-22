@@ -21,7 +21,7 @@ import java.util.Queue;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.SingleProcessor;
+import ca.uqac.lif.cep.SynchronousProcessor;
 import ca.uqac.lif.cep.tmf.QueueSource;
 
 /**
@@ -60,7 +60,7 @@ public class PipingBinary
 	 * A simple processor that adds two numbers. It is used in examples
 	 * throughout this section.
 	 */
-	public static class Adder extends SingleProcessor
+	public static class Adder extends SynchronousProcessor
 	{
 		public Adder()
 		{

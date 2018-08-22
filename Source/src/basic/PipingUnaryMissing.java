@@ -32,8 +32,8 @@ import ca.uqac.lif.cep.tmf.QueueSource;
  * The expected output of the program should look like this:
  * <pre>
  * Exception in thread "main" ca.uqac.lif.cep.Pullable$PullableException: Input 0 of this processor is connected to nothing
-	at ca.uqac.lif.cep.SingleProcessor$OutputPullable.hasNext(SingleProcessor.java:396)
-	at ca.uqac.lif.cep.SingleProcessor$OutputPullable.pull(SingleProcessor.java:354)
+	at ca.uqac.lif.cep.SynchronousProcessor$OutputPullable.hasNext(SynchronousProcessor.java:396)
+	at ca.uqac.lif.cep.SynchronousProcessor$OutputPullable.pull(SynchronousProcessor.java:354)
 	at basic.PipingUnaryMissing.main(PipingUnaryMissing.java:51)
  * </pre>
  * @see PipingUnary

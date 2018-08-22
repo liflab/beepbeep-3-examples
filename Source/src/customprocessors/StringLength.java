@@ -3,9 +3,9 @@ package customprocessors;
 import java.util.Queue;
 
 import ca.uqac.lif.cep.Processor;
-import ca.uqac.lif.cep.SingleProcessor;
+import ca.uqac.lif.cep.SynchronousProcessor;
 
-public class StringLength extends SingleProcessor
+public class StringLength extends SynchronousProcessor
 {
 	public StringLength() 
 	{

@@ -23,19 +23,19 @@ import java.util.Queue;
 
 import util.UtilityMethods;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.SingleProcessor;
+import ca.uqac.lif.cep.SynchronousProcessor;
 
 /**
  * This processor simply generates the trace of numbers 0, 1, 2, ...
  * This is one of two possible ways of writing such a counter: by
- * creating an instance of SingleProcessor with a purpose-built
+ * creating an instance of SynchronousProcessor with a purpose-built
  * <code>compute()</code> method. Another way is illustrated by the
  * {@link CounterGroup} class.
  * 
  * @author Sylvain Hallé
  * @difficulty Easy
  */
-public class CounterSingle extends SingleProcessor
+public class CounterSingle extends SynchronousProcessor
 {
 	/**
 	 * The variable that will keep the current value of the counter

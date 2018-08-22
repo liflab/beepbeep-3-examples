@@ -13,6 +13,7 @@ public class GloballySimple
     ///
     Globally g = new Globally();
     Print print = new Print();
+    print.setPrefix("Output: ").setSeparator("\n");
     Connector.connect(g, print);
     Pushable p = g.getPushableInput();
     System.out.println("Pushing true");

@@ -5,7 +5,7 @@ import java.util.Queue;
 
 import ca.uqac.lif.cep.*;
 
-public class Stuttering extends SingleProcessor {
+public class Stuttering extends SynchronousProcessor {
 
 	public Stuttering() {
 		super(1, 1);
