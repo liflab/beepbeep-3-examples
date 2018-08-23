@@ -1,6 +1,6 @@
 /*
     BeepBeep, an event stream processor
-    Copyright (C) 2008-2016 Sylvain Hallé
+    Copyright (C) 2008-2018 Sylvain Hallé
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published
@@ -46,16 +46,12 @@ public class Polynomial extends PassthroughFunction
 		 * Addition, followed by two arguments. */
 		return new FunctionTree(Numbers.addition,
 				/* The first argument is itself a FunctionTree that computes
-				 * the multiplication of two arguments */
-				new FunctionTree(Numbers.multiplication,
-					/* In this case, the multiplication is done on the argument of the
-					 * function by itself (corresponding to x^2). This is done by
-					 * giving as arguments to the multiplication function twice 
-					 * the ArgumentPlaceholder. When ArgumentPlaceholder is instantiated
-					 * without argument, it refers by default to the first argument
-					 * of a function. */
-					new StreamVariable(),
-					new StreamVariable()),
+				 * the square of the argument. */
+				new FunctionTree(Numbers.power,
+					/* This is done by using the Power function. StreamVariable.X
+					 * refers by default to the first argument passed to a function. */
+					StreamVariable.X,
+					new Constant(2)),
 				/* The second term of the addition is the constant 3 */
 				new Constant(3));
 	}

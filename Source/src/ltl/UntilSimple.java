@@ -1,6 +1,6 @@
 /*
     BeepBeep, an event stream processor
-    Copyright (C) 2008-2018 Sylvain Hallé
+    Copyright (C) 2008-2016 Sylvain Hallé
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published
@@ -20,34 +20,35 @@ package ltl;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pushable;
 import ca.uqac.lif.cep.io.Print;
-import ca.uqac.lif.cep.ltl.Eventually;
+import ca.uqac.lif.cep.ltl.Until;
 
 /**
- * Basic usage of LTL's {@link Eventually} processor. It is illustrated
+ * Basic usage of LTL's {@link Until} processor. It is illustrated
  * as follows:
  * <p>
- * <img src="{@docRoot}/doc-files/ltl/EventuallySimple.png" alt="Processor graph">
+ * <img src="{@docRoot}/doc-files/ltl/UntilSimple.png" alt="Processor graph">
  * <p>
  * @author Sylvain Hallé
  */
-public class EventuallySimple
+public class UntilSimple
 {
   public static void main(String[] args)
   {
     ///
-    Eventually e = new Eventually();
+    Until u = new Until();
     Print print = new Print();
     print.setPrefix("Output: ").setSeparator("\n");
-    Connector.connect(e, print);
-    Pushable p = e.getPushableInput();
-    System.out.println("Pushing false");
-    p.push(false);
-    System.out.println("Pushing false");
-    p.push(false);
-    System.out.println("Pushing true");
-    p.push(true);
-    System.out.println("Pushing false");
-    p.push(false);
+    Connector.connect(u, print);
+    Pushable p = u.getPushableInput(0);
+    Pushable q = u.getPushableInput(1);
+    System.out.println("Pushing p=true, q=false");
+    p.push(true); q.push(false);
+    System.out.println("Pushing p=true, q=false");
+    p.push(true); q.push(false);
+    System.out.println("Pushing p=true, q=true");
+    p.push(true); q.push(true);
+    System.out.println("Pushing p=false, q=false");
+    p.push(false); q.push(false);
     ///
   }
 }
