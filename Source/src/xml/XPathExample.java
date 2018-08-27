@@ -39,7 +39,7 @@ public class XPathExample
             + "</doc>"}, out);
     XmlElement x = (XmlElement) out[0];
     System.out.println(
-        new XPathFunction("doc/d").getValue(x));
+        new XPathFunction("doc/d/text()").getValue(x));
     System.out.println(
         new XPathFunction("doc/a/b").getValue(x));
     System.out.println(

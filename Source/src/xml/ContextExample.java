@@ -21,10 +21,8 @@ import ca.uqac.lif.cep.xml.XPathFunction;
 import ca.uqac.lif.cep.fol.ForAll;
 import ca.uqac.lif.cep.functions.ContextVariable;
 import ca.uqac.lif.cep.functions.FunctionTree;
-import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.util.Bags;
 import ca.uqac.lif.cep.util.Numbers;
-import ca.uqac.lif.cep.util.Strings;
 import ca.uqac.lif.cep.xml.ParseXml;
 import ca.uqac.lif.xml.XmlElement;
 
@@ -37,43 +35,37 @@ public class ContextExample
   public static void main(String[] args)
   {
     ///
-    
-
     // The domain function fetches the set all the values of elements <b>;
     // the XPath function produces TextElements, which are converted to
     // strings
-    FunctionTree dom_f = new FunctionTree(
+    FunctionTree d = new FunctionTree(
         new Bags.ApplyToAll(Numbers.numberCast),
-        new FunctionTree(
-            new XPathFunction("doc/a/b/text()"), StreamVariable.X));
-    ForAll fa = new ForAll("x", dom_f,
-        new FunctionTree(Numbers.isLessThan,
-            new ContextVariable("x"),
-            new FunctionTree(Numbers.numberCast, 
-                new FunctionTree(Bags.anyElement, 
-                    new XPathFunction("doc/a[b=$x]/c/text()")))
-            ));
+        new XPathFunction("doc/a/b/text()"));
+    FunctionTree f = new FunctionTree(Numbers.isLessThan,
+        new ContextVariable("z"),
+        new FunctionTree(Numbers.numberCast, 
+            new FunctionTree(Bags.anyElement, 
+                new XPathFunction("doc/a[b=$z]/c/text()"))));
+    ForAll fa = new ForAll("z", d, f);
     ///
     
     //!
     // Let us evaluate this on a first document
+    Object[] out = new Object[1];
     XmlElement x = ParseXml.instance.getValue("<doc>\n"
         + "<a><b>1</b><c>10</c></a>\n"
         + "<a><b>2</b><c>15</c></a>\n"
-        + "<d>123</d>\n"
         + "</doc>");
-    Object[] out = new Object[1];
     fa.evaluate(new Object[] {x}, out);
     System.out.println(out[0]);
+    //!
 
     // Another one
     x = ParseXml.instance.getValue("<doc>\n"
         + "<a><b>1</b><c>10</c></a>\n"
         + "<a><b>20</b><c>15</c></a>\n"
-        + "<d>123</d>\n"
         + "</doc>");
     fa.evaluate(new Object[] {x}, out);
     System.out.println(out[0]);
-    //!
   }
 }
