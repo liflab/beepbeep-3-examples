@@ -7,20 +7,27 @@ import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
-import ca.uqac.lif.cep.functions.ApplyFunction;
+import ca.uqac.lif.cep.functions.TurnInto;
 import ca.uqac.lif.cep.mtnp.DrawPlot;
 import ca.uqac.lif.cep.mtnp.UpdateTable;
 import ca.uqac.lif.cep.mtnp.UpdateTableStream;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.Fork;
-import ca.uqac.lif.cep.tmf.Pump;
 import ca.uqac.lif.cep.tmf.Trim;
 import ca.uqac.lif.cep.tmf.Window;
 import ca.uqac.lif.cep.util.Numbers;
+import ca.uqac.lif.cep.widgets.GetWidgetValue;
+import ca.uqac.lif.cep.widgets.ListenerSource;
 import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
+import java.awt.Component;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
 
 /**
  * Display a real-time plot of the values of a slider in a Swing frame.
@@ -64,12 +71,31 @@ public class AverageSlider
 {
 	public static void main(String[] args) throws ProcessorException
 	{
-		SliderFrame frame = new SliderFrame();
-		Pump pump = new Pump(500);
-		Connector.connect(frame, pump);
+	  /* Create a window with a slider */
+    JPanel panel = new JPanel();
+    panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+    JSlider m_slider = new JSlider(JSlider.HORIZONTAL, 0, 100, 30);
+    m_slider.setMajorTickSpacing(20);
+    m_slider.setPaintTicks(true);
+    m_slider.setPaintLabels(true);
+    JLabel slider_label = new JLabel("Value", JLabel.CENTER);
+    slider_label.setAlignmentX(Component.CENTER_ALIGNMENT);
+    panel.add(slider_label);
+    panel.add(m_slider);
+    panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+    JFrame m_frame = new JFrame("My Widget Frame");
+    m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    m_frame.add(panel);
+    m_frame.pack();
+    m_frame.setVisible(true);
+    
+    ListenerSource ls = new ListenerSource();
+    m_slider.addChangeListener(ls);
+		GetWidgetValue gwv = new GetWidgetValue();
+		Connector.connect(ls, gwv);
 		Fork fork = new Fork(3);
-		Connector.connect(pump, fork);
-		ApplyFunction one = new ApplyFunction(new Constant(1));
+		Connector.connect(gwv, fork);
+		TurnInto one = new TurnInto(1);
 		Connector.connect(fork, 0, one, INPUT);
 		Cumulate counter = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(one, counter);
@@ -91,8 +117,8 @@ public class AverageSlider
 		Connector.connect(decimate, plot);
 		BitmapJFrame plot_frame = new BitmapJFrame();
 		Connector.connect(plot, plot_frame);
-		
-		Processor.startAll(frame, pump, plot_frame);
+
+		Processor.startAll(plot_frame);
 		UtilityMethods.waitForever();
 	}
 	
