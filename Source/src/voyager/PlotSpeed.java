@@ -13,7 +13,7 @@ import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.io.ReadLines;
 import ca.uqac.lif.cep.mtnp.DrawPlot;
 import ca.uqac.lif.cep.mtnp.UpdateTableStream;
-import ca.uqac.lif.cep.signal.Limiter;
+import ca.uqac.lif.cep.signal.Limit;
 import ca.uqac.lif.cep.signal.PeakFinderLocalMaximum;
 import ca.uqac.lif.cep.signal.Smoothen;
 import ca.uqac.lif.cep.signal.Threshold;
@@ -135,7 +135,7 @@ public class PlotSpeed
 		Connector.connect(f2, BOTTOM, peak, INPUT);
 		Threshold th = new Threshold(0.0125f);
 		Connector.connect(peak, th);
-		Limiter li = new Limiter(5);
+		Limit li = new Limit(5);
 		Connector.connect(th, li);
 		
 		UpdateTableStream table = new UpdateTableStream("Date", "Speed (AU/week)", "Peak");

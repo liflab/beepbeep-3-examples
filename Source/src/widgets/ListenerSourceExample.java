@@ -18,9 +18,7 @@
 package widgets;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.io.Print;
-import ca.uqac.lif.cep.widgets.GetWidgetValue;
 import ca.uqac.lif.cep.widgets.ListenerSource;
 import java.awt.Component;
 import javax.swing.BorderFactory;
@@ -31,10 +29,10 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 
 /**
- * Get the value of a Swing widget and use it as a source of events.
+ * Wrap a Swing widget into a BeepBeep event <tt>Source</tt>.
  * @author Sylvain Hallé
  */
-public class GetValueSlider
+public class ListenerSourceExample
 {
   public static void main(String[] args)
   {
@@ -60,10 +58,8 @@ public class GetValueSlider
     //!
     ListenerSource ls = new ListenerSource();
     slider.addChangeListener(ls);
-    ApplyFunction gwv = new ApplyFunction(GetWidgetValue.instance);
-    Connector.connect(ls, gwv);
     Print print = new Print();
-    Connector.connect(gwv, print);
+    Connector.connect(ls, print);
     //!
   }
 }

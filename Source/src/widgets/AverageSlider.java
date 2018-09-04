@@ -1,3 +1,20 @@
+/*
+    BeepBeep, an event stream processor
+    Copyright (C) 2008-2018 Sylvain Hallé
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package widgets;
 
 import plots.BitmapJFrame;
@@ -7,6 +24,7 @@ import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.ProcessorException;
+import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.TurnInto;
@@ -91,7 +109,7 @@ public class AverageSlider
     
     ListenerSource ls = new ListenerSource();
     m_slider.addChangeListener(ls);
-		GetWidgetValue gwv = new GetWidgetValue();
+		ApplyFunction gwv = new ApplyFunction(GetWidgetValue.instance);
 		Connector.connect(ls, gwv);
 		Fork fork = new Fork(3);
 		Connector.connect(gwv, fork);
