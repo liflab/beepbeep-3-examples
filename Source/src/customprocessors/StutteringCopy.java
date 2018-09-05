@@ -1,38 +1,37 @@
-package customprocessors;
+/*
+    BeepBeep, an event stream processor
+    Copyright (C) 2008-2018 Sylvain Hallé
 
-import ca.uqac.lif.cep.*;
-import ca.uqac.lif.cep.tmf.QueueSource;
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package customprocessors;
 
 public class StutteringCopy extends Stuttering 
 {
-	public StutteringCopy() 
-	{
-		super();
-	}
+  public StutteringCopy() 
+  {
+    super();
+  }
 
-	@Override
-	public StutteringCopy duplicate(boolean with_state) 
-	{
-		StutteringCopy s = new StutteringCopy();
-		if (with_state)
-		{
-		  super.duplicateInto(s);
-		}
-		return s;
-	}
-	
-	public static void main(String[] args)
-	{
-	  ///
-	  QueueSource src = new QueueSource();
-	  src.setEvents(2, 1);
-	  Stuttering s1 = new Stuttering();
-	  Connector.connect(src, s1);
-	  Pullable p1 = s1.getPullableOutput();
-	  for (int i = 0; i < 4; i++)
-	  {
-	    System.out.println("Call to pull: " + p.pull());
-	  }
-	  ///
-	}
+  @Override
+  public StutteringCopy duplicate(boolean with_state) 
+  {
+    StutteringCopy s = new StutteringCopy();
+    if (with_state)
+    {
+      super.duplicateInto(s);
+    }
+    return s;
+  }
 }
