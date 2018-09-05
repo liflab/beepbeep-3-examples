@@ -8,7 +8,8 @@ public class MyMax extends SynchronousProcessor
 {
 	Number last = null;
 
-	public MyMax() {
+	public MyMax() 
+	{
 		super(1, 1);
 	}
 
@@ -27,7 +28,13 @@ public class MyMax extends SynchronousProcessor
 	}
 
 	@Override
-	public Processor duplicate(boolean with_state) {
-		return new MyMax();
+	public Processor duplicate(boolean with_state)
+	{
+	  MyMax mm = new MyMax();
+	  if (with_state)
+	  {
+	    mm.last = this.last;
+	  }
+		return mm;
 	}
 }
