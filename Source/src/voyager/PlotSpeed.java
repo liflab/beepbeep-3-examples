@@ -66,99 +66,114 @@ import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
  */
 public class PlotSpeed 
 {
-	public static void main(String[] args)
-	{
-		///
-		int start_year = 1977, end_year = 1992;
-		
-		/* The Voyager data is split into multiple CSV files, one per civil
-		 * year. Let us create one ReadLines processor for each file. */
-		ReadLines[] readers = new ReadLines[end_year - start_year + 1];
-		for (int y = start_year; y <= end_year; y++)
-		{
-			readers[y - start_year] = new ReadLines(
-					PlotSpeed.class.getResourceAsStream("data/vy2_" + y + ".asc"));
-		}
-		
-		/* Pass this array of readers to the Splice processors, so that their
-		 * contents be used as an uninterrupted stream of events. */
-		Splice spl = new Splice(readers);
+  public static void main(String[] args) {
+    ///
+    int start_year = 1977, end_year = 1992;
 
-		/* The input files have hourly readings; keep only one reading per week. */
-		CountDecimate cd = new CountDecimate(24 * 7);
-		Connector.connect(spl, cd);
-		
-		/* The 1977 file has no data before week 31 or so (the launch date);
-		 * let's ignore these first lines. */
-		Trim ignore_beginning = new Trim(31);
-		Connector.connect(cd, ignore_beginning);
-		
-		/* Split the surviving lines into arrays with the TAB character. */
-		ApplyFunction to_array = new ApplyFunction(new Strings.SplitString("\\s+"));
-		Connector.connect(ignore_beginning, to_array);
-		///
-		
-		/* Fork this stream of arrays in three. */
-		Fork fork = new Fork(3);
-		Connector.connect(to_array, fork);
-		
-		/* From first stream, format date */
-		ApplyFunction format_date = new ApplyFunction(new FunctionTree(FormatDate.instance, new FunctionTree(new NthElement(0), StreamVariable.X), new FunctionTree(new NthElement(1), StreamVariable.X)));
-		Connector.connect(fork, 0, format_date, INPUT);
-		
-		/* From second stream, extract distance */
-		ApplyFunction get_au1 = new ApplyFunction(new FunctionTree(Numbers.numberCast, new FunctionTree(new NthElement(3), StreamVariable.X)));
-		Connector.connect(fork, 1, get_au1, INPUT);
-		
-		/* Delay third stream by one reading, and extract distance */
-		Trim cd_delay = new Trim(1);
-		Connector.connect(fork, 2, cd_delay, INPUT);
-		ApplyFunction get_au2 = new ApplyFunction(new FunctionTree(Numbers.numberCast, new FunctionTree(new NthElement(3), StreamVariable.X)));
-		Connector.connect(cd_delay, get_au2);
-		
-		/* Subtract third and second streams, giving the weekly distance
-		 * travelled. */
-		ApplyFunction distance = new ApplyFunction(new FunctionTree(Numbers.maximum, Constant.ZERO, new FunctionTree(Numbers.subtraction, StreamVariable.X, StreamVariable.Y)));
-		Connector.connect(get_au2, OUTPUT, distance, TOP);
-		Connector.connect(get_au1, OUTPUT, distance, BOTTOM);
-		
-		/* Since the weekly distance is very close to the measurement's
-		 * precision, smoothen those values by averaging each two successive
-		 * points. */
-		Smoothen smooth = new Smoothen(3);
-		Connector.connect(distance, smooth);
-		
-		Fork f2 = new Fork(2);
-		Connector.connect(smooth, f2);
-		PeakFinderLocalMaximum peak = new PeakFinderLocalMaximum(5);
-		//Passthrough peak = new Passthrough();
-		Connector.connect(f2, BOTTOM, peak, INPUT);
-		Threshold th = new Threshold(0.0125f);
-		Connector.connect(peak, th);
-		Limit li = new Limit(5);
-		Connector.connect(th, li);
-		
-		UpdateTableStream table = new UpdateTableStream("Date", "Speed (AU/week)", "Peak");
-		
-		Connector.connect(format_date, OUTPUT, table, 0);
-		Connector.connect(f2, OUTPUT, table, 1);
-		Connector.connect(li, OUTPUT, table, 2);
-		
-		Pump pump = new Pump();
-		Connector.connect(table, pump);
-		
-		KeepLast last = new KeepLast(1);
-		Connector.connect(pump, last);
-		Scatterplot plot = new Scatterplot();
-		plot.setTitle("Planetary encounters of Voyager 2");
-		plot.setCaption(Axis.X, "Days after 1/1/77");
-		plot.setCaption(Axis.Y, "AU");
-		DrawPlot draw = new DrawPlot(plot);
-		Connector.connect(last, draw);
-		
-		BitmapJFrame window = new BitmapJFrame();
-		Connector.connect(draw, window);
-		window.start();
-		pump.start();
-	}
+    /* The Voyager data is split into multiple CSV files, one per civil
+     * year. Let us create one ReadLines processor for each file. */
+    ReadLines[] readers = new ReadLines[end_year - start_year + 1];
+    for (int y = start_year; y <= end_year; y++) {
+      readers[y - start_year] = new ReadLines(
+          PlotSpeed.class.getResourceAsStream(
+              "data/vy2_" + y + ".asc"));
+    }
+
+    /* Pass this array of readers to the Splice processors, so that their
+     * contents be used as an uninterrupted stream of events. */
+    Splice spl = new Splice(readers);
+
+    /* The input files have hourly readings; keep only one reading per week. */
+    CountDecimate cd = new CountDecimate(24 * 7);
+    Connector.connect(spl, cd);
+
+    /* The 1977 file has no data before week 31 or so (the launch date);
+     * let's ignore these first lines. */
+    Trim ignore_beginning = new Trim(31);
+    Connector.connect(cd, ignore_beginning);
+
+    /* Split the surviving lines into arrays with the TAB character. */
+    ApplyFunction to_array = new ApplyFunction(
+        new Strings.SplitString("\\s+"));
+    Connector.connect(ignore_beginning, to_array);
+    ///
+
+    /* Fork this stream of arrays in three. */
+    //!
+    Fork fork = new Fork(3);
+    Connector.connect(to_array, fork);
+
+    /* From first stream, format date */
+    ApplyFunction format_date = new ApplyFunction(new FunctionTree(
+        FormatDate.instance, new FunctionTree(
+            new NthElement(0), StreamVariable.X), 
+        new FunctionTree(new NthElement(1), StreamVariable.X)));
+    Connector.connect(fork, 0, format_date, INPUT);
+
+    /* From second stream, extract distance */
+    ApplyFunction get_au1 = new ApplyFunction(new FunctionTree(
+        Numbers.numberCast, new FunctionTree(
+            new NthElement(3), StreamVariable.X)));
+    Connector.connect(fork, 1, get_au1, INPUT);
+
+    /* Delay third stream by one reading, and extract distance */
+    Trim cd_delay = new Trim(1);
+    Connector.connect(fork, 2, cd_delay, INPUT);
+    ApplyFunction get_au2 = new ApplyFunction(new FunctionTree(
+        Numbers.numberCast, new FunctionTree(
+            new NthElement(3), StreamVariable.X)));
+    Connector.connect(cd_delay, get_au2);
+
+    /* Subtract third and second streams, giving the weekly distance
+     * travelled. */
+    ApplyFunction distance = new ApplyFunction(new FunctionTree(
+        Numbers.maximum, Constant.ZERO, new FunctionTree(
+            Numbers.subtraction, 
+            StreamVariable.X, StreamVariable.Y)));
+    Connector.connect(get_au2, OUTPUT, distance, TOP);
+    Connector.connect(get_au1, OUTPUT, distance, BOTTOM);
+
+    /* Since the weekly distance is very close to the measurement's
+     * precision, smoothen those values by averaging each two successive
+     * points. */
+    Smoothen smooth = new Smoothen(2);
+    Connector.connect(distance, smooth);
+
+    Fork f2 = new Fork(2);
+    Connector.connect(smooth, f2);
+    PeakFinderLocalMaximum peak = new PeakFinderLocalMaximum(5);
+    //Passthrough peak = new Passthrough();
+    Connector.connect(f2, BOTTOM, peak, INPUT);
+    Threshold th = new Threshold(0.0125f);
+    Connector.connect(peak, th);
+    Limit li = new Limit(5);
+    Connector.connect(th, li);
+
+    UpdateTableStream table = new UpdateTableStream("Date",
+        "Speed (AU/week)", "Peak");
+
+    Connector.connect(format_date, OUTPUT, table, 0);
+    Connector.connect(f2, OUTPUT, table, 1);
+    Connector.connect(li, OUTPUT, table, 2);
+    //!
+
+    //*
+    Pump pump = new Pump();
+    Connector.connect(table, pump);
+
+    KeepLast last = new KeepLast(1);
+    Connector.connect(pump, last);
+    Scatterplot plot = new Scatterplot();
+    plot.setCaption(Axis.X, "Days after 1/1/77")
+    .setCaption(Axis.Y, "AU");
+
+    DrawPlot draw = new DrawPlot(plot);
+    Connector.connect(last, draw);
+
+    BitmapJFrame window = new BitmapJFrame();
+    Connector.connect(draw, window);
+    window.start();
+    pump.start();
+    //*
+  }
 }
