@@ -1,7 +1,7 @@
 package customprocessors;
 
 import java.util.Queue;
-
+import java.util.Set;
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.SynchronousProcessor;
 
@@ -23,5 +23,23 @@ public class StringLength extends SynchronousProcessor
 	{
 		return new StringLength();
 	}
-
+	
+	@Override
+  public void getInputTypesFor(Set<Class<?>> classes, int position) 
+  {
+    if (position == 0)
+    {
+      classes.add(String.class);
+    }
+  }
+	
+	@Override
+	public Class<?> getOutputType(int position)
+	{
+	  if (position == 0)
+	  {
+	    return Number.class;
+	  }
+	  return null;
+	}
 }
