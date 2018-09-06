@@ -40,7 +40,8 @@ public class CounterGroup extends GroupProcessor
 	{
 		super(1, 1);
 		TurnInto one = new TurnInto(1);
-		Cumulate sum = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
+		Cumulate sum = new Cumulate(
+		    new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(one, sum);
 		associateInput(0, one, 0);
 		associateOutput(0, sum, 0);
