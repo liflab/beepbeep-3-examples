@@ -54,15 +54,13 @@ public class StatefulDuplication
       Connector.connect(src1, s1);
       Pullable p1 = s1.getPullableOutput();
       System.out.println("Call to pull on p1: " + p1.pull());
-      //!
-      //&
       QueueSource src2 = new QueueSource();
       src2.setEvents(3, 1);
       StutteringCopy s2 = s1.duplicate(true);
       Connector.connect(src2, s2);
       Pullable p2 = s2.getPullableOutput();
       System.out.println("Call to pull on p2: " + p2.pull());
-      //&
+      //!
     }
   }
 }
