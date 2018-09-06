@@ -15,47 +15,36 @@
     You should have received a copy of the GNU Lesser General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package customprocessors;
+package basic;
 
-import java.util.Queue;
+import ca.uqac.lif.cep.Connector;
+import ca.uqac.lif.cep.Pushable;
+import ca.uqac.lif.cep.io.Print;
+import ca.uqac.lif.cep.tmf.KeepLast;
 
-import ca.uqac.lif.cep.*;
-
-public class MyMax extends SynchronousProcessor
+/**
+ * Push events to the {@link ca.uqac.lif.cep.tmf.KeepLast KeepLast} processor.
+ * The chain of processors in this example can be represented
+ * graphically as:
+ * <p>
+ * <img src="{@docRoot}/doc-files/basic/KeepLastPush.png" alt="Processor graph">
+ * <p>
+ * @author Sylvain Hallé
+ * @difficulty Easy
+ */
+public class KeepLastPush
 {
-  Number last = null;
-
-  public MyMax() 
-  {
-    super(1, 1);
-  }
-
-  @Override
-  public boolean compute(Object[] inputs, Queue<Object[]> outputs) 
-  {
-    Number current = (Number) inputs[0];
-    Number output;
-    if (last != null) 
-    {
-      output = Math.max(last.floatValue(), current.floatValue());
-      last = current;
-      outputs.add(new Object[]{output});
-    }
-    else 
-    {
-      last = current;
-    }
-    return true;
-  }
-
-  @Override
-  public Processor duplicate(boolean with_state)
-  {
-    MyMax mm = new MyMax();
-    if (with_state)
-    {
-      mm.last = this.last;
-    }
-    return mm;
-  }
+	public static void main(String[] args)
+	{
+	  ///
+		KeepLast kl = new KeepLast();
+		Print print = new Print();
+		Connector.connect(kl, print);
+		Pushable p = kl.getPushableInput();
+		p.push(1);
+		p.push(2);
+		p.push(3);
+		p.notifyEndOfTrace();
+		///
+	}
 }

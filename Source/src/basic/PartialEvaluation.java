@@ -15,47 +15,40 @@
     You should have received a copy of the GNU Lesser General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package customprocessors;
+package basic;
 
-import java.util.Queue;
+import ca.uqac.lif.cep.Connector;
+import ca.uqac.lif.cep.Pushable;
+import ca.uqac.lif.cep.functions.ApplyFunctionPartial;
+import ca.uqac.lif.cep.io.Print;
+import ca.uqac.lif.cep.util.Numbers;
 
-import ca.uqac.lif.cep.*;
-
-public class MyMax extends SynchronousProcessor
+public class PartialEvaluation
 {
-  Number last = null;
-
-  public MyMax() 
+  public static void main(String[] args)
   {
-    super(1, 1);
-  }
-
-  @Override
-  public boolean compute(Object[] inputs, Queue<Object[]> outputs) 
-  {
-    Number current = (Number) inputs[0];
-    Number output;
-    if (last != null) 
-    {
-      output = Math.max(last.floatValue(), current.floatValue());
-      last = current;
-      outputs.add(new Object[]{output});
-    }
-    else 
-    {
-      last = current;
-    }
-    return true;
-  }
-
-  @Override
-  public Processor duplicate(boolean with_state)
-  {
-    MyMax mm = new MyMax();
-    if (with_state)
-    {
-      mm.last = this.last;
-    }
-    return mm;
+    ///
+    ApplyFunctionPartial af = 
+        new ApplyFunctionPartial(Numbers.multiplication);
+    Print print = new Print();
+    Connector.connect(af, print);
+    Pushable p1 = af.getPushableInput(0);
+    Pushable p2 = af.getPushableInput(1);
+    ///
+    
+    //!
+    p1.push(3);
+    p2.push(1);
+    //!
+    
+    //*
+    p1.push(0);
+    //*
+    
+    //&
+    p1.push(6);
+    p2.push(9);
+    p2.push(5);
+    //&
   }
 }

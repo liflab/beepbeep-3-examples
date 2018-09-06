@@ -25,7 +25,7 @@ import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pushable;
 import ca.uqac.lif.cep.functions.ApplyFunction;
-import ca.uqac.lif.cep.functions.ApplyFunctionLazy;
+import ca.uqac.lif.cep.functions.ApplyFunctionPartial;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.StreamVariable;
@@ -49,7 +49,7 @@ public class Nested
   public static void main(String[] args)
   {
     Fork fork = new Fork(5);
-    ApplyFunctionLazy imp = new ApplyFunctionLazy(new FunctionTree(Booleans.implies,
+    ApplyFunctionPartial imp = new ApplyFunctionPartial(new FunctionTree(Booleans.implies,
         new FunctionTree(Equals.instance, StreamVariable.X, new Constant("a")),
         StreamVariable.Y
         ));

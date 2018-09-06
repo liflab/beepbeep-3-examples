@@ -25,7 +25,7 @@ import static ca.uqac.lif.cep.Connector.TOP;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pushable;
 import ca.uqac.lif.cep.functions.ApplyFunction;
-import ca.uqac.lif.cep.functions.ApplyFunctionLazy;
+import ca.uqac.lif.cep.functions.ApplyFunctionPartial;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.StreamVariable;
@@ -52,7 +52,7 @@ public class OpenClose
   {
     ///
     Fork f1 = new Fork(2);
-    ApplyFunctionLazy imp = new ApplyFunctionLazy(
+    ApplyFunctionPartial imp = new ApplyFunctionPartial(
         new FunctionTree(Booleans.implies,
             new FunctionTree(Equals.instance, 
                 StreamVariable.X, new Constant("open")),
