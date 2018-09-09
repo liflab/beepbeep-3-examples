@@ -18,6 +18,7 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -105,6 +106,40 @@ public abstract class UtilityMethods
 			list.add(o);
 		}
 		return list;
+	}
+	
+	public static String print(Object o)
+	{
+	  if (o == null)
+	  {
+	    return "null";
+	  }
+	  if (o instanceof Collection<?>)
+	  {
+	    String out = "[";
+	    for (Object e : (Collection<?>) o)
+	    {
+	      out += print(e);
+	    }
+	    out += "]";
+	    return out;
+	  }
+	  if (o.getClass().isArray())
+	  {
+	    Object[] a = (Object[]) o;
+	    String out = "[";
+	    for (int i = 0; i < a.length; i++)
+	    {
+	      if (i > 0)
+        {
+          out += ",";
+        }
+	      out += print(a[i]);
+	    }
+	    out += "]";
+	    return out;
+	  }
+	  return o.toString();
 	}
 
 	/**
