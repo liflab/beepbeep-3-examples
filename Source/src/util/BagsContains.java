@@ -54,7 +54,8 @@ public class BagsContains
 		// the n-th list contains the number n
 		ApplyFunction contains = new ApplyFunction(Bags.contains);
 		Connector.connect(src1, 0, contains, 0);
-		Cumulate counter = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
+		Cumulate counter = new Cumulate(
+		    new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(src2, counter);
 		Connector.connect(counter, 0, contains, 1);
 		Pullable p = contains.getPullableOutput();

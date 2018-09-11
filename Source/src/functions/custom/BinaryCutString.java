@@ -2,7 +2,8 @@ package functions.custom;
 
 import ca.uqac.lif.cep.functions.BinaryFunction;
 
-public class BinaryCutString extends BinaryFunction<String,Number,String>
+public class BinaryCutString extends 
+  BinaryFunction<String,Number,String> 
 {
 	public BinaryCutString()
 	{

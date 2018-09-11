@@ -46,7 +46,8 @@ public class DetectAppliance
     Connector.connect(peak_th, peak_damper);
     
     // Second branch: plateau detection
-    Processor plateau_finder = new PlateauFinder().setPlateauRange(5).setRelative(true);
+    Processor plateau_finder = new PlateauFinder()
+        .setPlateauRange(5).setRelative(true);
     Connector.connect(f, 1, plateau_finder, 0);
     // Threshold to avoid finding plateaus due to noise
     Threshold plateau_th = new Threshold(100);

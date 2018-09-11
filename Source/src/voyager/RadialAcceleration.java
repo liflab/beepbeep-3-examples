@@ -27,7 +27,7 @@ import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.io.ReadLines;
 import ca.uqac.lif.cep.mtnp.DrawPlot;
 import ca.uqac.lif.cep.mtnp.UpdateTableStream;
-import ca.uqac.lif.cep.signal.Smoothen;
+import ca.uqac.lif.cep.signal.Smooth;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Pump;
@@ -103,7 +103,7 @@ public class RadialAcceleration
 		/* Compute rate of change of speed (2nd derivative) */
 		Slope acceleration = new Slope();
 		Connector.connect(speed, acceleration);
-		Smoothen smooth = new Smoothen(2);
+		Smooth smooth = new Smooth(2);
 		Connector.connect(acceleration, smooth);
 		
 		UpdateTableStream table = new UpdateTableStream("Date", "Acceleration");

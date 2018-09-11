@@ -52,8 +52,8 @@ public class RunOnExample
 		src1.addEvent(UtilityMethods.createList(4f, 2f));
 		src1.addEvent(UtilityMethods.createList(4f, 4f, 8f));
 		src1.addEvent(UtilityMethods.createList(6f, 4f));
-		Bags.RunOn run = new Bags.RunOn(
-				new Cumulate(new CumulativeFunction<Number>(Numbers.addition)));
+		Bags.RunOn run = new Bags.RunOn(new Cumulate(
+		    new CumulativeFunction<Number>(Numbers.addition)));
 		Connector.connect(src1, run);
 		Pullable p = run.getPullableOutput();
 		for (int i = 0; i < 4; i++)

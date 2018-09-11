@@ -22,7 +22,8 @@ import java.util.Queue;
 
 public class EuclideanDistance extends SynchronousProcessor
 {
-  public static final EuclideanDistance instance = new EuclideanDistance();
+  public static final EuclideanDistance instance = 
+      new EuclideanDistance();
   
   EuclideanDistance() 
   {

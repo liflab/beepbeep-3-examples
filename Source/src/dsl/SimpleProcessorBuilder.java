@@ -110,7 +110,8 @@ public class SimpleProcessorBuilder extends GroupProcessorBuilder
 		SimpleProcessorBuilder builder = new SimpleProcessorBuilder();
 		{
 			System.out.println("First query");
-			Processor proc = builder.build("KEEP ONE EVERY 2 FROM (INPUT 0)");
+			Processor proc = builder.build(
+			    "KEEP ONE EVERY 2 FROM (INPUT 0)");
 			QueueSource src = new QueueSource().setEvents(0, 1, 2, 3, 4, 5, 6, 8);
 			Connector.connect(src, proc);
 			Pullable pul1 = proc.getPullableOutput();
@@ -120,7 +121,8 @@ public class SimpleProcessorBuilder extends GroupProcessorBuilder
 		{
 			System.out.println("Second query");
 			//m
-			Processor proc = builder.build("KEEP ONE EVERY 2 FROM (TRIM 3 FROM (INPUT 0))");
+			Processor proc = builder.build(
+			    "KEEP ONE EVERY 2 FROM (TRIM 3 FROM (INPUT 0))");
 			QueueSource src = new QueueSource().setEvents(0, 1, 2, 3, 4, 5, 6, 8);
 			Connector.connect(src, proc);
 			Pullable pul1 = proc.getPullableOutput();

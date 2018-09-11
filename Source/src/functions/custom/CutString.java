@@ -7,7 +7,8 @@ import ca.uqac.lif.cep.functions.Function;
 public class CutString extends Function
 {
 	public void evaluate(Object[] inputs, Object[] outputs) {
-		outputs[0] = ((String) inputs[0]).substring(0, (Integer) inputs[1]);
+		outputs[0] = ((String) inputs[0]).substring(0, 
+		    (Integer) inputs[1]);
 	}
 
 	public int getInputArity() {

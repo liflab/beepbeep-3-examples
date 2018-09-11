@@ -40,8 +40,10 @@ public class MapPutInto
 	public static void main(String[] args)
 	{
 		///
-		QueueSource keys = new QueueSource().setEvents("foo", "bar", "foo", "baz");
-		QueueSource values = new QueueSource().setEvents(1, "abc", "def", 6);
+		QueueSource keys = new QueueSource()
+		    .setEvents("foo", "bar", "foo", "baz");
+		QueueSource values = new QueueSource()
+		    .setEvents(1, "abc", "def", 6);
 		Maps.PutInto put = new Maps.PutInto();
 		Connector.connect(keys, 0, put, 0);
 		Connector.connect(values, 0, put, 1);

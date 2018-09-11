@@ -15,7 +15,7 @@ import ca.uqac.lif.cep.mtnp.DrawPlot;
 import ca.uqac.lif.cep.mtnp.UpdateTableStream;
 import ca.uqac.lif.cep.signal.Limit;
 import ca.uqac.lif.cep.signal.PeakFinderLocalMaximum;
-import ca.uqac.lif.cep.signal.Smoothen;
+import ca.uqac.lif.cep.signal.Smooth;
 import ca.uqac.lif.cep.signal.Threshold;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.Fork;
@@ -136,7 +136,7 @@ public class PlotSpeed
     /* Since the weekly distance is very close to the measurement's
      * precision, smoothen those values by averaging each two successive
      * points. */
-    Smoothen smooth = new Smoothen(2);
+    Smooth smooth = new Smooth(2);
     Connector.connect(distance, smooth);
 
     Fork f2 = new Fork(2);

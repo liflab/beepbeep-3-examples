@@ -39,7 +39,8 @@ public class CumulateAnd
 	public static void main(String[] args)
 	{
 		///
-		QueueSource source = new QueueSource().setEvents(true, true, false, true, true);
+		QueueSource source = new QueueSource()
+		    .setEvents(true, true, false, true, true);
 		Cumulate and = new Cumulate(
 				new CumulativeFunction<Boolean>(Booleans.and));
 		Connector.connect(source, and);

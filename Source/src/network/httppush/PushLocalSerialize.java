@@ -61,7 +61,8 @@ public class PushLocalSerialize
 		 * tell it the URL at which the request will be sent. In this case, the URL
 		 * for Machine B is on the same host, on port 12144. The "/push" prefix is the
 		 * "page" on Machine B the server will respond to. */
-		HttpUpstreamGateway up_gateway = new HttpUpstreamGateway("http://localhost:12144/push");
+		HttpUpstreamGateway up_gateway = 
+		    new HttpUpstreamGateway("http://localhost:12144/push");
 		
 		/* We now move on to Machine B, which is responsible for receiving character
 		 * strings and converting them back into objects. This is the mirror process of
@@ -69,7 +70,8 @@ public class PushLocalSerialize
 		 * {@link HttpDownstreamGateway}. The gateway is instructed to listen to incoming
 		 * requests on port 12144, to respond to requests made at the page "/push", and
 		 * send through an HTTP <code>POST</code> request. */
-		HttpDownstreamGateway dn_gateway = new HttpDownstreamGateway(12144, "/push", Method.POST);
+		HttpDownstreamGateway dn_gateway = 
+		    new HttpDownstreamGateway(12144, "/push", Method.POST);
 		
 		/* Each event output from this processor is a sequence of character strings,
 		 * taken from the payload of each HTTP request that is received. Remember
@@ -82,7 +84,8 @@ public class PushLocalSerialize
 		 * to be deserialized, so that it knows instances of what kind of objects
 		 * to create. */
 		ApplyFunction deserialize = new ApplyFunction(
-				new JsonDeserializeString<CompoundObject>(CompoundObject.class));
+				new JsonDeserializeString<CompoundObject>(
+				    CompoundObject.class));
 		
 		/* Just so that we can see something, we plug a {@link Print} processor at
 		 * the end; it will print to the standard output whatever object it receives

@@ -76,7 +76,8 @@ public class MonotonicBid
     Connector.connect(filter, slice);
     ApplyFunction values = new ApplyFunction(Maps.values);
     Connector.connect(slice, values);
-    Bags.RunOn and = new Bags.RunOn(new Cumulate(new CumulativeFunction<Boolean>(Booleans.and)));
+    Bags.RunOn and = new Bags.RunOn(new Cumulate(
+        new CumulativeFunction<Boolean>(Booleans.and)));
     Connector.connect(values, and);
     ///
     Pullable p = values.getPullableOutput();

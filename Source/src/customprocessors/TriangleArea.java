@@ -22,7 +22,8 @@ public class TriangleArea extends Function
   }
   
   @Override
-  public boolean evaluatePartial(Object[] inputs, Object[] outputs, Context c)
+  public boolean evaluatePartial(Object[] inputs, 
+      Object[] outputs, Context c)
   {
     if (inputs[0] != null && ((Number) inputs[0]).floatValue() == 0)
     {

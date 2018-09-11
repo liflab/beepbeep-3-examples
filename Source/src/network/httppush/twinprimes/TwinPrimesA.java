@@ -64,7 +64,8 @@ public class TwinPrimesA
 		 * BigInteger "2" repeatedly, and it will return the cumulatve sum
 		 * of those "2" as its output. Since the start value of BigIntegerAdd
 		 * is one, the resulting sequence is made of all odd numbers. */
-		Cumulate counter = new Cumulate(new CumulativeFunction<BigInteger>(BigIntegerAdd.instance));
+		Cumulate counter = new Cumulate(
+		    new CumulativeFunction<BigInteger>(BigIntegerAdd.instance));
 		Connector.connect(pump, counter);
 		
 		/* The events output from the counter are duplicated along two paths. */
@@ -91,7 +92,8 @@ public class TwinPrimesA
 		
 		/* We convert BigIntegers to Strings, and push them across the network
 		 * to Machine B using the HttpUpstreamGateway. */
-		ApplyFunction int_to_string = new ApplyFunction(BigIntegerToString.instance);
+		ApplyFunction int_to_string = 
+		    new ApplyFunction(BigIntegerToString.instance);
 		HttpUpstreamGateway up_gateway = new HttpUpstreamGateway(push_url);
 		Connector.connect(fork2, RIGHT, int_to_string, INPUT);
 		Connector.connect(int_to_string, up_gateway);

@@ -38,7 +38,8 @@ public class ParserExample
 	public static void main(String[] args) throws FileNotFoundException, InvalidGrammarException, ParseException, VisitException 
 	{
 		///
-		InputStream is = ParserExample.class.getResourceAsStream("arithmetic.bnf");
+		InputStream is = ParserExample.class
+		    .getResourceAsStream("arithmetic.bnf");
 		BnfParser parser = new BnfParser(is);
 		ParseNode root = parser.parse("3 + (4 - 5)");
 		///

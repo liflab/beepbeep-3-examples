@@ -93,7 +93,8 @@ public class CumulativeScatterplot
 		 * out. You should see the window being updated every second with
 		 * more and more data points.
 		 */
-		System.out.println("Displaying plot. Press Ctrl+C or close the window to end.");
+		System.out.println("Displaying plot. Press Ctrl+C "
+		    + "or close the window to end.");
 		Thread th = new Thread(pump);
 		th.start();
 		///

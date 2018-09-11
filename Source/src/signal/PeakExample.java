@@ -25,6 +25,7 @@ public class PeakExample
 {
   public static void main(String[] args)
   {
+    ///
     GenerateSignal gs = new GenerateSignal(
         new Object[] {0, 20, -10, 0, -7, 0},
         new Object[] {5, 5, 3, 5, 5, 5});
@@ -37,5 +38,6 @@ public class PeakExample
     Connector.connect(fork, 0, ps, 1);
     Connector.connect(peak, 0, ps, 2);
     ps.start();
+    ///
   }  
 }

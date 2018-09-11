@@ -41,7 +41,8 @@ public class PushLocalSimple
 	public static void main(String[] args) throws ProcessorException, InterruptedException
 	{
 		///
-		HttpUpstreamGateway up_gateway = new HttpUpstreamGateway("http://localhost:12144/push");
+		HttpUpstreamGateway up_gateway = 
+		    new HttpUpstreamGateway("http://localhost:12144/push");
 		
 		/* We now move on to Machine B, which is responsible for receiving character
 		 * strings and converting them back into objects. This is the mirror process of
@@ -49,7 +50,8 @@ public class PushLocalSimple
 		 * {@link HttpDownstreamGateway}. The gateway is instructed to listen to incoming
 		 * requests on port 12144, to respond to requests made at the page "/push", and
 		 * send through an HTTP <code>POST</code> request. */
-		HttpDownstreamGateway dn_gateway = new HttpDownstreamGateway(12144, "/push", Method.POST);
+		HttpDownstreamGateway dn_gateway = 
+		    new HttpDownstreamGateway(12144, "/push", Method.POST);
 		
 		/* Just so that we can see something, we plug a {@link Print} processor at
 		 * the end; it will print to the standard output whatever object it receives

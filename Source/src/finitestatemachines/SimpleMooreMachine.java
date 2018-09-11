@@ -115,7 +115,8 @@ public class SimpleMooreMachine
     /* Done! We can now try our Moore machine on a sequence of events .*/
     //!
     QueueSource source = new QueueSource();
-    source.setEvents("hasNext", "next", "hasNext", "hasNext", "next", "next");
+    source.setEvents("hasNext", "next", "hasNext", 
+        "hasNext", "next", "next");
     Connector.connect(source, machine);
 
     /* Let's pull a few events to see what comes out... */

@@ -33,7 +33,8 @@ public class WithTank
 		///
 		ApplyFunction to_number = new ApplyFunction(Numbers.numberCast);
 		Tank tank = new Tank();
-		Cumulate sum = new Cumulate(new CumulativeFunction<Number>(Numbers.addition));
+		Cumulate sum = new Cumulate(
+		    new CumulativeFunction<Number>(Numbers.addition));
 		Connector.connect(to_number, tank, sum);
 		///
 		//!
