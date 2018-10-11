@@ -21,7 +21,7 @@ import java.util.Set;
 
 import ca.uqac.lif.cep.functions.FunctionException;
 import ca.uqac.lif.cep.peg.Sequence;
-import ca.uqac.lif.cep.peg.SetMiningFunction;
+import ca.uqac.lif.cep.peg.ml.SetMiningFunction;
 import mining.SequenceReader;
 
 /**

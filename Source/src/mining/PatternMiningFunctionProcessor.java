@@ -26,13 +26,12 @@ import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.TOP;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.functions.ApplyFunction;
-import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.FunctionException;
 import ca.uqac.lif.cep.functions.TurnInto;
-import ca.uqac.lif.cep.peg.ProcessorMiningFunction;
 import ca.uqac.lif.cep.peg.Sequence;
+import ca.uqac.lif.cep.peg.ml.ProcessorMiningFunction;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Trim;
@@ -55,7 +54,10 @@ public class PatternMiningFunctionProcessor
 		Set<Sequence<Number>> sequences = SequenceReader.readNumericalSequences("numbers-1.csv");
 		
 		/* We create a processor that computes the number of times a value
-		 * is followed by the same value. */
+		 * is followed by the same value. Look out! This processor returns
+		 * nothing for a sequence where no value appears twice in a row
+		 * (and will cause a NullPointerException). Exercise: could you rewrite
+		 * this processor to avoid this corner case? */
 		GroupProcessor total_same = new GroupProcessor(1, 1);
 		{
 			Fork fork = new Fork(3);
@@ -64,7 +66,7 @@ public class PatternMiningFunctionProcessor
 			ApplyFunction equals = new ApplyFunction(Equals.instance);
 			Connector.connect(fork, 1, equals, BOTTOM);
 			Connector.connect(trim, OUTPUT, equals, TOP);
-			TurnInto ones = new TurnInto(new Constant(1));
+			TurnInto ones = new TurnInto(1);
 			Connector.connect(fork, 2, ones, INPUT);
 			Filter filter = new Filter();
 			Connector.connect(ones, OUTPUT, filter, TOP);
@@ -90,5 +92,4 @@ public class PatternMiningFunctionProcessor
 		 * input sequence. */
 		System.out.println(outputs[0]);
 	}
-	
 }
