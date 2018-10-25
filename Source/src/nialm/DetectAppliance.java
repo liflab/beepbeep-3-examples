@@ -57,7 +57,8 @@ public class DetectAppliance
     ///
     
     //! Step 2: send to a Moore machine
-    ApplianceMooreMachine amm = new ApplianceMooreMachine(1000, 700, -700, 150);
+    ApplianceMooreMachine amm = 
+        new ApplianceMooreMachine(1000, 700, -700, 150);
     Connector.connect(peak_damper, 0, amm, 0);
     Connector.connect(plateau_damper, 0, amm, 1);
     
@@ -68,7 +69,8 @@ public class DetectAppliance
     Connector.connect(signal, 1, f, 0);
     
     // Connect the output and print at the console
-    ApplyFunction to_list = new ApplyFunction(new Bags.ToList(Number.class, Number.class));
+    ApplyFunction to_list = new ApplyFunction(
+        new Bags.ToList(Number.class, Number.class));
     Connector.connect(signal, 0, to_list, 0);
     Connector.connect(amm, 0, to_list, 1);
     //!

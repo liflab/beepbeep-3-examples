@@ -26,7 +26,8 @@ public class SkillChart
     ApplyFunction x_reader = new ApplyFunction(ParseXml.instance);
     Connector.connect(s_reader, feeder, x_reader);
     ///
-    ApplyFunction skill = new ApplyFunction(new XPathFunction("message/characters/character/status/text()"));
+    ApplyFunction skill = new ApplyFunction(
+        new XPathFunction("message/characters/character/status/text()"));
     Connector.connect(x_reader, skill);
     GroupProcessor gp = new GroupProcessor(1, 1);
     {
