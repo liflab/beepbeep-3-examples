@@ -101,6 +101,7 @@ public class CounterSingle extends SynchronousProcessor
 	@Override
 	public void reset()
 	{
+	  super.reset();
 		m_counterValue = 0;
 	}
 

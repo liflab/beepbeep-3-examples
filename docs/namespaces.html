@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -21,6 +28,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Code Examples
    </div>
+   <div id="projectbrief">A repository of 155 code examples for BeepBeep</div>
   </td>
  </tr>
  </tbody>
@@ -37,6 +45,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('namespaces.html','');});
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="headertitle">
 <div class="title">Packages</div>  </div>
@@ -51,41 +73,45 @@ $(function() {
 <tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacecustomprocessors.html" target="_self">customprocessors</a></td><td class="desc">Create custom processor objects by creating new classes that inherit from <a class="el" href="">Processor</a> </td></tr>
 <tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacediagnose.html" target="_self">diagnose</a></td><td class="desc">Use various tools to troubleshoot and diagnose a chain of processors </td></tr>
 <tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacedsl.html" target="_self">dsl</a></td><td class="desc">Create your own domain-specific query languages using BeepBeep's interpreter </td></tr>
-<tr id="row_7_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacefinitestatemachines.html" target="_self">finitestatemachines</a></td><td class="desc">Define finite-state machines and run them on an input trace </td></tr>
-<tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacefol.html" target="_self">fol</a></td><td class="desc"></td></tr>
-<tr id="row_9_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_9_" class="arrow" onclick="toggleFolder('9_')">&#9660;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacefunctions.html" target="_self">functions</a></td><td class="desc">Create custom <a class="el" href="">Function</a> objects, directly or by combining existing functions </td></tr>
-<tr id="row_9_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacefunctions_1_1custom.html" target="_self">custom</a></td><td class="desc"></td></tr>
-<tr id="row_10_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceheartmonitor.html" target="_self">heartmonitor</a></td><td class="desc"></td></tr>
-<tr id="row_11_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacehl7.html" target="_self">hl7</a></td><td class="desc"></td></tr>
-<tr id="row_12_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceio.html" target="_self">io</a></td><td class="desc">Read and write events from the outside world using files, </td></tr>
-<tr id="row_13_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacejdbc.html" target="_self">jdbc</a></td><td class="desc"></td></tr>
-<tr id="row_14_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacejson.html" target="_self">json</a></td><td class="desc"></td></tr>
-<tr id="row_15_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceltl.html" target="_self">ltl</a></td><td class="desc"></td></tr>
-<tr id="row_16_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_16_" class="arrow" onclick="toggleFolder('16_')">&#9660;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacemining.html" target="_self">mining</a></td><td class="desc">Extract patterns from input streams using data mining and statistical algorithms </td></tr>
-<tr id="row_16_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacemining_1_1extraction.html" target="_self">extraction</a></td><td class="desc">Extract trends and patterns from a set of input streams </td></tr>
-<tr id="row_16_1_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacemining_1_1trenddistance.html" target="_self">trenddistance</a></td><td class="desc">Evaluate an event stream based on a distance to a reference trend </td></tr>
-<tr id="row_17_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_17_" class="arrow" onclick="toggleFolder('17_')">&#9660;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacenetwork.html" target="_self">network</a></td><td class="desc">Send events from one processor to another over a network </td></tr>
-<tr id="row_17_0_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_17_0_" class="arrow" onclick="toggleFolder('17_0_')">&#9660;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacenetwork_1_1httppush.html" target="_self">httppush</a></td><td class="desc">Use HTTP gateways in push mode </td></tr>
-<tr id="row_17_0_0_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacenetwork_1_1httppush_1_1twinprimes.html" target="_self">twinprimes</a></td><td class="desc">Compute twin primes by distributing the computation across two machines over a network </td></tr>
-<tr id="row_18_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacenialm.html" target="_self">nialm</a></td><td class="desc"></td></tr>
-<tr id="row_19_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacepingus.html" target="_self">pingus</a></td><td class="desc"></td></tr>
-<tr id="row_20_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceplots.html" target="_self">plots</a></td><td class="desc">Generate tables, charts and plots from event streams </td></tr>
-<tr id="row_21_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacesignal.html" target="_self">signal</a></td><td class="desc"></td></tr>
-<tr id="row_22_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacestockticker.html" target="_self">stockticker</a></td><td class="desc"></td></tr>
-<tr id="row_23_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacetuples.html" target="_self">tuples</a></td><td class="desc">Manipulate tuples </td></tr>
-<tr id="row_24_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacetweets.html" target="_self">tweets</a></td><td class="desc"></td></tr>
-<tr id="row_25_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceutil.html" target="_self">util</a></td><td class="desc">A few methods repeatedly used throughout the examples of this repository </td></tr>
-<tr id="row_26_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacevoyager.html" target="_self">voyager</a></td><td class="desc">Process telemetry from the Voyager 2 spacecraft </td></tr>
-<tr id="row_27_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacewidgets.html" target="_self">widgets</a></td><td class="desc">Use GUI widgets as data sources or sinks </td></tr>
-<tr id="row_28_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacexml.html" target="_self">xml</a></td><td class="desc"></td></tr>
+<tr id="row_7_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceepisodes.html" target="_self">episodes</a></td><td class="desc">Examples related to a stream of events for a pressure sensor </td></tr>
+<tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacefinitestatemachines.html" target="_self">finitestatemachines</a></td><td class="desc">Define finite-state machines and run them on an input trace </td></tr>
+<tr id="row_9_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacefol.html" target="_self">fol</a></td><td class="desc"></td></tr>
+<tr id="row_10_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_10_" class="arrow" onclick="toggleFolder('10_')">&#9660;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacefunctions.html" target="_self">functions</a></td><td class="desc">Create custom <a class="el" href="">Function</a> objects, directly or by combining existing functions </td></tr>
+<tr id="row_10_0_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacefunctions_1_1custom.html" target="_self">custom</a></td><td class="desc"></td></tr>
+<tr id="row_11_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceheartmonitor.html" target="_self">heartmonitor</a></td><td class="desc"></td></tr>
+<tr id="row_12_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacehl7.html" target="_self">hl7</a></td><td class="desc"></td></tr>
+<tr id="row_13_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceio.html" target="_self">io</a></td><td class="desc">Read and write events from the outside world using files, </td></tr>
+<tr id="row_14_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacejdbc.html" target="_self">jdbc</a></td><td class="desc"></td></tr>
+<tr id="row_15_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacejson.html" target="_self">json</a></td><td class="desc"></td></tr>
+<tr id="row_16_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceltl.html" target="_self">ltl</a></td><td class="desc"></td></tr>
+<tr id="row_17_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_17_" class="arrow" onclick="toggleFolder('17_')">&#9660;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacemining.html" target="_self">mining</a></td><td class="desc">Extract patterns from input streams using data mining and statistical algorithms </td></tr>
+<tr id="row_17_0_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacemining_1_1extraction.html" target="_self">extraction</a></td><td class="desc">Extract trends and patterns from a set of input streams </td></tr>
+<tr id="row_17_1_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacemining_1_1trenddistance.html" target="_self">trenddistance</a></td><td class="desc">Evaluate an event stream based on a distance to a reference trend </td></tr>
+<tr id="row_18_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_18_" class="arrow" onclick="toggleFolder('18_')">&#9660;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacenetwork.html" target="_self">network</a></td><td class="desc">Send events from one processor to another over a network </td></tr>
+<tr id="row_18_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_18_0_" class="arrow" onclick="toggleFolder('18_0_')">&#9660;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacenetwork_1_1httppush.html" target="_self">httppush</a></td><td class="desc">Use HTTP gateways in push mode </td></tr>
+<tr id="row_18_0_0_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacenetwork_1_1httppush_1_1twinprimes.html" target="_self">twinprimes</a></td><td class="desc">Compute twin primes by distributing the computation across two machines over a network </td></tr>
+<tr id="row_19_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacenialm.html" target="_self">nialm</a></td><td class="desc"></td></tr>
+<tr id="row_20_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacepingus.html" target="_self">pingus</a></td><td class="desc"></td></tr>
+<tr id="row_21_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceplots.html" target="_self">plots</a></td><td class="desc">Generate tables, charts and plots from event streams </td></tr>
+<tr id="row_22_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacesignal.html" target="_self">signal</a></td><td class="desc"></td></tr>
+<tr id="row_23_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacestockticker.html" target="_self">stockticker</a></td><td class="desc"></td></tr>
+<tr id="row_24_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacetuples.html" target="_self">tuples</a></td><td class="desc">Manipulate tuples </td></tr>
+<tr id="row_25_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacetweets.html" target="_self">tweets</a></td><td class="desc"></td></tr>
+<tr id="row_26_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespaceutil.html" target="_self">util</a></td><td class="desc">A few methods repeatedly used throughout the examples of this repository </td></tr>
+<tr id="row_27_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacevoyager.html" target="_self">voyager</a></td><td class="desc">Process telemetry from the Voyager 2 spacecraft </td></tr>
+<tr id="row_28_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacewidgets.html" target="_self">widgets</a></td><td class="desc">Use GUI widgets as data sources or sinks </td></tr>
+<tr id="row_29_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespacexml.html" target="_self">xml</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

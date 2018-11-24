@@ -63,7 +63,7 @@
       <name>BeepBeep 3</name>
       <classname>ca.uqac.lif.cep.Processor</classname>
       <files>
-        <zip>https://github.com/liflab/beepbeep-3/releases/download/v0.7-alpha/beepbeep-3-0.7-alpha.zip</zip>
+        <zip>https://github.com/liflab/beepbeep-3/releases/download/v0.10-alpha/beepbeep-3-0.10-alpha.zip</zip>
       </files>
     </dependency>
     <dependency>
@@ -71,7 +71,7 @@
       <name>BeepBeep 3 Palettes</name>
       <classname>dontcare</classname>
       <files>
-        <zip>https://github.com/liflab/beepbeep-3-palettes/releases/download/v20171103/beepbeep-3-palettes-v20171103.zip</zip>
+        <zip>https://github.com/liflab/beepbeep-3-palettes/releases/download/v20181124/beepbeep-3-palettes-v20181124.zip</zip>
       </files>
     </dependency>
   </dependencies>

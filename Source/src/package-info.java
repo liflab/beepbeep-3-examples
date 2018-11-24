@@ -9,13 +9,25 @@
  * 
  * \section whatis What is BeepBeep?
  * 
- * If you don't know this yet, please first have a look at
- * <a href="http://liflab.github.io/beepbeep-3">BeepBeep's website</a>.
- * The documentation here only covers the code examples. Please refer to
- * BeepBeep's
- * <a href="http://liflab.github.io/beepbeep-3/javadoc/index.html">API reference</a>
- * to get information about BeepBeep's various objects and their usage.
- *
+ * BeepBeep is an event stream processing library. It has been developed by a
+ * team of researchers at <a href="http://liflab.ca">Laboratoire d'informatique
+ * formelle</a>, a research lab located at <a href="http://www.uqac.ca">Université
+ * du Québec à Chicoutimi</a>, Canada.
+ * 
+ * There exists extensive and detailed documentation about BeepBeep. This page
+ * only covers cod <em>examples</em> using BeepBeep. To learn more about the tool
+ * itself, please refer to these sources of information:
+ * 
+ * <ul>
+ * <li>A complete, 300-page <a href="https://liflab.gitbook.io/event-stream-processing-with-beepbeep-3">textbook</a>
+ * that details the basic concepts and advanced features, hosted on GitBook and also available as
+ * an open-access publication.</li>
+ * <li>BeepBeep's <a href="http://liflab.github.io/beepbeep-3">website</a> for more references,
+ * such as download links and scientific publications</li>
+ * <li>The <a href="http://liflab.github.io/beepbeep-3/javadoc/index.html">API reference</a>
+ * for BeepBeep's core and its <a href="http://liflab.github.io/beepbeep-3-palettes/doc">standard palettes</a>
+ * </ul>
+ * 
  * \section usage How to use this repository
  * 
  * The source code repository is organized into Java <a href="namespaces.html">packages</a>.
@@ -30,6 +42,9 @@
  * the link that is found at the bottom of each page. See for example the
  * <a href="_piping_unary_8java_source.html">source code</a> for one of the
  * simplest examples. 
+ * 
+ * The source code for all the examples can be downloaded from GitHub at:
+ * <a href="https://github.com/liflab/beepbeep-3-examples"><tt>https://github.com/liflab/beepbeep-3-examples</tt></a>.
  * 
  * \section run How to run the examples
  * 
