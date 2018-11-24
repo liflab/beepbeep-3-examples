@@ -50,7 +50,7 @@ import ca.uqac.lif.cep.util.Sets;
  * (average of single episode of second day).
  * Graphically, this can be represented by the following processor chain:
  * <p>
- * <img src="{@docRoot}/doc-files/episodes/MaxEpisodes.png" alt="Processor chain">
+ * <img src="{@docRoot}/doc-files/episodes/AvgEpisodes.png" alt="Processor chain">
  * 
  * @author Sylvain Hallé
  */
