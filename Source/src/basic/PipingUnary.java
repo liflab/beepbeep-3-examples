@@ -17,13 +17,10 @@
  */
 package basic;
 
-import java.util.Queue;
-
 import util.UtilityMethods;
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Processor;
+import ca.uqac.lif.cep.Doubler;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.SynchronousProcessor;
 import ca.uqac.lif.cep.tmf.QueueSource;
 
 /**
@@ -69,30 +66,5 @@ public class PipingUnary
 			UtilityMethods.pause(1000);
 		}
 		///
-	}
-
-	/**
-	 * A processor that doubles every number it is given. What this
-	 * processor does is not really important for our example.
-	 */
-	public static class Doubler extends SynchronousProcessor
-	{
-		public Doubler()
-		{
-			super(1, 1);
-		}
-
-		@Override
-		protected boolean compute(Object[] inputs, Queue<Object[]> outputs)
-		{
-			outputs.add(new Object[] {2 * ((Number) inputs[0]).intValue()});
-			return true;
-		}
-
-		@Override
-		public Processor duplicate(boolean with_state)
-		{
-			return this;
-		}
 	}
 }

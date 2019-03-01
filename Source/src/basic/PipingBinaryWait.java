@@ -19,7 +19,7 @@ package basic;
 
 import java.util.Queue;
 
-import basic.PipingBinary.Adder;
+import ca.uqac.lif.cep.Adder;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.tmf.QueueSource;

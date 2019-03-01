@@ -1,6 +1,6 @@
 /*
     BeepBeep, an event stream processor
-    Copyright (C) 2008-2016 Sylvain Hallé
+    Copyright (C) 2008-2019 Sylvain Hallé
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published
@@ -17,11 +17,9 @@
  */
 package basic;
 
-import java.util.Queue;
-
+import ca.uqac.lif.cep.Adder;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
-import ca.uqac.lif.cep.SynchronousProcessor;
 import ca.uqac.lif.cep.tmf.QueueSource;
 
 /**
@@ -54,30 +52,5 @@ public class PipingBinary
 			System.out.println("The event is: " + x);
 		}
 		///
-	}
-	
-	/**
-	 * A simple processor that adds two numbers. It is used in examples
-	 * throughout this section.
-	 */
-	public static class Adder extends SynchronousProcessor
-	{
-		public Adder()
-		{
-			super(2, 1);
-		}
-
-		@Override
-		public Adder duplicate(boolean with_state)
-		{
-			return new Adder();
-		}
-
-		@Override
-		protected boolean compute(Object[] inputs, Queue<Object[]> outputs)
-		{
-			outputs.add(new Object[]{((Integer) inputs[0]) + ((Integer) inputs[1])});
-			return true;
-		}
 	}
 }

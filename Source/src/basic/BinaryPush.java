@@ -1,6 +1,6 @@
 /*
     BeepBeep, an event stream processor
-    Copyright (C) 2008-2017 Sylvain Hallé
+    Copyright (C) 2008-2019 Sylvain Hallé
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published
@@ -17,10 +17,10 @@
  */
 package basic;
 
+import ca.uqac.lif.cep.Adder;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pushable;
 import ca.uqac.lif.cep.io.Print;
-import basic.PipingBinary.Adder;
 
 /**
  * Push events into a processor of input arity 2.
