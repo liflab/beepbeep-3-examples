@@ -19,6 +19,7 @@ package functions;
 
 import java.util.Set;
 
+import ca.uqac.lif.cep.Context;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.util.Booleans;
 import ca.uqac.lif.cep.util.Numbers;
@@ -102,7 +103,7 @@ public class FunctionUsage
 		}
 
 		@Override
-		public void evaluate(Object[] inputs, Object[] outputs) 
+		public void evaluate(Object[] inputs, Object[] outputs, Context c) 
 		{
 			int x = (Integer) inputs[0];
 			int y = (Integer) inputs[1];

@@ -23,11 +23,12 @@ import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.FunctionTree;
+import ca.uqac.lif.cep.functions.IdentityFunction;
 import ca.uqac.lif.cep.functions.IfThenElse;
 import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.graphviz.CallGraphviz;
 import ca.uqac.lif.cep.io.ReadLines;
-import ca.uqac.lif.cep.peg.weka.ClassifierTraining;
+import ca.uqac.lif.cep.peg.forecast.SelfLearningPrediction;
 import ca.uqac.lif.cep.peg.weka.UpdateClassifier;
 import ca.uqac.lif.cep.peg.weka.WekaUtils;
 import ca.uqac.lif.cep.tmf.Pump;
@@ -89,7 +90,7 @@ public class EngineOverheatSimple
     UpdateClassifier uc = new UpdateClassifier(new J48(), "Engine", attributes);
     
     // Train a classifier by comparing windows of width 1, offset by 3 events
-    ClassifierTraining ct = new ClassifierTraining(beta, kappa, uc, 3, 1, 1);
+    SelfLearningPrediction ct = new SelfLearningPrediction(new IdentityFunction(1), beta, 3, 1, kappa, 1, uc);
     connect(tuples, ct);
     
     // Just to be fancy, let's draw the classifier
