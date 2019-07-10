@@ -40,7 +40,7 @@ import ca.uqac.lif.cep.util.Equals;
  * Basic usage of LTL's {@link Until} processor. It is illustrated
  * as follows:
  * <p>
- * <img src="{@docRoot}/doc-files/ltl/UntilSimple.png" alt="Processor graph">
+ * <img src="{@docRoot}/doc-files/ltl/Nested.png" alt="Processor graph">
  * <p>
  * @author Sylvain Hallé
  */
