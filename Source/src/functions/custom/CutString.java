@@ -2,11 +2,12 @@ package functions.custom;
 
 import java.util.Set;
 
+import ca.uqac.lif.cep.Context;
 import ca.uqac.lif.cep.functions.Function;
 
 public class CutString extends Function
 {
-	public void evaluate(Object[] inputs, Object[] outputs) {
+	public void evaluate(Object[] inputs, Object[] outputs, Context c) {
 		outputs[0] = ((String) inputs[0]).substring(0, 
 		    (Integer) inputs[1]);
 	}

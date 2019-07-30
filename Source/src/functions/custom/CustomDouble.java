@@ -2,12 +2,13 @@ package functions.custom;
 
 import java.util.Set;
 
+import ca.uqac.lif.cep.Context;
 import ca.uqac.lif.cep.functions.Function;
 
 public class CustomDouble extends Function
 {
 	@Override
-	public void evaluate(Object[] inputs, Object[] outputs)
+	public void evaluate(Object[] inputs, Object[] outputs, Context c)
 	{
 		Number n = (Number) inputs[0];
 		outputs[0] = n.floatValue() * 2;

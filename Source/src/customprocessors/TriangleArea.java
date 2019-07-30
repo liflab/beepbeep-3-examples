@@ -12,7 +12,7 @@ public class TriangleArea extends Function
   }
 
   @Override
-  public void evaluate(Object[] inputs, Object[] outputs)
+  public void evaluate(Object[] inputs, Object[] outputs, Context con)
   {
     float a = ((Number) inputs[0]).floatValue();
     float b = ((Number) inputs[1]).floatValue();
