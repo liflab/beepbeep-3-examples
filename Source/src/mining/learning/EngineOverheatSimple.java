@@ -23,7 +23,6 @@ import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.FunctionTree;
-import ca.uqac.lif.cep.functions.IdentityFunction;
 import ca.uqac.lif.cep.functions.IfThenElse;
 import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.graphviz.CallGraphviz;

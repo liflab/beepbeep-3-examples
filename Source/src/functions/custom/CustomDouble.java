@@ -4,6 +4,7 @@ import java.util.Set;
 
 import ca.uqac.lif.cep.Context;
 import ca.uqac.lif.cep.functions.Function;
+import ca.uqac.lif.cep.Context;
 
 public class CustomDouble extends Function
 {
