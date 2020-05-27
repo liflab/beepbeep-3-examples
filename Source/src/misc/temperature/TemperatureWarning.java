@@ -30,16 +30,17 @@ public class TemperatureWarning
   /**
    * The average temperature
    */
-  protected float m_averageTemp;
+  protected double m_averageTemp;
   
   /**
    * Creates a new temperature alert event
    * @param rack_id The ID of the rack where the event occurs
    */
-  public TemperatureWarning(int rack_id)
+  public TemperatureWarning(int rack_id, double average_temp)
   {
     super();
     m_rackId = rack_id;
+    m_averageTemp = average_temp;
   }
   
   /**

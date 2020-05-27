@@ -2,7 +2,6 @@ package misc.temperature;
 
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.ProcessorException;
-import ca.uqac.lif.cep.functions.UnaryFunction;
 import ca.uqac.lif.cep.tmf.Source;
 import java.util.Queue;
 import java.util.Random;
@@ -78,10 +77,5 @@ public class MonitoringEventSource extends Source
   {
     // TODO Auto-generated method stub
     return null;
-  }
-  
-  public static class GetRackId extends UnaryFunction<MonitoringEvent,Integer>
-  {
-    
   }
 }
