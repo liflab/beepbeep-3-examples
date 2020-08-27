@@ -18,6 +18,7 @@ var dir_d1eb22c2ecfd8b50f59e9cbaf8260105 =
     [ "json", "dir_cf1069af7e83c2fe9928332d4a6a36c4.html", "dir_cf1069af7e83c2fe9928332d4a6a36c4" ],
     [ "ltl", "dir_12026bcaed7e1a92dfe83384b86da7b6.html", "dir_12026bcaed7e1a92dfe83384b86da7b6" ],
     [ "mining", "dir_3245d9f5d0c8cf0ae7d6dba1e551f1c7.html", "dir_3245d9f5d0c8cf0ae7d6dba1e551f1c7" ],
+    [ "misc", "dir_94cc84d541ac425b6d9613018de104ca.html", "dir_94cc84d541ac425b6d9613018de104ca" ],
     [ "network", "dir_24da0dc86437a7e33ee0436db5ff469d.html", "dir_24da0dc86437a7e33ee0436db5ff469d" ],
     [ "nialm", "dir_d8cd00ee6433d52b5594208a9016cae9.html", "dir_d8cd00ee6433d52b5594208a9016cae9" ],
     [ "pingus", "dir_a251d0a994bd9ea617ad89c6baf99d3f.html", "dir_a251d0a994bd9ea617ad89c6baf99d3f" ],
@@ -29,6 +30,5 @@ var dir_d1eb22c2ecfd8b50f59e9cbaf8260105 =
     [ "util", "dir_63a87adb3db3f5ea8cda8f42268a11af.html", "dir_63a87adb3db3f5ea8cda8f42268a11af" ],
     [ "voyager", "dir_96ca829ba6d10448fa068c58d7b7cb46.html", "dir_96ca829ba6d10448fa068c58d7b7cb46" ],
     [ "widgets", "dir_5b17e904d93d6c69b25a3cd8e25e9d7e.html", "dir_5b17e904d93d6c69b25a3cd8e25e9d7e" ],
-    [ "xml", "dir_d3ad8c5ef2776799a0b6428c3a1f1d58.html", "dir_d3ad8c5ef2776799a0b6428c3a1f1d58" ],
-    [ "package-info.java", "package-info_8java_source.html", null ]
+    [ "xml", "dir_d3ad8c5ef2776799a0b6428c3a1f1d58.html", "dir_d3ad8c5ef2776799a0b6428c3a1f1d58" ]
 ];

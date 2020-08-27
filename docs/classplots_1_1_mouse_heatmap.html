@@ -62,21 +62,42 @@ $(document).ready(function(){initNavTree('classplots_1_1_mouse_heatmap.html','')
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
 <a href="classplots_1_1_mouse_heatmap-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">plots.MouseHeatmap Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Displays the trail of the mouse pointer inside a heat map.  
+ <a href="classplots_1_1_mouse_heatmap.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:af669e093ea9b2cb5ba8e7358ee7f061b"><td class="memItemLeft" align="right" valign="top"><a id="af669e093ea9b2cb5ba8e7358ee7f061b"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (String[] args)</td></tr>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (String[] args)  throws InterruptedException   </td></tr>
 <tr class="separator:af669e093ea9b2cb5ba8e7358ee7f061b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
+Static Protected Attributes</h2></td></tr>
+<tr class="memitem:afbe750ee57fcdfbb0d464cf27f652ef9"><td class="memItemLeft" align="right" valign="top"><a id="afbe750ee57fcdfbb0d464cf27f652ef9"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplots_1_1_mouse_heatmap.html#afbe750ee57fcdfbb0d464cf27f652ef9">WIDTH</a> = 320</td></tr>
+<tr class="memdesc:afbe750ee57fcdfbb0d464cf27f652ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of the mouse playground. <br /></td></tr>
+<tr class="separator:afbe750ee57fcdfbb0d464cf27f652ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3091ebdb7b8b255265da6b16820f1e0"><td class="memItemLeft" align="right" valign="top"><a id="af3091ebdb7b8b255265da6b16820f1e0"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplots_1_1_mouse_heatmap.html#af3091ebdb7b8b255265da6b16820f1e0">HEIGHT</a> = 200</td></tr>
+<tr class="memdesc:af3091ebdb7b8b255265da6b16820f1e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The height of the mouse playground. <br /></td></tr>
+<tr class="separator:af3091ebdb7b8b255265da6b16820f1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_mouse_heatmap_8java_source.html#l00020">20</a> of file <a class="el" href="_mouse_heatmap_8java_source.html">MouseHeatmap.java</a>.</p>
+<div class="textblock"><p>Displays the trail of the mouse pointer inside a heat map. </p>
+<p>The program creates two windows: the first is the "mouse playground", which is a small empty frame where the mouse movements are recorded; the second is a window that displays a "heat map", which is a two-dimensional plot made of rectangular cells, where the color of each cell is associated to a numerical value. In the present case, each cell represents a rectangular zone of pixels in the mouse playground, and the numerical value for each zone is the total number of mouse events that occurred in that zone. The end result looks like the following screenshot: </p>
+<div class="image">
+<img src="./doc-files/plots/heatmap.png" alt="Screenshot"/>
+</div>
+ <p>One can see the heatmap update as the user moves the mouse in the playground. Colors that tend towards blue indicate that the mouse has not spent a lot of time in that zone, while red and yellow colors indicate the mouse has spent more time. The plot only updates when the mouse moves. </p>
+
+<p class="definition">Definition at line <a class="el" href="_mouse_heatmap_8java_source.html#l00051">51</a> of file <a class="el" href="_mouse_heatmap_8java_source.html">MouseHeatmap.java</a>.</p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Source/src/plots/<a class="el" href="_mouse_heatmap_8java_source.html">MouseHeatmap.java</a></li>
 </ul>

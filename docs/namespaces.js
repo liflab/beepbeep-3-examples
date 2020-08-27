@@ -18,6 +18,7 @@ var namespaces =
     [ "json", "namespacejson.html", null ],
     [ "ltl", "namespaceltl.html", null ],
     [ "mining", "namespacemining.html", "namespacemining" ],
+    [ "misc", "namespacemisc.html", "namespacemisc" ],
     [ "network", "namespacenetwork.html", "namespacenetwork" ],
     [ "nialm", "namespacenialm.html", null ],
     [ "pingus", "namespacepingus.html", null ],

@@ -17,6 +17,7 @@ var annotated_dup =
     [ "json", "namespacejson.html", "namespacejson" ],
     [ "ltl", "namespaceltl.html", "namespaceltl" ],
     [ "mining", "namespacemining.html", "namespacemining" ],
+    [ "misc", "namespacemisc.html", "namespacemisc" ],
     [ "network", "namespacenetwork.html", "namespacenetwork" ],
     [ "nialm", "namespacenialm.html", "namespacenialm" ],
     [ "pingus", "namespacepingus.html", "namespacepingus" ],

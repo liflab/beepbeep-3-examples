@@ -30,6 +30,7 @@ var hierarchy =
     [ "basic.DuplicateState", "classbasic_1_1_duplicate_state.html", null ],
     [ "basic.DuplicateStateQueues", "classbasic_1_1_duplicate_state_queues.html", null ],
     [ "artimon.Engine", "classartimon_1_1_engine.html", null ],
+    [ "mining.learning.EngineOverheatSimple", "classmining_1_1learning_1_1_engine_overheat_simple.html", null ],
     [ "ltl.EventuallySimple", "classltl_1_1_eventually_simple.html", null ],
     [ "finitestatemachines.ExtendedMooreMachine", "classfinitestatemachines_1_1_extended_moore_machine.html", null ],
     [ "signal.FakeSignal", "classsignal_1_1_fake_signal.html", null ],
@@ -71,6 +72,8 @@ var hierarchy =
     [ "mining.extraction.MaxMiningFunctionProcessor", "classmining_1_1extraction_1_1_max_mining_function_processor.html", null ],
     [ "mining.trenddistance.MaxSymbols", "classmining_1_1trenddistance_1_1_max_symbols.html", null ],
     [ "diagnose.MeasureThroughput", "classdiagnose_1_1_measure_throughput.html", null ],
+    [ "misc.temperature.Monitoring", "classmisc_1_1temperature_1_1_monitoring.html", null ],
+    [ "misc.temperature.MonitoringEvent", "classmisc_1_1temperature_1_1_monitoring_event.html", null ],
     [ "auction.MonotonicBid", "classauction_1_1_monotonic_bid.html", null ],
     [ "plots.MouseHeatmap", "classplots_1_1_mouse_heatmap.html", null ],
     [ "customprocessors.MyMaxExample", "classcustomprocessors_1_1_my_max_example.html", null ],
@@ -83,8 +86,8 @@ var hierarchy =
     [ "util.PackExample", "classutil_1_1_pack_example.html", null ],
     [ "util.PackUnpack", "classutil_1_1_pack_unpack.html", null ],
     [ "dsl.ParserExample", "classdsl_1_1_parser_example.html", null ],
-    [ "json.Parsing", "classjson_1_1_parsing.html", null ],
     [ "xml.Parsing", "classxml_1_1_parsing.html", null ],
+    [ "json.Parsing", "classjson_1_1_parsing.html", null ],
     [ "basic.PartialEvaluation", "classbasic_1_1_partial_evaluation.html", null ],
     [ "mining.PatternMiningFunctionProcessor", "classmining_1_1_pattern_mining_function_processor.html", null ],
     [ "signal.PeakExample", "classsignal_1_1_peak_example.html", null ],
@@ -141,6 +144,9 @@ var hierarchy =
     [ "basic.SumTwo", "classbasic_1_1_sum_two.html", null ],
     [ "mining.trenddistance.SymbolDistribution", "classmining_1_1trenddistance_1_1_symbol_distribution.html", null ],
     [ "mining.trenddistance.SymbolDistributionClusters", "classmining_1_1trenddistance_1_1_symbol_distribution_clusters.html", null ],
+    [ "misc.Temperature", "classmisc_1_1_temperature.html", null ],
+    [ "misc.temperature.TemperatureAlert", "classmisc_1_1temperature_1_1_temperature_alert.html", null ],
+    [ "misc.temperature.TemperatureWarning", "classmisc_1_1temperature_1_1_temperature_warning.html", null ],
     [ "signal.ThresholdExample", "classsignal_1_1_threshold_example.html", null ],
     [ "util.ToListExample", "classutil_1_1_to_list_example.html", null ],
     [ "basic.TrimPull", "classbasic_1_1_trim_pull.html", null ],
@@ -213,6 +219,7 @@ var hierarchy =
       [ "plots.BitmapJFrame", "classplots_1_1_bitmap_j_frame.html", null ]
     ] ],
     [ "Source", null, [
+      [ "misc.temperature.MonitoringEventSource", "classmisc_1_1temperature_1_1_monitoring_event_source.html", null ],
       [ "stockticker.TickerFeed", "classstockticker_1_1_ticker_feed.html", null ]
     ] ],
     [ "SynchronousProcessor", null, [

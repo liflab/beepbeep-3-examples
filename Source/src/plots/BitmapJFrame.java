@@ -70,6 +70,15 @@ public class BitmapJFrame extends Sink
 		m_label.setIcon(new ImageIcon(bytes));
 		return false;
 	}
+	
+	/**
+	 * Gets the frame associated to the object
+	 * @return The frame
+	 */
+	public JFrame getFrame()
+	{
+	  return m_frame;
+	}
 
 	@Override
 	public Processor duplicate(boolean with_state) 
