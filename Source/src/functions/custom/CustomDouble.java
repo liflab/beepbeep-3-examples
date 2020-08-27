@@ -3,13 +3,13 @@ package functions.custom;
 import java.util.Set;
 
 import ca.uqac.lif.cep.Context;
+import ca.uqac.lif.cep.EventTracker;
 import ca.uqac.lif.cep.functions.Function;
-import ca.uqac.lif.cep.Context;
 
 public class CustomDouble extends Function
 {
 	@Override
-	public void evaluate(Object[] inputs, Object[] outputs, Context c)
+	public void evaluate(Object[] inputs, Object[] outputs, Context c, EventTracker t)
 	{
 		Number n = (Number) inputs[0];
 		outputs[0] = n.floatValue() * 2;
