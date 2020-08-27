@@ -1,6 +1,7 @@
 package customprocessors;
 
 import ca.uqac.lif.cep.Context;
+import ca.uqac.lif.cep.EventTracker;
 import ca.uqac.lif.cep.functions.Function;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ public class TriangleArea extends Function
   }
 
   @Override
-  public void evaluate(Object[] inputs, Object[] outputs, Context con)
+  public void evaluate(Object[] inputs, Object[] outputs, Context con, EventTracker et)
   {
     float a = ((Number) inputs[0]).floatValue();
     float b = ((Number) inputs[1]).floatValue();
