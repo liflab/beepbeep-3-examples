@@ -23,6 +23,7 @@ var dir_d1eb22c2ecfd8b50f59e9cbaf8260105 =
     [ "nialm", "dir_d8cd00ee6433d52b5594208a9016cae9.html", "dir_d8cd00ee6433d52b5594208a9016cae9" ],
     [ "pingus", "dir_a251d0a994bd9ea617ad89c6baf99d3f.html", "dir_a251d0a994bd9ea617ad89c6baf99d3f" ],
     [ "plots", "dir_15fa55bfdadbb8c08812fc5c25634c9a.html", "dir_15fa55bfdadbb8c08812fc5c25634c9a" ],
+    [ "qbf", "dir_7f70add5b8cad0c84648c13364d3f17e.html", "dir_7f70add5b8cad0c84648c13364d3f17e" ],
     [ "signal", "dir_98fd3033f5645f0a2e97738e7b36b1cc.html", "dir_98fd3033f5645f0a2e97738e7b36b1cc" ],
     [ "stockticker", "dir_055d837df91b8c721e94f9901d746324.html", "dir_055d837df91b8c721e94f9901d746324" ],
     [ "tuples", "dir_04ee75171b6bb59914330a08f204ccca.html", "dir_04ee75171b6bb59914330a08f204ccca" ],

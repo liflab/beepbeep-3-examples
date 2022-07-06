@@ -23,6 +23,7 @@ var namespaces =
     [ "nialm", "namespacenialm.html", null ],
     [ "pingus", "namespacepingus.html", null ],
     [ "plots", "namespaceplots.html", null ],
+    [ "qbf", "namespaceqbf.html", null ],
     [ "signal", "namespacesignal.html", null ],
     [ "stockticker", "namespacestockticker.html", null ],
     [ "tuples", "namespacetuples.html", null ],

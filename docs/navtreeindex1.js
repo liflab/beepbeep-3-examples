@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"classbasic_1_1_piping_unary_missing.html":[1,0,2,31],
+"classbasic_1_1_piping_unary_push.html":[1,0,2,32],
+"classbasic_1_1_point_distance.html":[1,0,2,33],
 "classbasic_1_1_processor_id.html":[1,0,2,34],
 "classbasic_1_1_processor_id_group.html":[1,0,2,35],
 "classbasic_1_1_pull_hard.html":[1,0,2,36],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "classnetwork_1_1httppush_1_1twinprimes_1_1_twin_primes_b.html":[1,0,18,0,0,2],
 "classnialm_1_1_appliance_moore_machine.html":[1,0,19,0],
 "classnialm_1_1_appliance_moore_machine.html#a33a84eb8a978b9b886ae2d11ade89123":[1,0,19,0,0],
-"classnialm_1_1_detect_appliance.html":[1,0,19,1],
-"classpingus_1_1_collides.html":[1,0,20,0],
-"classpingus_1_1_collides.html#abfee96b472eadfc509e6282e173ec9ad":[1,0,20,0,0],
-"classpingus_1_1_collides.html#acafb0494798605a27d58699167e50224":[1,0,20,0,1]
+"classnialm_1_1_detect_appliance.html":[1,0,19,1]
 };

@@ -22,6 +22,7 @@ var annotated_dup =
     [ "nialm", "namespacenialm.html", "namespacenialm" ],
     [ "pingus", "namespacepingus.html", "namespacepingus" ],
     [ "plots", "namespaceplots.html", "namespaceplots" ],
+    [ "qbf", "namespaceqbf.html", "namespaceqbf" ],
     [ "signal", "namespacesignal.html", "namespacesignal" ],
     [ "stockticker", "namespacestockticker.html", "namespacestockticker" ],
     [ "tuples", "namespacetuples.html", "namespacetuples" ],
