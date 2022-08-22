@@ -19,8 +19,8 @@ package basic;
 
 import java.io.InputStream;
 
-import util.UtilityMethods;
 import ca.uqac.lif.cep.Pullable;
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.io.ReadLines;
 
 /**

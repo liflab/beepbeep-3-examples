@@ -19,6 +19,7 @@ package stockticker;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.FunctionTree;
@@ -29,7 +30,6 @@ import ca.uqac.lif.cep.tmf.Window;
 import ca.uqac.lif.cep.util.Equals;
 import ca.uqac.lif.cep.util.NthElement;
 import hl7.StatMoment;
-import util.UtilityMethods;
 
 public class WindowQuery
 {

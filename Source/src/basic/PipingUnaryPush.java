@@ -20,8 +20,8 @@ package basic;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Doubler;
 import ca.uqac.lif.cep.Pushable;
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.io.Print;
-import util.UtilityMethods;
 
 /**
  * Pipe processors together using the {@link ca.uqac.lif.cep.Connector Connector}

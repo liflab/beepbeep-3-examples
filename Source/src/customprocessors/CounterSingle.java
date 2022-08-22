@@ -21,9 +21,9 @@ import static ca.uqac.lif.cep.Connector.OUTPUT;
 
 import java.util.Queue;
 
-import util.UtilityMethods;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.SynchronousProcessor;
+import ca.uqac.lif.cep.UtilityMethods;
 
 /**
  * This processor simply generates the trace of numbers 0, 1, 2, ...

@@ -19,6 +19,7 @@ package util;
 
 import java.util.List;
 
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.util.Bags;
 import ca.uqac.lif.cep.util.Numbers;

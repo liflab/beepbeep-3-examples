@@ -22,8 +22,8 @@ import java.util.Queue;
 import ca.uqac.lif.cep.Adder;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.tmf.QueueSource;
-import util.UtilityMethods;
 
 /**
  * Pipe processors together using the {@link ca.uqac.lif.cep.Connector Connector}

@@ -19,9 +19,9 @@ package network.httppush;
 
 import java.util.LinkedList;
 
-import util.UtilityMethods;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Cumulate;

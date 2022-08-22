@@ -20,6 +20,7 @@ package stockticker;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.Pullable;
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.Cumulate;
@@ -36,7 +37,6 @@ import ca.uqac.lif.cep.util.Equals;
 import ca.uqac.lif.cep.util.Lists;
 import ca.uqac.lif.cep.util.NthElement;
 import ca.uqac.lif.cep.util.Numbers;
-import util.UtilityMethods;
 
 public class LandmarkQuery
 {

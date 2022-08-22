@@ -21,6 +21,7 @@ import java.util.List;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pushable;
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.util.Lists;
 

@@ -21,9 +21,10 @@ import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.LEFT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.RIGHT;
-import util.UtilityMethods;
+
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Cumulate;

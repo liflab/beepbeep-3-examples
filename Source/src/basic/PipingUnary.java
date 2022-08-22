@@ -17,10 +17,10 @@
  */
 package basic;
 
-import util.UtilityMethods;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Doubler;
 import ca.uqac.lif.cep.Pullable;
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.tmf.QueueSource;
 
 /**

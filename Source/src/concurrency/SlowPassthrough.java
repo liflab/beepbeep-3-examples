@@ -1,7 +1,7 @@
 package concurrency;
 
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.tmf.Passthrough;
-import util.UtilityMethods;
 
 public class SlowPassthrough extends Passthrough
 {

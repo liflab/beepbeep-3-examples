@@ -22,13 +22,14 @@ import java.math.BigInteger;
 import network.httppush.twinprimes.BigIntegerFunctions.BigIntegerAdd;
 import network.httppush.twinprimes.BigIntegerFunctions.BigIntegerToString;
 import network.httppush.twinprimes.BigIntegerFunctions.IsPrime;
-import util.UtilityMethods;
+
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.LEFT;
 import static ca.uqac.lif.cep.Connector.RIGHT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.ProcessorException;
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.functions.CumulativeFunction;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Cumulate;

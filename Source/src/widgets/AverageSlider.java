@@ -18,12 +18,12 @@
 package widgets;
 
 import plots.BitmapJFrame;
-import util.UtilityMethods;
 import ca.uqac.lif.cep.Connector;
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.ProcessorException;
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Cumulate;
 import ca.uqac.lif.cep.functions.CumulativeFunction;

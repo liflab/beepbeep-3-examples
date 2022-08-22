@@ -19,6 +19,7 @@ package stockticker;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
+import ca.uqac.lif.cep.UtilityMethods;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Constant;
 import ca.uqac.lif.cep.functions.FunctionTree;
@@ -27,7 +28,6 @@ import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Prefix;
 import ca.uqac.lif.cep.util.Equals;
 import ca.uqac.lif.cep.util.NthElement;
-import util.UtilityMethods;
 
 public class SnapshotQuery
 {
