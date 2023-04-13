@@ -2,15 +2,12 @@ package misc.temperature;
 
 import static ca.uqac.lif.cep.Connector.connect;
 
-import ca.uqac.lif.cep.Context;
-
 import static ca.uqac.lif.cep.Connector.BOTTOM;
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.TOP;
 
 import ca.uqac.lif.cep.GroupProcessor;
-import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.UniformProcessor;
 import ca.uqac.lif.cep.functions.ApplyFunction;
 import ca.uqac.lif.cep.functions.Constant;
@@ -20,7 +17,6 @@ import ca.uqac.lif.cep.functions.FunctionLambda;
 import ca.uqac.lif.cep.functions.FunctionTree;
 import ca.uqac.lif.cep.functions.StreamVariable;
 import ca.uqac.lif.cep.functions.TurnInto;
-import ca.uqac.lif.cep.functions.UnaryFunction;
 import ca.uqac.lif.cep.io.Print;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.FilterOn;

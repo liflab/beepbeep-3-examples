@@ -41,6 +41,7 @@ import ca.uqac.lif.jerrydog.RequestCallback.Method;
  * 
  * @author Sylvain Hallé
  */
+@SuppressWarnings("resource")
 public class PushMachineB 
 {
 	public static void main(String[] args) throws ProcessorException, InterruptedException
@@ -48,7 +49,7 @@ public class PushMachineB
 		// Ask a few infos about the remote end of the process
 		System.out.println("Hello, I am Machine B (downstream).");
 		System.out.print("Enter the port I should listen to: ");
-		Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
 		int port = sc.nextInt();
 
 		// Instantiate and pipe the processors 
