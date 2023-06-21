@@ -10,6 +10,5 @@ var dir_63a87adb3db3f5ea8cda8f42268a11af =
     [ "RunOnExample.java", "_run_on_example_8java_source.html", null ],
     [ "ToListExample.java", "_to_list_example_8java_source.html", null ],
     [ "UnpackExample.java", "_unpack_example_8java_source.html", null ],
-    [ "UnpackPush.java", "_unpack_push_8java_source.html", null ],
-    [ "UtilityMethods.java", "_utility_methods_8java_source.html", null ]
+    [ "UnpackPush.java", "_unpack_push_8java_source.html", null ]
 ];

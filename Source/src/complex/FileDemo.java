@@ -79,6 +79,10 @@ import ca.uqac.lif.cep.util.Numbers;
  * The pipeline allows resets, which means that if the same file is reopened
  * at a later time, a new complex event will eventually be output for this new
  * interaction.
+ * <p>
+ * The global pipeline is illustrated as follows:
+ * <p>
+ * <img src={@docRoot}/doc-files/complex/FileAccess.png" alt="Pipeline" />
  */
 public class FileDemo
 {
@@ -139,6 +143,7 @@ public class FileDemo
 			addProcessors(filter, f, cur_offset, exp_offset, ins, eq, and).associateInput(filter).associateOutput(and);
 		}};
 		
+		/* Create a processor that gets the range of bytes accessed. */
 		GroupProcessor byte_range = new GroupProcessor(1, 1) {{
 			FilterOn filter = new FilterOn(new FunctionTree(Booleans.or,
 					new FunctionTree(Equals.instance, new FunctionTree(new NthElement(1), StreamVariable.X), new Constant("read")),

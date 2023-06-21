@@ -9,6 +9,5 @@ var namespaceutil =
     [ "RunOnExample", "classutil_1_1_run_on_example.html", null ],
     [ "ToListExample", "classutil_1_1_to_list_example.html", null ],
     [ "UnpackExample", "classutil_1_1_unpack_example.html", null ],
-    [ "UnpackPush", "classutil_1_1_unpack_push.html", null ],
-    [ "UtilityMethods", "classutil_1_1_utility_methods.html", null ]
+    [ "UnpackPush", "classutil_1_1_unpack_push.html", null ]
 ];

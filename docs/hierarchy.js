@@ -10,7 +10,6 @@ var hierarchy =
     [ "util.BagsContains", "classutil_1_1_bags_contains.html", null ],
     [ "util.BagsFunctions", "classutil_1_1_bags_functions.html", null ],
     [ "network.httppush.twinprimes.BigIntegerFunctions", "classnetwork_1_1httppush_1_1twinprimes_1_1_big_integer_functions.html", null ],
-    [ "concurrency.BigIntegers", "classconcurrency_1_1_big_integers.html", null ],
     [ "basic.BinaryPush", "classbasic_1_1_binary_push.html", null ],
     [ "network.CompoundObject", "classnetwork_1_1_compound_object.html", null ],
     [ "functions.ConstantUsage", "classfunctions_1_1_constant_usage.html", null ],
@@ -24,6 +23,7 @@ var hierarchy =
     [ "basic.CumulativeSum", "classbasic_1_1_cumulative_sum.html", null ],
     [ "basic.DecimationSum", "classbasic_1_1_decimation_sum.html", null ],
     [ "nialm.DetectAppliance", "classnialm_1_1_detect_appliance.html", null ],
+    [ "robot.DetectSkidding", "classrobot_1_1_detect_skidding.html", null ],
     [ "basic.DuplicateContext", "classbasic_1_1_duplicate_context.html", null ],
     [ "basic.DuplicateGroup", "classbasic_1_1_duplicate_group.html", null ],
     [ "basic.DuplicateNoState", "classbasic_1_1_duplicate_no_state.html", null ],
@@ -34,8 +34,7 @@ var hierarchy =
     [ "ltl.EventuallySimple", "classltl_1_1_eventually_simple.html", null ],
     [ "finitestatemachines.ExtendedMooreMachine", "classfinitestatemachines_1_1_extended_moore_machine.html", null ],
     [ "signal.FakeSignal", "classsignal_1_1_fake_signal.html", null ],
-    [ "concurrency.FibonacciParallel", "classconcurrency_1_1_fibonacci_parallel.html", null ],
-    [ "concurrency.FibonacciSequential", "classconcurrency_1_1_fibonacci_sequential.html", null ],
+    [ "complex.FileDemo", "classcomplex_1_1_file_demo.html", null ],
     [ "basic.FileReader", "classbasic_1_1_file_reader.html", null ],
     [ "basic.FilterConditionComposite", "classbasic_1_1_filter_condition_composite.html", null ],
     [ "basic.FilterConditionSimple", "classbasic_1_1_filter_condition_simple.html", null ],
@@ -59,6 +58,7 @@ var hierarchy =
     [ "basic.HelloWorld", "classbasic_1_1_hello_world.html", null ],
     [ "basic.IncorrectPiping", "classbasic_1_1_incorrect_piping.html", null ],
     [ "functions.Interval", "classfunctions_1_1_interval.html", null ],
+    [ "complex.IteratorDemo", "classcomplex_1_1_iterator_demo.html", null ],
     [ "json.JPathExample", "classjson_1_1_j_path_example.html", null ],
     [ "basic.KeepLastPull", "classbasic_1_1_keep_last_pull.html", null ],
     [ "basic.KeepLastPush", "classbasic_1_1_keep_last_push.html", null ],
@@ -81,14 +81,13 @@ var hierarchy =
     [ "ltl.Nested", "classltl_1_1_nested.html", null ],
     [ "fol.NestedQuantifiers", "classfol_1_1_nested_quantifiers.html", null ],
     [ "ltl.NextSimple", "classltl_1_1_next_simple.html", null ],
-    [ "concurrency.NonBlockingPushExample", "classconcurrency_1_1_non_blocking_push_example.html", null ],
     [ "ltl.OpenClose", "classltl_1_1_open_close.html", null ],
     [ "network.httppush.PackerExample", "classnetwork_1_1httppush_1_1_packer_example.html", null ],
     [ "util.PackExample", "classutil_1_1_pack_example.html", null ],
     [ "util.PackUnpack", "classutil_1_1_pack_unpack.html", null ],
     [ "dsl.ParserExample", "classdsl_1_1_parser_example.html", null ],
-    [ "json.Parsing", "classjson_1_1_parsing.html", null ],
     [ "xml.Parsing", "classxml_1_1_parsing.html", null ],
+    [ "json.Parsing", "classjson_1_1_parsing.html", null ],
     [ "basic.PartialEvaluation", "classbasic_1_1_partial_evaluation.html", null ],
     [ "mining.PatternMiningFunctionProcessor", "classmining_1_1_pattern_mining_function_processor.html", null ],
     [ "signal.PeakExample", "classsignal_1_1_peak_example.html", null ],
@@ -115,7 +114,6 @@ var hierarchy =
     [ "network.httppush.PushLocalSimple", "classnetwork_1_1httppush_1_1_push_local_simple.html", null ],
     [ "network.httppush.PushMachineA", "classnetwork_1_1httppush_1_1_push_machine_a.html", null ],
     [ "network.httppush.PushMachineB", "classnetwork_1_1httppush_1_1_push_machine_b.html", null ],
-    [ "concurrency.PushPipelineExample", "classconcurrency_1_1_push_pipeline_example.html", null ],
     [ "basic.PushWithoutSink", "classbasic_1_1_push_without_sink.html", null ],
     [ "util.PutIntoExample", "classutil_1_1_put_into_example.html", null ],
     [ "basic.QueueSinkUsage", "classbasic_1_1_queue_sink_usage.html", null ],
@@ -126,6 +124,7 @@ var hierarchy =
     [ "io.ReadTokens", "classio_1_1_read_tokens.html", null ],
     [ "tweets.Relationships", "classtweets_1_1_relationships.html", null ],
     [ "basic.ResetWindow", "classbasic_1_1_reset_window.html", null ],
+    [ "robot.RobotEvent", "classrobot_1_1_robot_event.html", null ],
     [ "util.RunOnExample", "classutil_1_1_run_on_example.html", null ],
     [ "mining.SequenceReader", "classmining_1_1_sequence_reader.html", null ],
     [ "widgets.SetValueSlider", "classwidgets_1_1_set_value_slider.html", null ],
@@ -158,13 +157,11 @@ var hierarchy =
     [ "util.UnpackPush", "classutil_1_1_unpack_push.html", null ],
     [ "ltl.UntilSimple", "classltl_1_1_until_simple.html", null ],
     [ "plots.UpdateTableStreamExample", "classplots_1_1_update_table_stream_example.html", null ],
-    [ "util.UtilityMethods", "classutil_1_1_utility_methods.html", null ],
+    [ "chess.WhiteVsBlack", "classchess_1_1_white_vs_black.html", null ],
     [ "basic.WindowAverage", "classbasic_1_1_window_average.html", null ],
     [ "basic.WindowEven", "classbasic_1_1_window_even.html", null ],
-    [ "concurrency.WindowParallel", "classconcurrency_1_1_window_parallel.html", null ],
     [ "stockticker.WindowQuery", "classstockticker_1_1_window_query.html", null ],
     [ "plots.WindowScatterplot", "classplots_1_1_window_scatterplot.html", null ],
-    [ "concurrency.WindowSequential", "classconcurrency_1_1_window_sequential.html", null ],
     [ "basic.WindowSimple", "classbasic_1_1_window_simple.html", null ],
     [ "basic.WithoutPump", "classbasic_1_1_without_pump.html", null ],
     [ "basic.WithPump", "classbasic_1_1_with_pump.html", null ],
@@ -212,9 +209,6 @@ var hierarchy =
     [ "MooreMachine", null, [
       [ "nialm.ApplianceMooreMachine", "classnialm_1_1_appliance_moore_machine.html", null ]
     ] ],
-    [ "Passthrough", null, [
-      [ "concurrency.SlowPassthrough", "classconcurrency_1_1_slow_passthrough.html", null ]
-    ] ],
     [ "PassthroughFunction", null, [
       [ "functions.Polynomial", "classfunctions_1_1_polynomial.html", null ]
     ] ],
@@ -226,7 +220,6 @@ var hierarchy =
       [ "stockticker.TickerFeed", "classstockticker_1_1_ticker_feed.html", null ]
     ] ],
     [ "SynchronousProcessor", null, [
-      [ "concurrency.IsPrimeProcessor", "classconcurrency_1_1_is_prime_processor.html", null ],
       [ "customprocessors.CounterSingle", "classcustomprocessors_1_1_counter_single.html", null ],
       [ "customprocessors.EuclideanDistance", "classcustomprocessors_1_1_euclidean_distance.html", null ],
       [ "customprocessors.MyMax", "classcustomprocessors_1_1_my_max.html", null ],
@@ -240,10 +233,11 @@ var hierarchy =
     ] ],
     [ "UnaryFunction", null, [
       [ "functions.custom.UnaryDouble", "classfunctions_1_1custom_1_1_unary_double.html", null ],
-      [ "functions.IsPrime", "classfunctions_1_1_is_prime.html", null ]
+      [ "functions.IsPrime", "classfunctions_1_1_is_prime.html", null ],
+      [ "robot.ArcTanVector", "classrobot_1_1_arc_tan_vector.html", null ],
+      [ "robot.Modulus", "classrobot_1_1_modulus.html", null ]
     ] ],
     [ "UniformProcessor", null, [
-      [ "concurrency.FibonacciProcessor", "classconcurrency_1_1_fibonacci_processor.html", null ],
       [ "plots.RandomMutator", "classplots_1_1_random_mutator.html", null ]
     ] ]
 ];

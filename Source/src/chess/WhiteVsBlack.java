@@ -53,8 +53,8 @@ import ca.uqac.lif.cep.util.Strings;
  * <a href="https://web.archive.org/web/20140119221101/https://tomhayden3.com/2013/12/27/chess-mr-job/">2013
  * post by Tom Hayden</a>, who performed the same calculation as a MapReduce
  * job for <a href="https://hadoop.apache.org/">Hadoop</a>. The original input
- * file, called the "<a href="https://web.archive.org/web/20140119221101/http://www.top-5000.nl/pgn.htm">millionbase
- * archive</a>", is 1.74 GB big and contains about 2 million chess games.
+ * file, called the <em><a href="https://web.archive.org/web/20140119221101/http://www.top-5000.nl/pgn.htm">millionbase
+ * archive</a></em>, is 1.74 GB big and contains about 2 million chess games.
  * <p>
  * The surprising finding about this example is that, while the Hadoop job
  * reportedly takes <strong>26 minutes</strong> to terminate, the BeepBeep

@@ -22,10 +22,10 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_add_numbers_8java_source.html",
-"classbasic_1_1_piping_unary_missing.html",
-"classpingus_1_1_collides.html",
-"pages.html"
+".html",
+"classbasic_1_1_point_distance.html",
+"classplots_1_1_cumulative_scatterplot.html",
+"pingus_2package-info_8java_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

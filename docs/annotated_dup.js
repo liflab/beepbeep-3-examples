@@ -3,7 +3,11 @@ var annotated_dup =
     [ "artimon", "namespaceartimon.html", "namespaceartimon" ],
     [ "auction", "namespaceauction.html", "namespaceauction" ],
     [ "basic", "namespacebasic.html", "namespacebasic" ],
-    [ "concurrency", "namespaceconcurrency.html", "namespaceconcurrency" ],
+    [ "chess", "namespacechess.html", "namespacechess" ],
+    [ "complex", null, [
+      [ "FileDemo", "classcomplex_1_1_file_demo.html", null ],
+      [ "IteratorDemo", "classcomplex_1_1_iterator_demo.html", null ]
+    ] ],
     [ "customprocessors", "namespacecustomprocessors.html", "namespacecustomprocessors" ],
     [ "diagnose", "namespacediagnose.html", "namespacediagnose" ],
     [ "dsl", "namespacedsl.html", "namespacedsl" ],
@@ -23,6 +27,7 @@ var annotated_dup =
     [ "pingus", "namespacepingus.html", "namespacepingus" ],
     [ "plots", "namespaceplots.html", "namespaceplots" ],
     [ "qbf", "namespaceqbf.html", "namespaceqbf" ],
+    [ "robot", "namespacerobot.html", "namespacerobot" ],
     [ "signal", "namespacesignal.html", "namespacesignal" ],
     [ "stockticker", "namespacestockticker.html", "namespacestockticker" ],
     [ "tuples", "namespacetuples.html", "namespacetuples" ],

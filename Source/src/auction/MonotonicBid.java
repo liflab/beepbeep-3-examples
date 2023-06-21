@@ -38,6 +38,11 @@ import ca.uqac.lif.cep.util.NthElement;
 import ca.uqac.lif.cep.util.Numbers;
 import ca.uqac.lif.cep.util.Strings;
 
+/**
+ * Checks that all bids in an auction system are <em>monotonic</em>, i.e. each
+ * bid for an item is higher than the previous bid.
+ * @author Sylvain Hallé
+ */
 public class MonotonicBid
 {
 
